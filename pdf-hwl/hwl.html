@@ -1,0 +1,959 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>详版报告</title>
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width" />
+  <link rel="stylesheet" href="https://static.loyalvalleycapital.com/web/css/frame.css" />
+  <script src="./static/echarts.js"></script>
+  <style>
+    /* 左右padding 71px */
+    @font-face {
+      font-family: "思源黑体";
+      /* 修改成字体对应的路径 */
+      /* src:url("C:\\Windows\\Fonts\\simsun.ttf") */
+    }
+    body {
+      background-color: #fff;
+      /* font-family: "黑体"; */
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-weight: bolder;
+    }
+
+    h1 {
+      font-size: 28px !important;
+    }
+
+    .container {
+      width: 800px;
+      background-color: #fff;
+    }
+
+    .cover,
+    .backcover {
+      padding: 0;
+      height: 1122px;
+      /* 1122px是一个相对于宽800px的临界值 */
+      position: relative;
+    }
+
+    .cover img,
+    .backcover img {
+      width: 100%;
+      height: 100%;
+    }
+
+    .cover div {
+      position: absolute;
+      font-size: 16px;
+      top: 188px;
+      left: 28px;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    ul li {
+      margin: 7px 0;
+    }
+
+    .order {
+      padding: 60px 57px;
+      width: 100%;
+      margin: auto 0;
+      height: 1122px;
+      box-sizing: border-box;
+    }
+
+    .order .page2-block {
+      display: inline-table;
+      width: 340px;
+      height: 340px;
+      padding: 15px;
+    }
+
+    .order .top-order {
+      color: #6f00ff;
+      font-size: 80px;
+      font-weight: bolder;
+      margin-bottom: 40px;
+    }
+
+    .order .mid-text {
+      color: #6f00ff;
+      font-size: 32px;
+      font-weight: bolder;
+    }
+
+    .order .bottom-catalog {
+      font-size: 19px;
+      font-weight: bolder;
+      margin-top: 20px;
+      padding-right: 10px;
+      box-sizing: border-box;
+    }
+
+    .order .bottom-catalog div {
+      display: inline-block;
+    }
+
+    .order .bottom-catalog .pageNo {
+      float: right;
+    }
+
+    .introducer,
+    .dimension,
+    .standard-score,
+    .situation,
+    .analysic {
+      width: 100%;
+      height: 1122px;
+      position: relative;
+    }
+
+    .analysic {
+      padding: 71px;
+      color: #333333;
+    }
+
+    .situation {
+      padding: 71px;
+    }
+
+    .situation .situation-datatext {
+      /* 3月30修改 31 =》 30 */
+      font-size: 30px;
+      font-weight: bolder;
+      margin-top: 19px;
+    }
+
+    .situation .situation-datatitle {
+      font-size: 20px;
+      display: block !important;
+    }
+
+    .situation .result-data {
+      margin-top: 60px;
+      margin-bottom: 110px;
+    }
+
+    .situation .result-data img {
+      width: 100%;
+      height: 100%;
+    }
+
+    .situation .data-line div {
+      display: inline-table;
+    }
+
+    .introducer .intro-box,
+    .dimension .dimen-box,
+    .standard-score .ss-box,
+    .analysic .ana-box {
+      width: 100%;
+      height: 100%;
+    }
+
+    .introducer .intro-box img,
+    .dimension .dimen-box img,
+    .standard-score .ss-box img {
+      width: 100%;
+      height: 100%;
+    }
+
+    .page-header {
+      padding: 0 71px;
+      width: 100%;
+      position: absolute;
+      top: 26px;
+      left: 0;
+    }
+
+    .page-header .header-text {
+      font-weight: bolder;
+      line-height: 32.6px;
+      font-size: 22px;
+      display: inline-table;
+    }
+
+    .page-header .header-img {
+      width: 204px;
+      height: 32.6px;
+      display: inline-table;
+      float: right;
+    }
+
+    .page-header .header-img img {
+      width: 100%;
+      height: 100%;
+    }
+
+    .page-footer {
+      width: 100%;
+      padding: 0 71px;
+      position: absolute;
+      bottom: 30px;
+      left: 0;
+    }
+
+    .page-footer .page-footer-left {
+      display: inline-table;
+      line-height: 16px;
+      letter-spacing: 0.5px;
+      font-size: 12px;
+    }
+
+    .page-footer .page-footer-right {
+      font-size: 16px;
+      display: inline-table;
+      float: right;
+      font-weight: bolder;
+    }
+
+    #main {
+      width: 100%;
+      height: 460px;
+    }
+
+    .analysic .info-box-line {
+      width: 100%;
+    }
+
+    .info-box-line .line-top div,
+    .info-box-line .line-bottom div {
+      display: table-cell;
+      vertical-align: middle;
+    }
+
+    .info-box-line .line-top,
+    .info-box-line .line-bottom {
+      display: table;
+      border-collapse: separate;
+      border-spacing: 2px;
+      width: 100%;
+    }
+
+    .info-box-line .line-bottom {
+      margin-top: -1.5px;
+    }
+
+    .info-box-line .line-top {
+      color: #ffffff;
+    }
+
+    .info-box-line .line-title {
+      width: 190px;
+      font-size: 24px;
+      padding: 13px;
+      font-weight: bolder;
+      border-top-left-radius: 10px;
+      border-bottom-left-radius: 10px;
+    }
+
+    .info-box-line .line-text {
+      padding: 13px;
+      /* 字体大小 */
+      font-size: 14px;
+      line-height: 1.25;
+      width: 464px;
+      margin-left: 10px;
+      border-top-right-radius: 10px;
+      border-bottom-right-radius: 10px;
+    }
+
+    .ana1 .line-bottom .line-title {
+      color: #9EAC56
+    }
+
+    .ana2 .line-bottom .line-title {
+      color: #5368c3;
+    }
+
+    .ana3 .line-bottom .line-title {
+      color: #e56147;
+    }
+
+    .ana4 .line-bottom .line-title {
+      color: #ffa24e;
+    }
+
+    .line-title .eng-title {
+      display: block;
+      margin-top: 5px;
+      font-size: 13px;
+    }
+
+    .line-top .line-title {
+      font-size: 30px;
+    }
+  </style>
+</head>
+
+<body>
+<div class="container">
+  <!-- 封面盒子 -->
+  <div class="cover">
+    <img src="./static/cover.jpg" alt="">
+    <div class="userInfo">
+      <ul>
+        <!-- 插槽 -->
+        <li>
+          <!-- 北京好未来 -->
+          公司名称：<span th:text="${data.companyName}"></span>
+        </li>
+        <li>
+          <!-- 姓名：李雪 -->
+          姓名：<span th:text="${data.userName}"></span>
+        </li>
+        <li>
+          <!-- 工号：HZ00001 -->
+          工号：<span th:text="${data.workerCode}"></span>
+        </li>
+        <li>
+          <!-- 测试时间：2020/02/15 25分钟 -->
+          测试时间：<span th:text="${data.testDate}"></span>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <!-- 目录盒子 -->
+  <div class="order">
+    <div style="border-bottom: 1px solid #e2ccff">
+      <div class="page2-block" style="border-right: 1px solid #e2ccff">
+        <div class="top-order">
+          目录
+        </div>
+      </div>
+      <div class="page2-block">
+        <div class="top-order">
+          1
+        </div>
+        <div class="mid-text">
+          <div style="display: inline-table;">报告导语和阅读建议</div>
+        </div>
+      </div>
+    </div>
+    <div style="border-bottom: 1px solid #e2ccff">
+      <div class="page2-block" style="border-right: 1px solid #e2ccff">
+        <div class="top-order">
+          2
+        </div>
+        <div class="mid-text">
+          评估维度
+        </div>
+        <div class="bottom-catalog">
+          <div>报告维度</div>
+          <div class="pageNo">1</div>
+        </div>
+        <div class="bottom-catalog">
+          <div>标准分数和分数区间</div>
+          <div class="pageNo">2</div>
+        </div>
+      </div>
+      <div class="page2-block">
+        <div class="top-order">
+          3
+        </div>
+        <div class="mid-text">
+          整体测试情况
+        </div>
+        <div class="bottom-catalog">
+          <div>测试者作答风格和整体得分情况</div>
+          <div class="pageNo">3</div>
+        </div>
+      </div>
+    </div>
+    <div class="page2-block" style="border-right: 1px solid #e2ccff">
+      <div class="top-order">
+        4
+      </div>
+      <div class="mid-text">
+        分析报告
+      </div>
+      <div class="bottom-catalog">
+        <div>测试者各个维度的详细报告</div>
+        <div class="pageNo">4</div>
+      </div>
+    </div>
+  </div>
+  <!-- 报告导语和阅读建议 -->
+  <div class="introducer">
+    <div class="intro-box">
+      <img src="./static/reportleads.png" alt="">
+      <!-- 页眉 -->
+      <div class="page-header">
+        <div class="header-text">
+          报告导语和建议
+        </div>
+        <div class="header-img">
+          <img src="./static/logo.png" alt="">
+        </div>
+      </div>
+      <!-- 页脚 -->
+      <div class="page-footer">
+        <div class="page-footer-left">
+          版权所有：杭州扶摇职上教育科技有限公司
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- 报告维度 -->
+  <div class="dimension">
+    <div class="dimen-box">
+      <img src="./static/dimension.png" alt="">
+      <!-- 页眉 -->
+      <div class="page-header">
+        <div class="header-text">
+          评估维度
+        </div>
+        <div class="header-img">
+          <img src="./static/logo.png" alt="">
+        </div>
+      </div>
+      <!-- 页脚 -->
+      <div class="page-footer">
+        <div class="page-footer-left">
+          版权所有：杭州扶摇职上教育科技有限公司
+        </div>
+        <div class="page-footer-right">
+          1
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- 标准分数和区间分数 -->
+  <div class="standard-score">
+    <div class="ss-box">
+      <img src="./static/scoresection.jpg" alt="">
+      <!-- 页眉 -->
+      <div class="page-header">
+        <div class="header-text">
+          评估维度
+        </div>
+        <div class="header-img">
+          <img src="./static/logo.png" alt="">
+        </div>
+      </div>
+      <!-- 页脚 -->
+      <div class="page-footer">
+        <div class="page-footer-left">
+          版权所有：杭州扶摇职上教育科技有限公司
+        </div>
+        <div class="page-footer-right">
+          2
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- 整体测试情况  逐渐复杂起来 -->
+  <div class="situation">
+    <div class="situa-box" style="padding-top: 30px">
+      <h1>测试者作答风格</h1>
+      <div class="result-data">
+        <div class="data-line" style="border-bottom: 1px solid #ddd;">
+          <div style="width: 327px; border-right: 1px solid #ddd; padding: 0 0 50px 0;">
+            <div style="width: 70px; height: 70px; float: left;">
+              <img src="./static/time.png" alt="">
+            </div>
+            <div style="margin-left: 30px; height: 70px;">
+              <div class="situation-datatitle">答题时间</div>
+              <div class="situation-datatext" th:text="${data.testCostTime}" id="playTimeDom">1小时3分24秒</div>
+            </div>
+          </div>
+          <div style="width: 327px; padding: 0 0 50px 35px;">
+            <div style="width: 70px; height: 70px; float: left;">
+              <img src="./static/interruptiontimes.png" alt="">
+            </div>
+            <div style="margin-left: 30px; height: 70px;">
+              <div class="situation-datatitle">中断次数</div>
+              <div class="situation-datatext" th:text="${data.interruptTimes}"></div>
+            </div>
+          </div>
+        </div>
+        <div class="data-line">
+          <div style="width: 327px; border-right: 1px solid #ddd; padding-top: 50px">
+            <div style="width: 70px; height: 70px; float: left;">
+              <img src="./static/coin.png" alt="">
+            </div>
+            <div style="margin-left: 30px; height: 70px;">
+              <div class="situation-datatitle">获得金币数量</div>
+              <div class="situation-datatext" th:text="${data.goldCoinNum}"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 测试者整体得分情况 -->
+      <div class="thescore">
+        <h1>测试者整体得分情况</h1>
+        <!-- canvas -->
+        <div id="main"></div>
+      </div>
+      <!-- 页眉 -->
+      <div class="page-header">
+        <div class="header-text">
+          整体测试情况
+        </div>
+        <div class="header-img">
+          <img src="./static/logo.png" alt="">
+        </div>
+      </div>
+      <!-- 页脚 -->
+      <div class="page-footer">
+        <div class="page-footer-left">
+          版权所有：杭州扶摇职上教育科技有限公司
+        </div>
+        <div class="page-footer-right">
+          3
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- 分析报告 -->
+  <div class="analysic ana1">
+    <div class="ana-box">
+      <div class="info-box">
+        <div class="info-box-line line1" style="margin-top: 30px; margin-bottom: 40px;">
+          <div class="line-top">
+            <div class="line-title" style="background-color: #9EAC56;" th:text="${data.reportScore1.name}">
+            </div>
+            <div class="line-text" style="background-color: #9EAC56;" th:text="${data.reportScore1.description}">
+            </div>
+          </div>
+          <div class="line-bottom">
+            <div class="line-title" style="background-color: #F9FCF2; font-size: 34px;" th:text="${data.reportScore1.score}">
+            </div>
+            <div class="line-text" style="background-color: #F9FCF2;" th:text="${data.reportScore1.scoreDescription}">
+            </div>
+          </div>
+        </div>
+        <div th:each="child:${data.reportScore1.children}">
+          <div class="info-box-line line2" style="margin-top: 15px;">
+            <div class="line-bottom">
+              <div class="line-title" style="background-color: #F9FCF2;">
+                  <span th:text="${child.name}">
+                  </span>
+                <span class="eng-title" th:text="${child.englishName}">
+                  </span>
+              </div>
+              <div class="line-text" style="background-color: #F9FCF2;" th:text="${child.description}">
+              </div>
+            </div>
+            <div class="line-bottom">
+              <div class="line-title" style="background-color: #F9FCF2;" th:text="${child.score}">
+              </div>
+              <div class="line-text" style="background-color: #F9FCF2;" th:text="${child.scoreDescription}">
+              </div>
+            </div>
+          </div>
+          <!-- <div class="info-box-line line2" style="margin-top: 30px;">
+            <div class="line-bottom">
+              <div class="line-title" style="background-color: #F9FCF2;">
+                信息处理
+                <span class="eng-title">
+                  Information processing
+                </span>
+              </div>
+              <div class="line-text" style="background-color: #F9FCF2;">
+                从环境中吸取有效信息并且做出快速加工的能力
+              </div>
+            </div>
+            <div class="line-bottom">
+              <div class="line-title" style="background-color: #F9FCF2;">
+                6.68
+              </div>
+              <div class="line-text" style="background-color: #F9FCF2;">
+                能够在短时间内精准加工信息，具有超快速的反应能力
+              </div>
+            </div>
+          </div>
+          <div class="info-box-line line2" style="margin-top: 30px;">
+            <div class="line-bottom">
+              <div class="line-title" style="background-color: #F9FCF2;">
+                言语理解
+                <span class="eng-title">
+                  Verbal comprehension
+                </span>
+              </div>
+              <div class="line-text" style="background-color: #F9FCF2;">
+                包含获取知识的基础能力、探寻新体验、新方法、新知识的欲望和主动性、
+              </div>
+            </div>
+            <div class="line-bottom">
+              <div class="line-title" style="background-color: #F9FCF2;">
+                6.68
+              </div>
+              <div class="line-text" style="background-color: #F9FCF2;">
+                Ta的认知能力超群，这给Ta的嘘唏阿斯顿阿斯顿
+              </div>
+            </div>
+          </div>
+          <div class="info-box-line line2" style="margin-top: 30px;">
+            <div class="line-bottom">
+              <div class="line-title" style="background-color: #F9FCF2;">
+                创造力
+                <span class="eng-title">
+                  Creativity
+                </span>
+              </div>
+              <div class="line-text" style="background-color: #F9FCF2;">
+                包含获取知识的基础能力、探寻新体验、新方法、新知识的欲望和主动性、
+              </div>
+            </div>
+            <div class="line-bottom">
+              <div class="line-title" style="background-color: #F9FCF2;">
+                6.68
+              </div>
+              <div class="line-text" style="background-color: #F9FCF2;">
+                Ta的认知能力超群，这给Ta的嘘唏阿斯顿阿斯顿
+              </div>
+            </div>
+          </div> -->
+        </div>
+      </div>
+      <!-- 页眉 -->
+      <div class="page-header">
+        <div class="header-text">
+          分析报告
+        </div>
+        <div class="header-img">
+          <img src="./static/logo.png" alt="">
+        </div>
+      </div>
+      <!-- 页脚 -->
+      <div class="page-footer">
+        <div class="page-footer-left">
+          版权所有：杭州扶摇职上教育科技有限公司
+        </div>
+        <div class="page-footer-right">
+          4
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="analysic ana2">
+    <div class="ana-box">
+      <div class="info-box">
+        <div class="info-box-line line1" style="margin-top: 30px; margin-bottom: 40px;">
+          <div class="line-top">
+            <div class="line-title" style="background-color: #5368C3;" th:text="${data.reportScore2.name}">
+            </div>
+            <div class="line-text" style="background-color: #5368C3;" th:text="${data.reportScore2.description}">
+            </div>
+          </div>
+          <div class="line-bottom">
+            <div class="line-title" style="background-color: #F2F4FC; font-size: 34px;"
+                 th:text="${data.reportScore2.score}">
+            </div>
+            <div class="line-text" style="background-color: #F2F4FC;" th:text="${data.reportScore2.scoreDescription}">
+            </div>
+          </div>
+        </div>
+        <div th:each="child:${data.reportScore2.children}">
+          <div class="info-box-line line2" style="margin-top: 15px;">
+            <div class="line-bottom">
+              <div class="line-title" style="background-color: #F2F4FC;">
+                  <span th:text="${child.name}">
+                  </span>
+                <span class="eng-title" th:text="${child.englishName}">
+                  </span>
+              </div>
+              <div class="line-text" style="background-color: #F2F4FC;" th:text="${child.description}">
+              </div>
+            </div>
+            <div class="line-bottom">
+              <div class="line-title" style="background-color: #F2F4FC;" th:text="${child.score}">
+              </div>
+              <div class="line-text" style="background-color: #F2F4FC;" th:text="${child.scoreDescription}">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- 页眉 -->
+    <div class="page-header">
+      <div class="header-text">
+        分析报告
+      </div>
+      <div class="header-img">
+        <img src="./static/logo.png" alt="">
+      </div>
+    </div>
+    <!-- 页脚 -->
+    <div class="page-footer">
+      <div class="page-footer-left">
+        版权所有：杭州扶摇职上教育科技有限公司
+      </div>
+      <div class="page-footer-right">
+        5
+      </div>
+    </div>
+  </div>
+  <div class="analysic ana3">
+    <div class="ana-box">
+      <div class="info-box">
+        <div class="info-box-line line1" style="margin-top: 30px; margin-bottom: 40px;">
+          <div class="line-top">
+            <div class="line-title" style="background-color: #E56147;" th:text="${data.reportScore3.name}">
+            </div>
+            <div class="line-text" style="background-color: #E56147;" th:text="${data.reportScore3.description}">
+            </div>
+          </div>
+          <div class="line-bottom">
+            <div class="line-title" style="background-color: #FCF2F2; font-size: 34px;"
+                 th:text="${data.reportScore3.score}">
+            </div>
+            <div class="line-text" style="background-color: #FCF2F2;" th:text="${data.reportScore3.scoreDescription}">
+            </div>
+          </div>
+        </div>
+        <div th:each="child:${data.reportScore3.children}">
+          <div class="info-box-line line2" style="margin-top: 15px;">
+            <div class="line-bottom">
+              <div class="line-title" style="background-color: #FCF2F2;">
+                  <span th:text="${child.name}">
+                  </span>
+                <span class="eng-title" th:text="${child.englishName}">
+                  </span>
+              </div>
+              <div class="line-text" style="background-color: #FCF2F2;" th:text="${child.description}">
+              </div>
+            </div>
+            <div class="line-bottom">
+              <div class="line-title" style="background-color: #FCF2F2;" th:text="${child.score}">
+              </div>
+              <div class="line-text" style="background-color: #FCF2F2;" th:text="${child.scoreDescription}">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- 页眉 -->
+    <div class="page-header">
+      <div class="header-text">
+        分析报告
+      </div>
+      <div class="header-img">
+        <img src="./static/logo.png" alt="">
+      </div>
+    </div>
+    <!-- 页脚 -->
+    <div class="page-footer">
+      <div class="page-footer-left">
+        版权所有：杭州扶摇职上教育科技有限公司
+      </div>
+      <div class="page-footer-right">
+        6
+      </div>
+    </div>
+  </div>
+  <div class="analysic ana3">
+    <div class="ana-box">
+      <div class="info-box">
+        <div th:each="child:${data.reportScore3.children2}">
+          <div class="info-box-line line2" style="margin-top: 15px;">
+            <div class="line-bottom">
+              <div class="line-title" style="background-color: #FCF2F2;">
+                  <span th:text="${child.name}">
+                  </span>
+                <span class="eng-title" th:text="${child.englishName}">
+                  </span>
+              </div>
+              <div class="line-text" style="background-color: #FCF2F2;" th:text="${child.description}">
+              </div>
+            </div>
+            <div class="line-bottom">
+              <div class="line-title" style="background-color: #FCF2F2;" th:text="${child.score}">
+              </div>
+              <div class="line-text" style="background-color: #FCF2F2;" th:text="${child.scoreDescription}">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- 页眉 -->
+    <div class="page-header">
+      <div class="header-text">
+        分析报告
+      </div>
+      <div class="header-img">
+        <img src="./static/logo.png" alt="">
+      </div>
+    </div>
+    <!-- 页脚 -->
+    <div class="page-footer">
+      <div class="page-footer-left">
+        版权所有：杭州扶摇职上教育科技有限公司
+      </div>
+      <div class="page-footer-right">
+        7
+      </div>
+    </div>
+  </div>
+  <div class="analysic ana4">
+    <div class="ana-box">
+      <div class="info-box">
+        <div class="info-box-line line1" style="margin-top: 30px; margin-bottom: 40px;">
+          <div class="line-top">
+            <div class="line-title" style="background-color: #FFA24E;" th:text="${data.reportScore4.name}">
+            </div>
+            <div class="line-text" style="background-color: #FFA24E;" th:text="${data.reportScore4.description}">
+            </div>
+          </div>
+          <div class="line-bottom">
+            <div class="line-title" style="background-color: #FCF9F2; font-size: 34px;"
+                 th:text="${data.reportScore4.score}">
+            </div>
+            <div class="line-text" style="background-color: #FCF9F2;" th:text="${data.reportScore4.scoreDescription}">
+            </div>
+          </div>
+        </div>
+        <div th:each="child:${data.reportScore4.children}">
+          <div class="info-box-line line2" style="margin-top: 15px;">
+            <div class="line-bottom">
+              <div class="line-title" style="background-color: #FCF9F2;">
+                  <span th:text="${child.name}">
+                  </span>
+                <span class="eng-title" th:text="${child.englishName}">
+                  </span>
+              </div>
+              <div class="line-text" style="background-color: #FCF9F2;" th:text="${child.description}">
+              </div>
+            </div>
+            <div class="line-bottom">
+              <div class="line-title" style="background-color: #FCF9F2;" th:text="${child.score}">
+              </div>
+              <div class="line-text" style="background-color: #FCF9F2;" th:text="${child.scoreDescription}">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- 页眉 -->
+    <div class="page-header">
+      <div class="header-text">
+        分析报告
+      </div>
+      <div class="header-img">
+        <img src="./static/logo.png" alt="">
+      </div>
+    </div>
+    <!-- 页脚 -->
+    <div class="page-footer">
+      <div class="page-footer-left">
+        版权所有：杭州扶摇职上教育科技有限公司
+      </div>
+      <div class="page-footer-right">
+        8
+      </div>
+    </div>
+  </div>
+  <!-- 封底 -->
+  <div class="backcover">
+    <img src="./static/backover.jpg" alt="">
+  </div>
+</div>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/4.6.0/echarts-en.common.min.js"></script> -->
+<script th:inline="javascript" type="text/javascript">
+  /*<![CDATA[*/
+  var data1 = [[${data.reportScore1.score}]]
+  var data2 = [[${data.reportScore2.score}]]
+  var data3 = [[${data.reportScore3.score}]]
+  var data4 = [[${data.reportScore4.score}]]
+  var playTime = [[${data.testCostTime}]]
+  /*]]>*/
+  // var hour = playTime.split("小时")[0]
+  // var replaceTime = playTime.split("分")[0] + "分"
+  var dom = document.getElementById("playTimeDom")
+  if (playTime.indexOf("天") !== -1) {
+    dom.innerText = playTime.split("小时")[0] + "小时"
+  } else if (playTime.indexOf("小时") !== -1){
+    dom.innerText = playTime.split("分")[0] + "分"
+  } else {
+    dom.innerText = playTime
+  }
+  // 基于准备好的dom，初始化echarts实例
+  var myData = [data1,data2,data3,data4]
+  var myChart = echarts.init(document.getElementById('main'));
+  // 指定图表的配置项和数据
+  var option = {
+    title: {
+    },
+    tooltip: {},
+    xAxis: {
+      type: "category",
+      offset: 10,
+      data: [
+        { value: "求知欲", textStyle: { fontSize: 18, fontWeight: "bolder" } },
+        { value: "洞察力", textStyle: { fontSize: 18, fontWeight: "bolder" } },
+        { value: "感召力", textStyle: { fontSize: 18, fontWeight: "bolder" } },
+        { value: "意志力", textStyle: { fontSize: 18, fontWeight: "bolder" } },
+      ],
+      // 加了这一段wkhtmltopdf会报错Segmentation fault
+      // axisLine: {
+      //   lineStyle: {
+      //     type: "dotted"
+      //   }
+      // },
+      axisTick: {
+        show: false
+      }
+    },
+    yAxis: {
+      // show: false,
+      splitNumber: 2,
+      min: 0,
+      max: 10,
+      // 加了这一段wkhtmltopdf会报错Segmentation fault
+      // splitLine: {
+      //   show: true,
+      //   lineStyle: {
+      //     type: "dotted"
+      //   }
+      // },
+    },
+    series: [{
+      // name: '求知欲',
+      animation: false,
+      type: 'bar',
+      barWidth: 60,
+      data: myData,
+      itemStyle: {
+        normal: {
+          barBorderRadius: 10,
+          label: {
+            show: true,		//开启显示
+            position: 'top',	//在上方显示
+            textStyle: {	    //数值样式
+              color: 'black',
+              fontSize: 24,
+              fontWeight: 'bolder'
+            }
+          },
+          color: function (params) {
+            // build a color map as your need.
+            var colorList = [
+              '#9EAC56', '#5368C3', '#E56147', '#FFA24E',
+            ];
+            return colorList[params.dataIndex]
+          },
+        }
+      }
+    }
+    ]
+  };
+  // 使用刚指定的配置项和数据显示图表。
+  myChart.setOption(option);
+</script>
+</body>
+
+</html>

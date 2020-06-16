@@ -1,0 +1,648 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width" />
+  <link rel="stylesheet" href="https://static.loyalvalleycapital.com/web/css/frame.css" />
+  <!-- <link rel="stylesheet" href="https://qidian.gtimg.com/lulu/pure/css/common/ui/Progress.css"> -->
+  <link rel="stylesheet" href="./static/pdf.css" />
+  <title>新详版报告</title>
+</head>
+<body>
+  <!-- 哀吾生之须臾 羡长江之无穷 -->
+  <div class="container">
+    <div class="static">
+      <img src="./static/cover.jpg" alt="">
+      <div class="userInfo">
+        <ul>
+          <li>
+            公司：<span th:text="${data.companyName}"></span>
+          </li>
+          <li>
+            姓名：<span th:text="${data.userName}"></span>
+          </li>
+          <li>
+            工号：<span th:text="${data.workerCode}"></span>
+          </li>
+          <li>
+            测试时间：<span th:text="${data.testDate}"></span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="static">
+      <img src="./static/catalog.jpg" alt="">
+    </div>
+    <div class="static">
+      <img src="./static/ReportIntroduction.jpg" alt="">
+    </div>
+    <div class="static">
+      <img src="./static/suggestion.jpg" alt="">
+    </div>
+    <div class="static">
+      <img src="./static/result.jpg" alt="">
+      <div class="result-value">
+        <div class="result-value-item" th:text="${data.testCostTime}" id="testCostTime">1小时26分40秒</div>
+        <div class="result-value-item" th:text="${data.interruptTimes}">2</div>
+        <div class="result-value-item" th:text="${data.goldCoinNum}">100.43</div>
+      </div>
+      <div class="honest-title">
+        <img src="" alt="" id="myConsci">
+        尽责性
+      </div>
+      <div class="consci-title">
+        <img src="" alt="" id="myHonest">
+        诚实性
+      </div>
+      <div class="honest">
+        <span th:text="${data.honesty}">诚实</span>
+        ：
+        <span th:text="${data.honestyDesc}">受测者诚实完成测验，测验报告具有可参考性</span>
+      </div>
+      <div class="consci">
+        <!-- 不尽责：该受测者可数据显示其在测验过程的认真程度上存在一定问题，对测验报告有一定影响，建议谨慎参考 -->
+        <span th:text="${data.conscientiousness}">不尽责</span>
+        ：
+        <span th:text="${data.conscientiousnessDesc}">该受测者可数据显示其在测验过程的认真程度上存在一定问题，对测验报告有一定影响，建议谨慎参考</span>
+      </div>
+    </div>
+    <div class="static">
+      <img src="./static/scoreSuggestion.jpg" alt="">
+    </div>
+    <div class="static">
+      <img src="./static/dimensions.jpg" alt="">
+    </div>
+    <div class="static">
+      <img src="./static/dim1.jpg" alt="">
+    </div>
+    <div class="analysis ana1">
+      <div class="ana-main">
+        <div class="dim-ana-box" th:each="child:${data.reportScore1.children}">
+          <div class="dim-name">
+            <div class="dim-name-left">
+              <div class="dim-name-left-cn" th:text="${child.name}">工作记忆</div>
+              <div class="dim-name-left-en" th:text="${child.englishName}">Working Memory</div>
+            </div>
+            <div class="dim-name-right" th:text="${child.description}">对空间信息的加工和操作的能力，同时与个体的其他抽象思维存在着一定的相关性</div>
+          </div>
+          <div class="dim-score">
+            <div class="process">
+              <!-- child.score 影响span的宽度 -->
+              <span class="score-process" th:id="d1c + (${childStat.index} + 1)"></span>
+              <div class="graduation-mark mark-min">
+                <div class="mark-top"></div>
+                <div class="mark-bottom">2.2</div>
+              </div>
+              <div class="graduation-mark mark-mid">
+                <div class="mark-top red-border"></div>
+                <div class="mark-bottom">5</div>
+              </div>
+              <div class="graduation-mark mark-max">
+                <div class="mark-top bulesky-border"></div>
+                <div class="mark-bottom">7.8</div>
+              </div>
+              <div class="graduation-mark mark-start">
+                <div class="mark-top transparent"></div>
+                <div class="mark-bottom">0</div>
+              </div>
+              <div class="graduation-mark mark-end">
+                <div class="mark-top transparent"></div>
+                <div class="mark-bottom">10</div>
+              </div>
+              <div class="score-box" th:text="${child.score}" th:id="d1c + (${childStat.index} + 1) + score">
+                7.6
+              </div>
+            </div>
+          </div>
+          <!--  th:action="@{'d1u'+${childStat.index + 1}" -->
+          <div class="dim-report" th:text="${child.scoreDescription}">
+            收集并处理信息的能力较强，能够比较全方位地分析问题，并且形成解决问题的较为有效的方案方位地分析问题，并且形成解决问题的较为有效的方案
+          </div>
+        </div>
+      </div>
+      <!-- 页眉 -->
+      <div class="page-header">
+        <div class="header-text">
+          Part 4 结果详解
+        </div>
+        <div class="header-img">
+          <img src="./static/logo.png" alt="">
+        </div>
+      </div>
+      <!-- 页脚 -->
+      <div class="page-footer">
+        <div class="page-footer-left">
+          版权所有：杭州扶摇职上教育科技有限公司
+        </div>
+        <div class="page-footer-right">
+          07
+        </div>
+      </div>
+    </div>
+    <div class="analysis ana1">
+      <div class="ana-main">
+        <div class="dim-ana-box" th:each="child:${data.reportScore1.children2}">
+          <div class="dim-name">
+            <div class="dim-name-left">
+              <div class="dim-name-left-cn" th:text="${child.name}"></div>
+              <div class="dim-name-left-en" th:text="${child.englishName}"></div>
+            </div>
+            <div class="dim-name-right" th:text="${child.description}"></div>
+          </div>
+          <div class="dim-score">
+            <div class="process">
+              <!-- child.score 影响span的宽度 -->
+              <span class="score-process" th:id="d1c + (${childStat.index} + 5)"></span>
+              <div class="graduation-mark mark-min">
+                <div class="mark-top"></div>
+                <div class="mark-bottom">2.2</div>
+              </div>
+              <div class="graduation-mark mark-mid">
+                <div class="mark-top red-border"></div>
+                <div class="mark-bottom">5</div>
+              </div>
+              <div class="graduation-mark mark-max">
+                <div class="mark-top bulesky-border"></div>
+                <div class="mark-bottom">7.8</div>
+              </div>
+              <div class="graduation-mark mark-start">
+                <div class="mark-top transparent"></div>
+                <div class="mark-bottom">0</div>
+              </div>
+              <div class="graduation-mark mark-end">
+                <div class="mark-top transparent"></div>
+                <div class="mark-bottom">10</div>
+              </div>
+              <div class="score-box" th:text="${child.score}" th:id="d1c + (${childStat.index} + 5) + score">
+                7.6
+              </div>
+            </div>
+          </div>
+          <!--  th:action="@{'d1u'+${childStat.index + 1}" -->
+          <div class="dim-report" th:text="${child.scoreDescription}">
+            收集并处理信息的能力较强，能够比较全方位地分析问题，并且形成解决问题的较为有效的方案方位地分析问题，并且形成解决问题的较为有效的方案
+          </div>
+        </div>
+      </div>
+      <!-- 页眉 -->
+      <div class="page-header">
+        <div class="header-text">
+          Part 4 结果详解
+        </div>
+        <div class="header-img">
+          <img src="./static/logo.png" alt="">
+        </div>
+      </div>
+      <!-- 页脚 -->
+      <div class="page-footer">
+        <div class="page-footer-left">
+          版权所有：杭州扶摇职上教育科技有限公司
+        </div>
+        <div class="page-footer-right">
+          08
+        </div>
+      </div>
+    </div>
+    <div class="static">
+      <img src="./static/dim2.jpg" alt="">
+    </div>
+    <div class="analysis ana1">
+      <div class="ana-main">
+        <div class="dim-ana-box" th:each="child:${data.reportScore2.children}">
+          <div class="dim-name">
+            <div class="dim-name-left">
+              <div class="dim-name-left-cn" th:text="${child.name}">工作记忆</div>
+              <div class="dim-name-left-en" th:text="${child.englishName}">Working Memory</div>
+            </div>
+            <div class="dim-name-right" th:text="${child.description}">对空间信息的加工和操作的能力，同时与个体的其他抽象思维存在着一定的相关性</div>
+          </div>
+          <div class="dim-score">
+            <div class="process">
+              <!-- child.score 影响span的宽度 -->
+              <span class="score-process" th:id="d2c + (${childStat.index} + 1)"></span>
+              <div class="graduation-mark mark-min">
+                <div class="mark-top"></div>
+                <div class="mark-bottom">2.2</div>
+              </div>
+              <div class="graduation-mark mark-mid">
+                <div class="mark-top red-border"></div>
+                <div class="mark-bottom">5</div>
+              </div>
+              <div class="graduation-mark mark-max">
+                <div class="mark-top bulesky-border"></div>
+                <div class="mark-bottom">7.8</div>
+              </div>
+              <div class="graduation-mark mark-start">
+                <div class="mark-top transparent"></div>
+                <div class="mark-bottom">0</div>
+              </div>
+              <div class="graduation-mark mark-end">
+                <div class="mark-top transparent"></div>
+                <div class="mark-bottom">10</div>
+              </div>
+              <div class="score-box" th:text="${child.score}" th:id="d2c + (${childStat.index} + 1) + score">
+                7.6
+              </div>
+            </div>
+          </div>
+          <!--  th:action="@{'d1u'+${childStat.index + 1}" -->
+          <div class="dim-report" th:text="${child.scoreDescription}">
+            收集并处理信息的能力较强，能够比较全方位地分析问题，并且形成解决问题的较为有效的方案方位地分析问题，并且形成解决问题的较为有效的方案
+          </div>
+        </div>
+      </div>
+      <!-- 页眉 -->
+      <div class="page-header">
+        <div class="header-text">
+          Part 4 结果详解
+        </div>
+        <div class="header-img">
+          <img src="./static/logo.png" alt="">
+        </div>
+      </div>
+      <!-- 页脚 -->
+      <div class="page-footer">
+        <div class="page-footer-left">
+          版权所有：杭州扶摇职上教育科技有限公司
+        </div>
+        <div class="page-footer-right">
+          10
+        </div>
+      </div>
+    </div>
+    <div class="analysis ana1">
+      <div class="ana-main">
+        <div class="dim-ana-box" th:each="child:${data.reportScore2.children2}">
+          <div class="dim-name">
+            <div class="dim-name-left">
+              <div class="dim-name-left-cn" th:text="${child.name}">工作记忆</div>
+              <div class="dim-name-left-en" th:text="${child.englishName}">Working Memory</div>
+            </div>
+            <div class="dim-name-right" th:text="${child.description}">对空间信息的加工和操作的能力，同时与个体的其他抽象思维存在着一定的相关性</div>
+          </div>
+          <div class="dim-score">
+            <div class="process">
+              <!-- child.score 影响span的宽度 -->
+              <span class="score-process" th:id="d2c + (${childStat.index} + 5)"></span>
+              <div class="graduation-mark mark-min">
+                <div class="mark-top"></div>
+                <div class="mark-bottom">2.2</div>
+              </div>
+              <div class="graduation-mark mark-mid">
+                <div class="mark-top red-border"></div>
+                <div class="mark-bottom">5</div>
+              </div>
+              <div class="graduation-mark mark-max">
+                <div class="mark-top bulesky-border"></div>
+                <div class="mark-bottom">7.8</div>
+              </div>
+              <div class="graduation-mark mark-start">
+                <div class="mark-top transparent"></div>
+                <div class="mark-bottom">0</div>
+              </div>
+              <div class="graduation-mark mark-end">
+                <div class="mark-top transparent"></div>
+                <div class="mark-bottom">10</div>
+              </div>
+              <div class="score-box" th:text="${child.score}" th:id="d2c + (${childStat.index} + 5) + score">
+                7.6
+              </div>
+            </div>
+          </div>
+          <!--  th:action="@{'d1u'+${childStat.index + 1}" -->
+          <div class="dim-report" th:text="${child.scoreDescription}">
+            收集并处理信息的能力较强，能够比较全方位地分析问题，并且形成解决问题的较为有效的方案方位地分析问题，并且形成解决问题的较为有效的方案
+          </div>
+        </div>
+      </div>
+      <!-- 页眉 -->
+      <div class="page-header">
+        <div class="header-text">
+          Part 4 结果详解
+        </div>
+        <div class="header-img">
+          <img src="./static/logo.png" alt="">
+        </div>
+      </div>
+      <!-- 页脚 -->
+      <div class="page-footer">
+        <div class="page-footer-left">
+          版权所有：杭州扶摇职上教育科技有限公司
+        </div>
+        <div class="page-footer-right">
+          11
+        </div>
+      </div>
+    </div>
+    <div class="static">
+      <img src="./static/dim3.jpg" alt="">
+    </div>
+    <div class="analysis ana1">
+      <div class="ana-main">
+        <div class="dim-ana-box" th:each="child:${data.reportScore3.children}">
+          <div class="dim-name">
+            <div class="dim-name-left">
+              <div class="dim-name-left-cn" th:text="${child.name}">工作记忆</div>
+              <div class="dim-name-left-en" th:text="${child.englishName}">Working Memory</div>
+            </div>
+            <div class="dim-name-right" th:text="${child.description}">对空间信息的加工和操作的能力，同时与个体的其他抽象思维存在着一定的相关性</div>
+          </div>
+          <div class="dim-score">
+            <div class="process">
+              <!-- child.score 影响span的宽度 -->
+              <span class="score-process" th:id="d3c + (${childStat.index} + 1)"></span>
+              <div class="graduation-mark mark-min">
+                <div class="mark-top"></div>
+                <!-- <div class="mark-bottom">2.2</div> -->
+              </div>
+              <div class="graduation-mark mark-mid">
+                <div class="mark-top red-border"></div>
+                <!-- <div class="mark-bottom">5</div> -->
+              </div>
+              <div class="graduation-mark mark-max">
+                <div class="mark-top bulesky-border"></div>
+                <!-- <div class="mark-bottom">7.8</div> -->
+              </div>
+              <div class="graduation-mark mark-start">
+                <div class="mark-top transparent"></div>
+                <div class="mark-bottom" th:id="d3c + (${childStat.index} + 1) + left">回避风险型</div>
+              </div>
+              <div class="graduation-mark mark-end">
+                <div class="mark-top transparent"></div>
+                <div class="mark-bottom" th:id="d3c + (${childStat.index} + 1) + right">偏好风险型</div>
+              </div>
+              <div class="score-box" th:text="${child.score}" th:id="d3c + (${childStat.index} + 1) + score">
+                7.6
+              </div>
+            </div>
+          </div>
+          <!--  th:action="@{'d1u'+${childStat.index + 1}" -->
+          <div class="dim-report" th:text="${child.scoreDescription}">
+            收集并处理信息的能力较强，能够比较全方位地分析问题，并且形成解决问题的较为有效的方案方位地分析问题，并且形成解决问题的较为有效的方案
+          </div>
+        </div>
+      </div>
+      <!-- 页眉 -->
+      <div class="page-header">
+        <div class="header-text">
+          Part 4 结果详解
+        </div>
+        <div class="header-img">
+          <img src="./static/logo.png" alt="">
+        </div>
+      </div>
+      <!-- 页脚 -->
+      <div class="page-footer">
+        <div class="page-footer-left">
+          版权所有：杭州扶摇职上教育科技有限公司
+        </div>
+        <div class="page-footer-right">
+          13
+        </div>
+      </div>
+    </div>
+    <div class="static">
+      <img src="./static/dim4.jpg" alt="">
+    </div>
+    <div class="analysis ana1">
+      <div class="ana-main">
+        <div class="dim-ana-box" th:each="child:${data.reportScore4.children}">
+          <div class="dim-name">
+            <div class="dim-name-left">
+              <div class="dim-name-left-cn" th:text="${child.name}">工作记忆</div>
+              <div class="dim-name-left-en" th:text="${child.englishName}">Working Memory</div>
+            </div>
+            <div class="dim-name-right" th:text="${child.description}">对空间信息的加工和操作的能力，同时与个体的其他抽象思维存在着一定的相关性</div>
+          </div>
+          <div class="dim-score">
+            <div class="process">
+              <!-- child.score 影响span的宽度 -->
+              <span class="score-process" th:id="d4c + (${childStat.index} + 1)"></span>
+              <div class="graduation-mark mark-min">
+                <div class="mark-top"></div>
+                <!-- <div class="mark-bottom">2.2</div> -->
+              </div>
+              <div class="graduation-mark mark-mid">
+                <div class="mark-top red-border"></div>
+                <!-- <div class="mark-bottom">5</div> -->
+              </div>
+              <div class="graduation-mark mark-max">
+                <div class="mark-top bulesky-border"></div>
+                <!-- <div class="mark-bottom">7.8</div> -->
+              </div>
+              <div class="graduation-mark mark-start">
+                <div class="mark-top transparent"></div>
+                <div class="mark-bottom" th:id="d4c + (${childStat.index} + 1) + left">0</div>
+              </div>
+              <div class="graduation-mark mark-end">
+                <div class="mark-top transparent"></div>
+                <div class="mark-bottom" th:id="d4c + (${childStat.index} + 1) + right">10</div>
+              </div>
+              <div class="score-box" th:text="${child.score}" th:id="d4c + (${childStat.index} + 1) + score">
+                7.6
+              </div>
+            </div>
+          </div>
+          <!--  th:action="@{'d1u'+${childStat.index + 1}" -->
+          <div class="dim-report" th:text="${child.scoreDescription}">
+            收集并处理信息的能力较强，能够比较全方位地分析问题，并且形成解决问题的较为有效的方案方位地分析问题，并且形成解决问题的较为有效的方案
+          </div>
+        </div>
+      </div>
+      <!-- 页眉 -->
+      <div class="page-header">
+        <div class="header-text">
+          Part 4 结果详解
+        </div>
+        <div class="header-img">
+          <img src="./static/logo.png" alt="">
+        </div>
+      </div>
+      <!-- 页脚 -->
+      <div class="page-footer">
+        <div class="page-footer-left">
+          版权所有：杭州扶摇职上教育科技有限公司
+        </div>
+        <div class="page-footer-right">
+          15
+        </div>
+      </div>
+    </div>
+    <div class="static">
+      <img src="./static/dim5.jpg" alt="">
+    </div>
+    <div class="analysis ana1">
+      <div class="ana-main">
+        <div class="dim-ana-box" th:each="child:${data.reportScore5.children}">
+          <div class="dim-name">
+            <div class="dim-name-left">
+              <div class="dim-name-left-cn" th:text="${child.name}">工作记忆</div>
+              <div class="dim-name-left-en" th:text="${child.englishName}">Working Memory</div>
+            </div>
+            <div class="dim-name-right" th:text="${child.description}">对空间信息的加工和操作的能力，同时与个体的其他抽象思维存在着一定的相关性</div>
+          </div>
+          <div class="dim-score">
+            <div class="process">
+              <!-- child.score 影响span的宽度 -->
+              <span class="score-process" th:id="d5c + (${childStat.index} + 1)"></span>
+              <div class="graduation-mark mark-min">
+                <div class="mark-top"></div>
+              </div>
+              <div class="graduation-mark mark-mid">
+                <div class="mark-top red-border"></div>
+              </div>
+              <div class="graduation-mark mark-max">
+                <div class="mark-top bulesky-border"></div>
+              </div>
+              <div class="graduation-mark mark-start">
+                <div class="mark-top transparent"></div>
+                <div class="mark-bottom" th:id="d5c + (${childStat.index} + 1) + left">0</div>
+              </div>
+              <div class="graduation-mark mark-end">
+                <div class="mark-top transparent"></div>
+                <div class="mark-bottom" th:id="d5c + (${childStat.index} + 1) + right">10</div>
+              </div>
+              <div class="score-box" th:text="${child.score}" th:id="d5c + (${childStat.index} + 1) + score">
+                7.6
+              </div>
+            </div>
+          </div>
+          <!--  th:action="@{'d1u'+${childStat.index + 1}" -->
+          <div class="dim-report" th:text="${child.scoreDescription}">
+            收集并处理信息的能力较强，能够比较全方位地分析问题，并且形成解决问题的较为有效的方案方位地分析问题，并且形成解决问题的较为有效的方案
+          </div>
+        </div>
+      </div>
+      <!-- 页眉 -->
+      <div class="page-header">
+        <div class="header-text">
+          Part 4 结果详解
+        </div>
+        <div class="header-img">
+          <img src="./static/logo.png" alt="">
+        </div>
+      </div>
+      <!-- 页脚 -->
+      <div class="page-footer">
+        <div class="page-footer-left">
+          版权所有：杭州扶摇职上教育科技有限公司
+        </div>
+        <div class="page-footer-right">
+          17
+        </div>
+      </div>
+    </div>
+    <div class="static">
+      <img src="./static/backcover.jpg" alt="">
+    </div>
+  </div>
+</body>
+<!-- th:inline="javascript" 关键 不然取不到数据 -->
+<script type="text/javascript" th:inline="javascript">
+  /*<![CDATA[*/
+  var isHon = [[${data.honesty}]];
+  var isCon = [[${data.conscientiousness}]];
+  var R1C1 = [[${data.reportScore1.children}]][0].score;
+  var R1C2 = [[${data.reportScore1.children}]][1].score;
+  var R1C3 = [[${data.reportScore1.children}]][2].score;
+  var R1C4 = [[${data.reportScore1.children}]][3].score;
+  var R1C5 = [[${data.reportScore1.children2}]][0].score;
+  var R1C6 = [[${data.reportScore1.children2}]][1].score;
+  var R2C1 = [[${data.reportScore2.children}]][0].score;
+  var R2C2 = [[${data.reportScore2.children}]][1].score;
+  var R2C3 = [[${data.reportScore2.children}]][2].score;
+  var R2C4 = [[${data.reportScore2.children}]][3].score;
+  var R2C5 = [[${data.reportScore2.children2}]][0].score;
+  var R2C6 = [[${data.reportScore2.children2}]][1].score;
+  var R3C1 = [[${data.reportScore3.children}]][0].score;
+  var R3C2 = [[${data.reportScore3.children}]][1].score;
+  var R3C3 = [[${data.reportScore3.children}]][2].score;
+  var R3C4 = [[${data.reportScore3.children}]][3].score;
+  var R4C1 = [[${data.reportScore4.children}]][0].score;
+  var R4C2 = [[${data.reportScore4.children}]][1].score;
+  var R4C3 = [[${data.reportScore4.children}]][2].score;
+  var R4C4 = [[${data.reportScore4.children}]][3].score;
+  var R5C1 = [[${data.reportScore5.children}]][0].score;
+  var R5C2 = [[${data.reportScore5.children}]][1].score;
+  var R5C3 = [[${data.reportScore5.children}]][2].score;
+  var R5C4 = [[${data.reportScore5.children}]][3].score;
+  var playTime = [[${data.testCostTime}]]
+  /*]]>*/
+  var honest = document.getElementById("myHonest")
+  var consci = document.getElementById("myConsci")
+  if (isHon === "诚实") {
+    honest.src = "./static/yes.png"
+  }
+  if (isHon === "不诚实") {
+    honest.src = "./static/no.png"
+  }
+  if (isCon === "尽责") {
+    consci.src = "./static/yes.png"
+  }
+  if (isCon === "不尽责") {
+    consci.src = "./static/no.png"
+  }
+  // process width 674px
+  var dArr = ["d1c1", "d1c2", "d1c3", "d1c4", "d1c5", "d1c6", "d2c1", "d2c2", "d2c3", "d2c4", "d2c5", "d2c6", "d3c1", "d3c2", "d3c3", "d3c4", "d4c1", "d4c2", "d4c3", "d4c4", "d5c1", "d5c2", "d5c3", "d5c4"]
+  var map = {
+    d1c1: R1C1,
+    d1c2: R1C2,
+    d1c3: R1C3,
+    d1c4: R1C4,
+    d1c5: R1C5,
+    d1c6: R1C6,
+    d2c1: R2C1,
+    d2c2: R2C2,
+    d2c3: R2C3,
+    d2c4: R2C4,
+    d2c5: R2C5,
+    d2c6: R2C6,
+    d3c1: R3C1,
+    d3c2: R3C2,
+    d3c3: R3C3,
+    d3c4: R3C4,
+    d4c1: R4C1,
+    d4c2: R4C2,
+    d4c3: R4C3,
+    d4c4: R4C4,
+    d5c1: R5C1,
+    d5c2: R5C2,
+    d5c3: R5C3,
+    d5c4: R5C4,
+  }
+  dArr.forEach(function(item) {
+    document.getElementById(item).style.width = map[item] * 10 + "%"
+    document.getElementById(item + "score").style.left = map[item] * 10 + "%"
+  })
+  var sArr = ["d3c1", "d3c2", "d3c3", "d3c4", "d4c1", "d4c2", "d4c3", "d4c4", "d5c1", "d5c2", "d5c3", "d5c4"]
+  var sArrMap = {
+    d3c1: ["不自信", "自信"],
+    d3c2: ["回避风险型", "偏好风险型"],
+    d3c3: ["决策速度慢", "决策速度快"],
+    d3c4: ["认知不灵活", "认知灵活"],
+    d4c1: ["情绪控制型", "情绪表达型"],
+    d4c2: ["情绪不敏感", "情绪敏感"],
+    d4c3: ["不冲动", "冲动"],
+    d4c4: ["不抗压", "抗压"],
+    d5c1: ["保留信任型", "充分信任型"],
+    d5c2: ["回避竞争型", "偏好竞争型"],
+    d5c3: ["不利他", "利他"],
+    d5c4: ["独立型", "合作型"],
+  }
+  sArr.forEach(function(item) {
+    document.getElementById(item + "left").innerHTML = sArrMap[item][0]
+    document.getElementById(item + "right").innerHTML = sArrMap[item][1]
+  })
+  function getStr (str) {
+    if (str.indexOf("天") !== -1) {
+      return str.split("小时")[0] + "小时"
+    } else if (str.indexOf("小时") !== -1){
+      return str.split("分")[0] + "分"
+    } else {
+      return str
+    }
+  }
+  var timeWrap = document.getElementById("testCostTime")
+  timeWrap.innerHTML = getStr(playTime)
+</script>
+</html>
