@@ -1,0 +1,649 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width" />
+  <link rel="stylesheet" href="https://static.loyalvalleycapital.com/web/css/frame.css" />
+  <link rel="stylesheet" href="./static/pdf.css" />
+  <script src="./static/echarts.js"></script>
+  <title>详版报告_迭代版本</title>
+</head>
+
+<body>
+  <div class="container">
+    <div class="static">
+      <img src="./static/cover.jpg" alt="">
+      <div class="userInfo">
+        <ul>
+          <li>
+            公司：<span th:text="${data.companyName}"></span>
+          </li>
+          <li>
+            姓名：<span th:text="${data.userName}"></span>
+          </li>
+          <li>
+            工号：<span th:text="${data.workerCode}"></span>
+          </li>
+          <li>
+            测试时间：<span th:text="${data.testDate}"></span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="static">
+      <img src="./static/catalog.jpg" alt="">
+    </div>
+    <div class="static">
+      <img src="./static/dim1.jpg" alt="">
+    </div>
+    <div class="static">
+      <img src="./static/dim2.jpg" alt="">
+    </div>
+    <div class="analysis with-title">
+      <div class="big-title">
+        三、整体得分情况
+      </div>
+      <div class="score-sitution">
+        整体得分情况
+      </div>
+      <div class="abili-score">
+        能力维度得分情况
+      </div>
+      <div class="abili-container">
+        <div class="abili-label">
+          <div class="abili-dim1-label">
+            <div 
+              class="abili-dim1-label-item"
+              th:each="child:${data.abilityScores[0].scores}"
+              th:text="${child.name}"
+            >工作记忆</div>
+            <!-- <div class="abili-dim1-label-item">注意力水平</div>
+            <div class="abili-dim1-label-item">信息处理</div>
+            <div class="abili-dim1-label-item">语言理解</div>
+            <div class="abili-dim1-label-item">运动控制</div>
+            <div class="abili-dim1-label-item">空间能力</div> -->
+          </div>
+          <div class="abili-dim2-label">
+            <div 
+              class="abili-dim2-label-item"
+              th:each="child:${data.abilityScores[1].scores}"
+              th:text="${child.name}"
+            >工作记忆</div>
+            <!-- <div class="abili-dim2-label-item">注意力水平</div>
+            <div class="abili-dim2-label-item">信息处理</div>
+            <div class="abili-dim2-label-item">语言理解</div>
+            <div class="abili-dim2-label-item">运动控制</div>
+            <div class="abili-dim2-label-item">空间能力</div> -->
+          </div>
+        </div>
+        <div class="abili-chart">
+          <div class="abili-dim1-value">
+            <div
+              th:each="child:${data.abilityScores[0].scores}"
+              th:id="d1c + (${childStat.index} + 1) + scoreSummary"
+              class="abili-dim1-value-item">
+            </div>
+            <!-- <div class="abili-dim1-value-item"></div>
+            <div class="abili-dim1-value-item"></div>
+            <div class="abili-dim1-value-item"></div>
+            <div class="abili-dim1-value-item"></div>
+            <div class="abili-dim1-value-item"></div> -->
+          </div>
+          <div class="abili-dim2-value">
+            <div 
+              th:each="child:${data.abilityScores[1].scores}"
+              th:id="d2c + (${childStat.index} + 1) + scoreSummary"
+              class="abili-dim2-value-item"></div>
+              <!-- <div class="abili-dim2-value-item"></div>
+              <div class="abili-dim2-value-item"></div>
+              <div class="abili-dim2-value-item"></div>
+              <div class="abili-dim2-value-item"></div>
+              <div class="abili-dim2-value-item"></div> -->
+          </div>
+          <div class="abili-chart-divi-2-2"></div>
+          <div class="abili-chart-divi-5"></div>
+          <div class="abili-chart-divi-7-8"></div>
+          <div class="abili-top-score">
+            <span class='abili-score-0'>0</span>
+            <span class='abili-score-2-2'>2.2</span>
+            <span class='abili-score-5'>5</span>
+            <span class='abili-score-7-8'>7.8</span>
+            <span class='abili-score-10'>10</span>
+          </div>
+          <div class="abili-bottom-score">
+            <span class='abili-score-0'>0</span>
+            <span class='abili-score-2-2'>2.2</span>
+            <span class='abili-score-5'>5</span>
+            <span class='abili-score-7-8'>7.8</span>
+            <span class='abili-score-10'>10</span>
+          </div>
+        </div>
+      </div>
+      <div class="page-header">
+        <div class="header-img">
+          <img src="./static/logo.png" alt="">
+        </div>
+      </div>
+      <!-- 页脚 -->
+      <div class="page-footer">
+        <div class="page-footer-left">
+          版权所有：杭州扶摇职上教育科技有限公司
+        </div>
+        <div class="page-footer-right">
+          07
+        </div>
+      </div>
+    </div>
+    <div class="analysis with-title">
+      <div class="big-title">
+        三、整体得分情况
+      </div>
+      <div class="score-sitution">
+        整体得分情况
+      </div>
+      <div class="style-score">
+        风格维度得分情况
+      </div>
+      <div id="style-echarts">
+        <div class="divi5"></div>
+        <div class="divi2-2"></div>
+        <div class="divi7-8"></div>
+        <div class="style-dim-one" th:each="child:${data.styleScores}">
+          <div class="style-item" th:each="item:${child.scores}">
+            <div class="style-item-left" th:text="item.leftName">遵循常规</div>
+            <div class="style-item-score style-dim1 style1" th:id="d + (${childStat.index} + 3) + c + (${itemStat.index} + 1) + styleScore"></div>
+            <div class="style-item-right" th:text="item.rightName">认知灵活</div>
+          </div>
+          <!-- <div class="style-item">
+            <div class="style-item-left">自馁</div>
+            <div class="style-item-score style-dim1 style2" id='styletest'></div>
+            <div class="style-item-right">自信</div>
+          </div>
+          <div class="style-item">
+            <div class="style-item-left">情绪控制型</div>
+            <div class="style-item-score style-dim1 style2"></div>
+            <div class="style-item-right">情绪表达型</div>
+          </div>
+          <div class="style-item">
+            <div class="style-item-left">遵循常规</div>
+            <div class="style-item-score style-dim1 style1"></div>
+            <div class="style-item-right">认知灵活</div> 
+          </div> -->
+        </div>
+        <!-- <div class="style-dim-one">
+          <div class="style-item">
+            <div class="style-item-left">遵循常规</div>
+            <div class="style-item-score style-dim2 style1"></div>
+            <div class="style-item-right">认知灵活</div>
+          </div>
+          <div class="style-item">
+            <div class="style-item-left">自馁</div>
+            <div class="style-item-score style-dim2 style2"></div>
+            <div class="style-item-right">自信</div>
+          </div>
+          <div class="style-item">
+            <div class="style-item-left">情绪控制型</div>
+            <div class="style-item-score style-dim2 style1"></div>
+            <div class="style-item-right">情绪表达型</div>
+          </div>
+          <div class="style-item">
+            <div class="style-item-left">遵循常规</div>
+            <div class="style-item-score style-dim2 style2"></div>
+            <div class="style-item-right">认知灵活</div>
+          </div>
+        </div>
+        <div class="style-dim-one">
+          <div class="style-item">
+            <div class="style-item-left">遵循常规</div>
+            <div class="style-item-score style-dim3 style1"></div>
+            <div class="style-item-right">认知灵活</div>
+          </div>
+          <div class="style-item">
+            <div class="style-item-left">自馁</div>
+            <div class="style-item-score style-dim3 style2"></div>
+            <div class="style-item-right">自信</div>
+          </div>
+          <div class="style-item">
+            <div class="style-item-left">情绪控制型</div>
+            <div class="style-item-score style-dim3 style1"></div>
+            <div class="style-item-right">情绪表达型</div>
+          </div>
+          <div class="style-item">
+            <div class="style-item-left">遵循常规</div>
+            <div class="style-item-score style-dim3 style1"></div>
+            <div class="style-item-right">认知灵活</div>
+          </div>
+        </div> -->
+      </div>
+      <div class="style-desc-title">
+        风格维度评分说明
+      </div>
+      <p>
+        对于12项风格维度，维度得分高低并无好坏之分。
+        得分越偏向两极，说明受测者该项风格偏向性越强，即某风格特质类型越典型；得分趋近中间，
+        说明受测者该项风格偏向越弱，即其风格类型不典型。需要综合岗位特征以判断其岗位适配性。
+      </p>
+      <div class="page-header">
+        <div class="header-img">
+          <img src="./static/logo.png" alt="">
+        </div>
+      </div>
+      <!-- 页脚 -->
+      <div class="page-footer">
+        <div class="page-footer-left">
+          版权所有：杭州扶摇职上教育科技有限公司
+        </div>
+        <div class="page-footer-right">
+          07
+        </div>
+      </div>
+    </div>
+    <div class="analysis ana1">
+      <div class="ana-main">
+        <div class="dim-ana-box" th:each="child:${data.reportScore1.children}">
+          <div class="dim-name">
+            <div class="dim-name-left">
+              <div class="dim-name-left-cn" th:text="${child.name}">工作记忆</div>
+              <div class="dim-name-left-en" th:text="${child.englishName}">Working Memory</div>
+            </div>
+            <div class="dim-name-right" th:text="${child.description}">对空间信息的加工和操作的能力，同时与个体的其他抽象思维存在着一定的相关性</div>
+          </div>
+          <div class="dim-score">
+            <div class="process">
+              <!-- child.score 影响span的宽度 -->
+              <span class="score-process" th:id="d1c + (${childStat.index} + 1)"></span>
+              <div class="graduation-mark mark-min">
+                <div class="mark-top"></div>
+                <div class="mark-bottom">2.2</div>
+              </div>
+              <div class="graduation-mark mark-mid">
+                <div class="mark-top red-border"></div>
+                <div class="mark-bottom">5</div>
+              </div>
+              <div class="graduation-mark mark-max">
+                <div class="mark-top bulesky-border"></div>
+                <div class="mark-bottom">7.8</div>
+              </div>
+              <div class="graduation-mark mark-start">
+                <div class="mark-top transparent"></div>
+                <div class="mark-bottom">0</div>
+              </div>
+              <div class="graduation-mark mark-end">
+                <div class="mark-top transparent"></div>
+                <div class="mark-bottom">10</div>
+              </div>
+              <div class="score-box" th:text="${child.score}" th:id="d1c + (${childStat.index} + 1) + score">
+                7.6
+              </div>
+            </div>
+          </div>
+          <!--  th:action="@{'d1u'+${childStat.index + 1}" -->
+          <div class="dim-report" th:text="${child.scoreDescription}">
+            收集并处理信息的能力较强，能够比较全方位地分析问题，并且形成解决问题的较为有效的方案方位地分析问题，并且形成解决问题的较为有效的方案
+          </div>
+        </div>
+      </div>
+      <!-- 页眉 -->
+      <div class="page-header">
+        <div class="header-text">
+          Part 4 结果详解
+        </div>
+        <div class="header-img">
+          <img src="./static/logo.png" alt="">
+        </div>
+      </div>
+      <!-- 页脚 -->
+      <div class="page-footer">
+        <div class="page-footer-left">
+          版权所有：杭州扶摇职上教育科技有限公司
+        </div>
+        <div class="page-footer-right">
+          07
+        </div>
+      </div>
+    </div>
+    <!-- with-title 带有大标题 一、维度分数 这种页面 padding-top 相对较小 -->
+    <div class="analysis with-title">
+      <div class="big-title">
+        五、个人发展建议
+      </div>
+      <p class='module-description'>各指标上的测评结果显示， 受测者在以下指标上表现不足。</p>
+      <p class='module-description'>根据受测者在各个指标上的表现，可采用以下发展建议对其进行发展：</p>
+      <div class="sug-big-dim">
+        认知能力&nbsp;&nbsp;&nbsp;Cognitive Ability
+      </div>
+      <div class="sug-one-dim">
+        <div class="sug-lil-dim">
+          问题解决&nbsp;&nbsp;&nbsp;Problem Solving
+        </div>
+        <div class="sugs">
+          <div class="sug-item">
+            <div class="sug-item-title">自我认知建议</div>
+            <p>遇到困难积极面对，保持乐观态度。从多个角度分析问题产生的原因及可能存在的解决办法；敢于尝试多个解决方法，并找到最合适的解决方式。</p>
+          </div>
+          <div class="sug-item">
+            <div class="sug-item-title">工作实践建议</div>
+            <p>从多个角度分析探索问题的源头，厘清问题出现的相关因素及相互之间的联系。
+              通过对问题的分析，找到关键因素，对关键人事物提出妥善的解决方案。
+              主动寻求资源和支持，以解决问题并消除问题产生的后续影响。</p>
+          </div>
+        </div>
+      </div>
+      <div class="sug-one-dim">
+        <div class="sug-lil-dim">
+          问题解决&nbsp;&nbsp;&nbsp;Problem Solving
+        </div>
+        <div class="sugs">
+          <div class="sug-item">
+            <div class="sug-item-title">自我认知建议</div>
+            <p>遇到困难积极面对，保持乐观态度。从多个角度分析问题产生的原因及可能存在的解决办法；敢于尝试多个解决方法，并找到最合适的解决方式。</p>
+          </div>
+          <div class="sug-item">
+            <div class="sug-item-title">工作实践建议</div>
+            <p>从多个角度分析探索问题的源头，厘清问题出现的相关因素及相互之间的联系。
+              通过对问题的分析，找到关键因素，对关键人事物提出妥善的解决方案。
+              主动寻求资源和支持，以解决问题并消除问题产生的后续影响。</p>
+          </div>
+        </div>
+      </div>
+      <div class="page-header">
+        <div class="header-img">
+          <img src="./static/logo.png" alt="">
+        </div>
+      </div>
+      <!-- 页脚 -->
+      <div class="page-footer">
+        <div class="page-footer-left">
+          版权所有：杭州扶摇职上教育科技有限公司
+        </div>
+        <div class="page-footer-right">
+          07
+        </div>
+      </div>
+    </div>
+    <div class="analysis">
+      <div class="sug-one-dim">
+        <div class="sug-lil-dim">
+          问题解决&nbsp;&nbsp;&nbsp;Problem Solving
+        </div>
+        <div class="sugs">
+          <div class="sug-item">
+            <div class="sug-item-title">自我认知建议</div>
+            <p>遇到困难积极面对，保持乐观态度。从多个角度分析问题产生的原因及可能存在的解决办法；敢于尝试多个解决方法，并找到最合适的解决方式。</p>
+          </div>
+          <div class="sug-item">
+            <div class="sug-item-title">工作实践建议</div>
+            <p>从多个角度分析探索问题的源头，厘清问题出现的相关因素及相互之间的联系。
+              通过对问题的分析，找到关键因素，对关键人事物提出妥善的解决方案。
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="sug-one-dim">
+        <div class="sug-lil-dim">
+          问题解决&nbsp;&nbsp;&nbsp;Problem Solving
+        </div>
+        <div class="sugs">
+          <div class="sug-item">
+            <div class="sug-item-title">自我认知建议</div>
+            <p>遇到困难积极面对，保持乐观态度。从多个角度分析问题产生的原因及可能存在的解决办法；敢于尝试多个解决方法，并找到最合适的解决方式。</p>
+          </div>
+          <div class="sug-item">
+            <div class="sug-item-title">工作实践建议</div>
+            <p id='test'>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="sug-one-dim">
+        <div class="sug-lil-dim">
+          问题解决&nbsp;&nbsp;&nbsp;Problem Solving
+        </div>
+        <div class="sugs">
+          <div class="sug-item">
+            <div class="sug-item-title">自我认知建议</div>
+            <p>遇到困难积极面对，保持乐观态度。从多个角度分析问题产生的原因及可能存在的解决办法；敢于尝试多个解决方法，并找到最合适的解决方式。</p>
+          </div>
+          <div class="sug-item">
+            <div class="sug-item-title">工作实践建议</div>
+            <p>从多个角度分析探索问题的源头，厘清问题出现的相关因素及相互之间的联系。
+              通过对问题的分析，找到关键因素，对关键人事物提出妥善的解决方案。
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- 页脚 -->
+      <div class="page-footer">
+        <div class="page-footer-left">
+          版权所有：杭州扶摇职上教育科技有限公司
+        </div>
+        <div class="page-footer-right">
+          07
+        </div>
+      </div>
+      <div class="page-header">
+        <div class="header-img">
+          <img src="./static/logo.png" alt="">
+        </div>
+      </div>
+    </div>
+    <div class="analysis with-title">
+      <div class="big-title">
+        六、HR管理建议
+      </div>
+      <p class='module-description'>根据受测者在各个指标上的表现，HR管理者可采用以下建议对其进行管理：</p>
+      <div class="sug-big-dim">
+        认知能力&nbsp;&nbsp;&nbsp;Cognitive Ability
+      </div>
+      <div class="sug-one-dim">
+        <div class="sug-lil-dim">
+          问题解决&nbsp;&nbsp;&nbsp;Problem Solving
+        </div>
+        <div class="sugs">
+          <div class="sug-item">
+            <div class="sug-item-title">面试方式建议</div>
+            <p>无领导小组面试、角色扮演、案例分析、BEI面试</p>
+          </div>
+          <div class="sug-item">
+            <div class="sug-item-title">HR提问</div>
+            <p>1. 请列出一个你最近遇到的困难，你是如何解决的？<br />
+              2. 请分享一个工作和生活中面临的问题，你如何解决这个问题？</p>
+          </div>
+          <div class="sug-item">
+            <div class="sug-item-title">培训方向</div>
+            <p>结构思维训练</p>
+          </div>
+        </div>
+      </div>
+      <div class="sug-one-dim">
+        <div class="sug-lil-dim">
+          学习能力&nbsp;&nbsp;&nbsp;Learning Ability
+        </div>
+        <div class="sugs">
+          <div class="sug-item">
+            <div class="sug-item-title">面试方式建议</div>
+            <p>案例分析、知识水平考试</p>
+          </div>
+          <div class="sug-item">
+            <div class="sug-item-title">HR提问</div>
+            <p>1. 请分享一个你认为好的学习方式？<br />
+              2. 请分享一个例子，你如何将学习到的技能或知识应用到工作中？
+            </p>
+          </div>
+          <div class="sug-item">
+            <div class="sug-item-title">培训方向</div>
+            <p>学习方法与策略</p>
+          </div>
+        </div>
+      </div>
+      <!-- 页脚 -->
+      <div class="page-footer">
+        <div class="page-footer-left">
+          版权所有：杭州扶摇职上教育科技有限公司
+        </div>
+        <div class="page-footer-right">
+          07
+        </div>
+      </div>
+      <div class="page-header">
+        <div class="header-img">
+          <img src="./static/logo.png" alt="">
+        </div>
+      </div>
+    </div>
+    <div class="analysis">
+      <div class="sug-one-dim">
+        <div class="sug-lil-dim">
+          调整适应力&nbsp;&nbsp;&nbsp;Adaptive Capacity
+        </div>
+        <div class="sugs">
+          <div class="sug-item">
+            <div class="sug-item-title">面试方式建议</div>
+            <p>无领导小组面试、角色扮演、案例分析、BEI面试</p>
+          </div>
+          <div class="sug-item">
+            <div class="sug-item-title">HR提问</div>
+            <p>1. 在过往的升学/转学/转岗等经历中，你是如何快速适应环境或角色发生变化的？</p>
+          </div>
+          <div class="sug-item">
+            <div class="sug-item-title">培训方向</div>
+            <p>敏捷性培训——提升超强适应力</p>
+          </div>
+        </div>
+      </div>
+      <div class="sug-one-dim">
+        <div class="sug-lil-dim">
+          学习能力&nbsp;&nbsp;&nbsp;Learning Ability
+        </div>
+        <div class="sugs">
+          <div class="sug-item">
+            <div class="sug-item-title">面试方式建议</div>
+            <p>认知能力测验</p>
+          </div>
+          <div class="sug-item">
+            <div class="sug-item-title">HR提问</div>
+            <p>1. 你会采取哪些方式提高自己工作时的专注度？
+            </p>
+          </div>
+          <div class="sug-item">
+            <div class="sug-item-title">培训方向</div>
+            <p>脑波生物反馈训练、沙盘训练</p>
+          </div>
+        </div>
+      </div>
+      <!-- 页脚 -->
+      <div class="page-footer">
+        <div class="page-footer-left">
+          版权所有：杭州扶摇职上教育科技有限公司
+        </div>
+        <div class="page-footer-right">
+          07
+        </div>
+      </div>
+      <div class="page-header">
+        <div class="header-img">
+          <img src="./static/logo.png" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+<script type="text/javascript" th:inline="javascript">
+  /*<![CDATA[*/
+  var S_R1C1 = [[${data.abilityScores}]][0].scores[0].score;
+  var S_R1C2 = [[${data.abilityScores}]][0].scores[1].score;
+  var S_R1C3 = [[${data.abilityScores}]][0].scores[2].score;
+  var S_R1C4 = [[${data.abilityScores}]][0].scores[3].score;
+  var S_R1C5 = [[${data.abilityScores}]][0].scores[4].score;
+  var S_R1C6 = [[${data.abilityScores}]][0].scores[5].score;
+  var S_R2C1 = [[${data.abilityScores}]][1].scores[0].score;
+  var S_R2C2 = [[${data.abilityScores}]][1].scores[1].score;
+  var S_R2C3 = [[${data.abilityScores}]][1].scores[2].score;
+  var S_R2C4 = [[${data.abilityScores}]][1].scores[3].score;
+  var S_R2C5 = [[${data.abilityScores}]][1].scores[4].score;
+  var S_R2C6 = [[${data.abilityScores}]][1].scores[5].score;
+  var S_R3C1 = [[${data.styleScores}]][0].scores[0].score;
+  var S_R3C2 = [[${data.styleScores}]][0].scores[1].score;
+  var S_R3C3 = [[${data.styleScores}]][0].scores[2].score;
+  var S_R3C4 = [[${data.styleScores}]][0].scores[3].score;
+  var S_R4C1 = [[${data.styleScores}]][1].scores[0].score;
+  var S_R4C2 = [[${data.styleScores}]][1].scores[1].score;
+  var S_R4C3 = [[${data.styleScores}]][1].scores[2].score;
+  var S_R4C4 = [[${data.styleScores}]][1].scores[3].score;
+  var S_R5C1 = [[${data.styleScores}]][2].scores[0].score;
+  var S_R5C2 = [[${data.styleScores}]][2].scores[1].score;
+  var S_R5C3 = [[${data.styleScores}]][2].scores[2].score;
+  var S_R5C4 = [[${data.styleScores}]][2].scores[3].score;
+  /*]]>*/
+  var dArr = ["d1c1", "d1c2", "d1c3", "d1c4", "d1c5", "d1c6", "d2c1", "d2c2", "d2c3", "d2c4", "d2c5", "d2c6", "d3c1", "d3c2", "d3c3", "d3c4", "d4c1", "d4c2", "d4c3", "d4c4", "d5c1", "d5c2", "d5c3", "d5c4"]
+  var abili_dArr = ["d1c1", "d1c2", "d1c3", "d1c4", "d1c5", "d1c6", "d2c1", "d2c2", "d2c3", "d2c4", "d2c5", "d2c6"]
+  var style_dArr = ["d3c1", "d3c2", "d3c3", "d3c4", "d4c1", "d4c2", "d4c3", "d4c4", "d5c1", "d5c2", "d5c3", "d5c4"]
+  var map = {
+    d1c1: S_R1C1,
+    d1c2: S_R1C2,
+    d1c3: S_R1C3,
+    d1c4: S_R1C4,
+    d1c5: S_R1C5,
+    d1c6: S_R1C6,
+    d2c1: S_R2C1,
+    d2c2: S_R2C2,
+    d2c3: S_R2C3,
+    d2c4: S_R2C4,
+    d2c5: S_R2C5,
+    d2c6: S_R2C6,
+    d3c1: S_R3C1,
+    d3c2: S_R3C2,
+    d3c3: S_R3C3,
+    d3c4: S_R3C4,
+    d4c1: S_R4C1,
+    d4c2: S_R4C2,
+    d4c3: S_R4C3,
+    d4c4: S_R4C4,
+    d5c1: S_R5C1,
+    d5c2: S_R5C2,
+    d5c3: S_R5C3,
+    d5c4: S_R5C4,
+  }
+  var 
+  var midLine = 355
+  var maxWidth = 124 / 2.8 * 5 // 约等于 221.4 但是不能用，这乘来乘去的就有1px的偏差
+  var midValue = 5
+  abili_dArr.forEach(function(item) {
+    document.getElementById(item + "scoreSummary").style.width = (map[item] * 10) + "%"
+  })
+  style_dArr.forEach(function(item) {
+    var styletest = document.getElementById(item + "styletest")
+    // 如果是3.2分
+    var value = map[item]
+    var gap = value - midValue
+    styletest.style.width = Math.abs(gap) / midValue * maxWidth + 'px'
+    var offsetWidth = (function (w) {
+      var arr = w.split('')
+      arr.pop()
+      arr.pop()
+      return arr.join('') * 1
+    }) (styletest.style.width)
+
+    if (gap !== Math.abs(gap)) {
+      styletest.style.left = midLine - offsetWidth - 0 + 'px'
+    }
+  })
+  dArr.forEach(function(item) {
+    // document.getElementById(item).style.width = map[item] * 10 + "%"
+    // document.getElementById(item + "score").style.left = map[item] * 10 + "%"
+  })
+  
+  var Dim2 = ['数据敏感性', '抗干扰能力', '创造力', '调整适应力', '学习能力', '问题解决']
+  var Dim1 = ['空间能力', '运动控制', '语言理解', '信息处理', '注意力水平', '工作记忆']
+  var test = document.getElementById('test')
+  test.innerHTML = `从多个角度分析探索问题的源头，厘清问题出现的相关因素及相互之间的联系。<br/>
+  通过对问题的分析，找到关键因素，对关键人事物提出妥善的解决方案。<br/>
+  主动寻求资源和支持，以解决问题并消除问题产生的后续影响。`
+  
+  
+  // console.log('???', styletest.style.left, midLine - styletest.offsetWidth)
+
+</script>
+
+</html>
