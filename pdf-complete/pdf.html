@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width" />
-  <link rel="stylesheet" href="https://static.loyalvalleycapital.com/web/css/frame.css" />
+  <link rel="stylesheet" href="./static/frame.css" />
   <link rel="stylesheet" href="./static/pdf.css" />
   <script src="./static/echarts.js"></script>
   <title>详版报告_迭代版本</title>
@@ -32,14 +32,53 @@
       </div>
     </div>
     <div class="static">
-      <img src="./static/catalog.jpg" alt="">
+      <img src="./static/catalog.png" alt="">
     </div>
     <div class="static">
-      <img src="./static/dim1.jpg" alt="">
+      <img src="./static/ReportIntroduction.png" alt="">
     </div>
     <div class="static">
-      <img src="./static/dim2.jpg" alt="">
+      <img src="./static/suggestion.png" alt="">
     </div>
+    <div class="static">
+      <img src="./static/dims.png" alt="">
+    </div>
+    <div class="static">
+      <img src="./static/scoreSuggestion.png" alt="">
+    </div>
+    <div class="static">
+      <img src="./static/result.png" alt="">
+      <div class="result-time" th:text="${data.testCostTime}">26:32:28</div>
+      <div class="result-time-text result-text">
+        <span th:text="${data.testCostTimeInfo}">用时过短</span>：
+        <span th:text="${data.testCostTimeDesc}">该受测者测验时长远低于平均用时，受测过程可能受到一定影响</span>
+      </div>
+      <div class="result-consci-pic">
+        <img th:if="${data.conscientiousness} == 尽责" src="./static/yes.png" alt="">
+        <img th:if="${data.conscientiousness} == 不尽责" src="./static/no.png" alt="">
+      </div>
+      <div class="result-consci-text result-text">
+        <span th:text="${data.conscientiousness}">不尽责</span>：
+        <span th:text="${data.conscientiousnessDesc}">该受测者可数据显示其在测验过程的认真程度上存在一定问题，对测验报告有一定影响，建议谨慎参考</span>
+      </div>
+      <div class="result-honest-pic">
+        <img src="./static/no.png" alt="" id="myHonest">
+      </div>
+      <div class="result-honest-text result-text">
+        <span th:text="${data.honesty}">诚实</span>：
+        <span th:text="${data.honestyDesc}">受测者诚实完成测验，测验报告具有可参考性</span>
+      </div>
+      <div class="result-broken-times" th:text="${data.interruptTimes}">2</div>
+      <div class="result-broken-text result-text">
+        <span th:text="${data.interruptTimesInfo}">中断次数正常</span>：
+        <span th:text="${data.interruptTimesDesc}">该手册着在测试过程中的中断次数在正常范围值内，测评结果较为有效</span>
+      </div>
+      <div class="result-coins" th:text="${data.goldCoinNum}">15,000</div>
+      <div class="result-coins-text result-text">
+        金币数量多少不对具体指标判断及维度得分产生直接影响
+      </div>
+    </div>    
+    
     <div class="analysis with-title">
       <div class="big-title">
         三、整体得分情况
@@ -239,6 +278,9 @@
         </div>
       </div>
     </div>
+    <div class="static">
+      <img src="./static/dim1.png" alt="">
+    </div>
     <div class="analysis ana1">
       <div class="ana-main">
         <div class="dim-ana-box" th:each="child:${data.reportScore1.children}">
@@ -287,7 +329,6 @@
       <!-- 页眉 -->
       <div class="page-header">
         <div class="header-text">
-          Part 4 结果详解
         </div>
         <div class="header-img">
           <img src="./static/logo.png" alt="">
@@ -303,6 +344,399 @@
         </div>
       </div>
     </div>
+    <div class="analysis ana1">
+      <div class="ana-main">
+        <div class="dim-ana-box" th:each="child:${data.reportScore1.children2}">
+          <div class="dim-name">
+            <div class="dim-name-left">
+              <div class="dim-name-left-cn" th:text="${child.name}"></div>
+              <div class="dim-name-left-en" th:text="${child.englishName}"></div>
+            </div>
+            <div class="dim-name-right" th:text="${child.description}"></div>
+          </div>
+          <div class="dim-score">
+            <div class="process">
+              <!-- child.score 影响span的宽度 -->
+              <span class="score-process" th:id="d1c + (${childStat.index} + 5)"></span>
+              <div class="graduation-mark mark-min">
+                <div class="mark-top"></div>
+                <div class="mark-bottom">2.2</div>
+              </div>
+              <div class="graduation-mark mark-mid">
+                <div class="mark-top red-border"></div>
+                <div class="mark-bottom">5</div>
+              </div>
+              <div class="graduation-mark mark-max">
+                <div class="mark-top bulesky-border"></div>
+                <div class="mark-bottom">7.8</div>
+              </div>
+              <div class="graduation-mark mark-start">
+                <div class="mark-top transparent"></div>
+                <div class="mark-bottom">0</div>
+              </div>
+              <div class="graduation-mark mark-end">
+                <div class="mark-top transparent"></div>
+                <div class="mark-bottom">10</div>
+              </div>
+              <div class="score-box" th:text="${child.score}" th:id="d1c + (${childStat.index} + 5) + score">
+                7.6
+              </div>
+            </div>
+          </div>
+          <!--  th:action="@{'d1u'+${childStat.index + 1}" -->
+          <div class="dim-report" th:text="${child.scoreDescription}">
+            收集并处理信息的能力较强，能够比较全方位地分析问题，并且形成解决问题的较为有效的方案方位地分析问题，并且形成解决问题的较为有效的方案
+          </div>
+        </div>
+      </div>
+      <!-- 页眉 -->
+      <div class="page-header">
+        <div class="header-text">
+          Part 4 结果详解
+        </div>
+        <div class="header-img">
+          <img src="./static/logo.png" alt="">
+        </div>
+      </div>
+      <!-- 页脚 -->
+      <div class="page-footer">
+        <div class="page-footer-left">
+          版权所有：杭州扶摇职上教育科技有限公司
+        </div>
+        <div class="page-footer-right">
+          08
+        </div>
+      </div>
+    </div>
+    <div class="static">
+      <img src="./static/dim2.png" alt="">
+    </div>
+    <div class="analysis ana1">
+      <div class="ana-main">
+        <div class="dim-ana-box" th:each="child:${data.reportScore2.children}">
+          <div class="dim-name">
+            <div class="dim-name-left">
+              <div class="dim-name-left-cn" th:text="${child.name}">工作记忆</div>
+              <div class="dim-name-left-en" th:text="${child.englishName}">Working Memory</div>
+            </div>
+            <div class="dim-name-right" th:text="${child.description}">对空间信息的加工和操作的能力，同时与个体的其他抽象思维存在着一定的相关性</div>
+          </div>
+          <div class="dim-score">
+            <div class="process">
+              <!-- child.score 影响span的宽度 -->
+              <span class="score-process" th:id="d2c + (${childStat.index} + 1)"></span>
+              <div class="graduation-mark mark-min">
+                <div class="mark-top"></div>
+                <div class="mark-bottom">2.2</div>
+              </div>
+              <div class="graduation-mark mark-mid">
+                <div class="mark-top red-border"></div>
+                <div class="mark-bottom">5</div>
+              </div>
+              <div class="graduation-mark mark-max">
+                <div class="mark-top bulesky-border"></div>
+                <div class="mark-bottom">7.8</div>
+              </div>
+              <div class="graduation-mark mark-start">
+                <div class="mark-top transparent"></div>
+                <div class="mark-bottom">0</div>
+              </div>
+              <div class="graduation-mark mark-end">
+                <div class="mark-top transparent"></div>
+                <div class="mark-bottom">10</div>
+              </div>
+              <div class="score-box" th:text="${child.score}" th:id="d2c + (${childStat.index} + 1) + score">
+                7.6
+              </div>
+            </div>
+          </div>
+          <!--  th:action="@{'d1u'+${childStat.index + 1}" -->
+          <div class="dim-report" th:text="${child.scoreDescription}">
+            收集并处理信息的能力较强，能够比较全方位地分析问题，并且形成解决问题的较为有效的方案方位地分析问题，并且形成解决问题的较为有效的方案
+          </div>
+        </div>
+      </div>
+      <!-- 页眉 -->
+      <div class="page-header">
+        <div class="header-text">
+          
+        </div>
+        <div class="header-img">
+          <img src="./static/logo.png" alt="">
+        </div>
+      </div>
+      <!-- 页脚 -->
+      <div class="page-footer">
+        <div class="page-footer-left">
+          版权所有：杭州扶摇职上教育科技有限公司
+        </div>
+        <div class="page-footer-right">
+          10
+        </div>
+      </div>
+    </div>
+    <div class="analysis ana1">
+      <div class="ana-main">
+        <div class="dim-ana-box" th:each="child:${data.reportScore2.children2}">
+          <div class="dim-name">
+            <div class="dim-name-left">
+              <div class="dim-name-left-cn" th:text="${child.name}">工作记忆</div>
+              <div class="dim-name-left-en" th:text="${child.englishName}">Working Memory</div>
+            </div>
+            <div class="dim-name-right" th:text="${child.description}">对空间信息的加工和操作的能力，同时与个体的其他抽象思维存在着一定的相关性</div>
+          </div>
+          <div class="dim-score">
+            <div class="process">
+              <!-- child.score 影响span的宽度 -->
+              <span class="score-process" th:id="d2c + (${childStat.index} + 5)"></span>
+              <div class="graduation-mark mark-min">
+                <div class="mark-top"></div>
+                <div class="mark-bottom">2.2</div>
+              </div>
+              <div class="graduation-mark mark-mid">
+                <div class="mark-top red-border"></div>
+                <div class="mark-bottom">5</div>
+              </div>
+              <div class="graduation-mark mark-max">
+                <div class="mark-top bulesky-border"></div>
+                <div class="mark-bottom">7.8</div>
+              </div>
+              <div class="graduation-mark mark-start">
+                <div class="mark-top transparent"></div>
+                <div class="mark-bottom">0</div>
+              </div>
+              <div class="graduation-mark mark-end">
+                <div class="mark-top transparent"></div>
+                <div class="mark-bottom">10</div>
+              </div>
+              <div class="score-box" th:text="${child.score}" th:id="d2c + (${childStat.index} + 5) + score">
+                7.6
+              </div>
+            </div>
+          </div>
+          <!--  th:action="@{'d1u'+${childStat.index + 1}" -->
+          <div class="dim-report" th:text="${child.scoreDescription}">
+            收集并处理信息的能力较强，能够比较全方位地分析问题，并且形成解决问题的较为有效的方案方位地分析问题，并且形成解决问题的较为有效的方案
+          </div>
+        </div>
+      </div>
+      <!-- 页眉 -->
+      <div class="page-header">
+        <div class="header-text">
+          
+        </div>
+        <div class="header-img">
+          <img src="./static/logo.png" alt="">
+        </div>
+      </div>
+      <!-- 页脚 -->
+      <div class="page-footer">
+        <div class="page-footer-left">
+          版权所有：杭州扶摇职上教育科技有限公司
+        </div>
+        <div class="page-footer-right">
+          11
+        </div>
+      </div>
+    </div>
+    <div class="static">
+      <img src="./static/dim3.png" alt="">
+    </div>
+    <div class="analysis ana1">
+      <div class="ana-main">
+        <div class="dim-ana-box" th:each="child:${data.reportScore3.children}">
+          <div class="dim-name">
+            <div class="dim-name-left">
+              <div class="dim-name-left-cn" th:text="${child.name}">工作记忆</div>
+              <div class="dim-name-left-en" th:text="${child.englishName}">Working Memory</div>
+            </div>
+            <div class="dim-name-right" th:text="${child.description}">对空间信息的加工和操作的能力，同时与个体的其他抽象思维存在着一定的相关性</div>
+          </div>
+          <div class="dim-score">
+            <div class="process">
+              <!-- child.score 影响span的宽度 -->
+              <span class="score-process" th:id="d3c + (${childStat.index} + 1)"></span>
+              <div class="graduation-mark mark-min">
+                <div class="mark-top"></div>
+                <!-- <div class="mark-bottom">2.2</div> -->
+              </div>
+              <div class="graduation-mark mark-mid">
+                <div class="mark-top red-border"></div>
+                <!-- <div class="mark-bottom">5</div> -->
+              </div>
+              <div class="graduation-mark mark-max">
+                <div class="mark-top bulesky-border"></div>
+                <!-- <div class="mark-bottom">7.8</div> -->
+              </div>
+              <div class="graduation-mark mark-start">
+                <div class="mark-top transparent"></div>
+                <div class="mark-bottom" th:id="d3c + (${childStat.index} + 1) + left">回避风险型</div>
+              </div>
+              <div class="graduation-mark mark-end">
+                <div class="mark-top transparent"></div>
+                <div class="mark-bottom" th:id="d3c + (${childStat.index} + 1) + right">偏好风险型</div>
+              </div>
+              <div class="score-box" th:text="${child.score}" th:id="d3c + (${childStat.index} + 1) + score">
+                7.6
+              </div>
+            </div>
+          </div>
+          <!--  th:action="@{'d1u'+${childStat.index + 1}" -->
+          <div class="dim-report" th:text="${child.scoreDescription}">
+            收集并处理信息的能力较强，能够比较全方位地分析问题，并且形成解决问题的较为有效的方案方位地分析问题，并且形成解决问题的较为有效的方案
+          </div>
+        </div>
+      </div>
+      <!-- 页眉 -->
+      <div class="page-header">
+        <div class="header-text">
+          
+        </div>
+        <div class="header-img">
+          <img src="./static/logo.png" alt="">
+        </div>
+      </div>
+      <!-- 页脚 -->
+      <div class="page-footer">
+        <div class="page-footer-left">
+          版权所有：杭州扶摇职上教育科技有限公司
+        </div>
+        <div class="page-footer-right">
+          13
+        </div>
+      </div>
+    </div>
+    <div class="static">
+      <img src="./static/dim4.png" alt="">
+    </div>
+    <div class="analysis ana1">
+      <div class="ana-main">
+        <div class="dim-ana-box" th:each="child:${data.reportScore4.children}">
+          <div class="dim-name">
+            <div class="dim-name-left">
+              <div class="dim-name-left-cn" th:text="${child.name}">工作记忆</div>
+              <div class="dim-name-left-en" th:text="${child.englishName}">Working Memory</div>
+            </div>
+            <div class="dim-name-right" th:text="${child.description}">对空间信息的加工和操作的能力，同时与个体的其他抽象思维存在着一定的相关性</div>
+          </div>
+          <div class="dim-score">
+            <div class="process">
+              <!-- child.score 影响span的宽度 -->
+              <span class="score-process" th:id="d4c + (${childStat.index} + 1)"></span>
+              <div class="graduation-mark mark-min">
+                <div class="mark-top"></div>
+                <!-- <div class="mark-bottom">2.2</div> -->
+              </div>
+              <div class="graduation-mark mark-mid">
+                <div class="mark-top red-border"></div>
+                <!-- <div class="mark-bottom">5</div> -->
+              </div>
+              <div class="graduation-mark mark-max">
+                <div class="mark-top bulesky-border"></div>
+                <!-- <div class="mark-bottom">7.8</div> -->
+              </div>
+              <div class="graduation-mark mark-start">
+                <div class="mark-top transparent"></div>
+                <div class="mark-bottom" th:id="d4c + (${childStat.index} + 1) + left">0</div>
+              </div>
+              <div class="graduation-mark mark-end">
+                <div class="mark-top transparent"></div>
+                <div class="mark-bottom" th:id="d4c + (${childStat.index} + 1) + right">10</div>
+              </div>
+              <div class="score-box" th:text="${child.score}" th:id="d4c + (${childStat.index} + 1) + score">
+                7.6
+              </div>
+            </div>
+          </div>
+          <!--  th:action="@{'d1u'+${childStat.index + 1}" -->
+          <div class="dim-report" th:text="${child.scoreDescription}">
+            收集并处理信息的能力较强，能够比较全方位地分析问题，并且形成解决问题的较为有效的方案方位地分析问题，并且形成解决问题的较为有效的方案
+          </div>
+        </div>
+      </div>
+      <!-- 页眉 -->
+      <div class="page-header">
+        <div class="header-text">
+          
+        </div>
+        <div class="header-img">
+          <img src="./static/logo.png" alt="">
+        </div>
+      </div>
+      <!-- 页脚 -->
+      <div class="page-footer">
+        <div class="page-footer-left">
+          版权所有：杭州扶摇职上教育科技有限公司
+        </div>
+        <div class="page-footer-right">
+          15
+        </div>
+      </div>
+    </div>
+    <div class="static">
+      <img src="./static/dim5.png" alt="">
+    </div>
+    <div class="analysis ana1">
+      <div class="ana-main">
+        <div class="dim-ana-box" th:each="child:${data.reportScore5.children}">
+          <div class="dim-name">
+            <div class="dim-name-left">
+              <div class="dim-name-left-cn" th:text="${child.name}">工作记忆</div>
+              <div class="dim-name-left-en" th:text="${child.englishName}">Working Memory</div>
+            </div>
+            <div class="dim-name-right" th:text="${child.description}">对空间信息的加工和操作的能力，同时与个体的其他抽象思维存在着一定的相关性</div>
+          </div>
+          <div class="dim-score">
+            <div class="process">
+              <!-- child.score 影响span的宽度 -->
+              <span class="score-process" th:id="d5c + (${childStat.index} + 1)"></span>
+              <div class="graduation-mark mark-min">
+                <div class="mark-top"></div>
+              </div>
+              <div class="graduation-mark mark-mid">
+                <div class="mark-top red-border"></div>
+              </div>
+              <div class="graduation-mark mark-max">
+                <div class="mark-top bulesky-border"></div>
+              </div>
+              <div class="graduation-mark mark-start">
+                <div class="mark-top transparent"></div>
+                <div class="mark-bottom" th:id="d5c + (${childStat.index} + 1) + left">0</div>
+              </div>
+              <div class="graduation-mark mark-end">
+                <div class="mark-top transparent"></div>
+                <div class="mark-bottom" th:id="d5c + (${childStat.index} + 1) + right">10</div>
+              </div>
+              <div class="score-box" th:text="${child.score}" th:id="d5c + (${childStat.index} + 1) + score">
+                7.6
+              </div>
+            </div>
+          </div>
+          <!--  th:action="@{'d1u'+${childStat.index + 1}" -->
+          <div class="dim-report" th:text="${child.scoreDescription}">
+            收集并处理信息的能力较强，能够比较全方位地分析问题，并且形成解决问题的较为有效的方案方位地分析问题，并且形成解决问题的较为有效的方案
+          </div>
+        </div>
+      </div>
+      <!-- 页眉 -->
+      <div class="page-header">
+        <div class="header-text">
+          
+        </div>
+        <div class="header-img">
+          <img src="./static/logo.png" alt="">
+        </div>
+      </div>
+      <!-- 页脚 -->
+      <div class="page-footer">
+        <div class="page-footer-left">
+          版权所有：杭州扶摇职上教育科技有限公司
+        </div>
+        <div class="page-footer-right">
+          17
+        </div>
+      </div>
+    </div>
     <!-- with-title 带有大标题 一、维度分数 这种页面 padding-top 相对较小 -->
     <div class="analysis with-title">
       <div class="big-title">
@@ -311,20 +745,21 @@
       <p class='module-description'>各指标上的测评结果显示， 受测者在以下指标上表现不足。</p>
       <p class='module-description'>根据受测者在各个指标上的表现，可采用以下发展建议对其进行发展：</p>
       <div class="sug-big-dim">
-        认知能力&nbsp;&nbsp;&nbsp;Cognitive Ability
+        认知能力&nbsp;&nbsp;Cognitive Ability
       </div>
       <div class="sug-one-dim">
         <div class="sug-lil-dim">
-          问题解决&nbsp;&nbsp;&nbsp;Problem Solving
+          <span th:text="${data.developmentSuggestions[0].name}">问题解决</span>&nbsp;&nbsp;
+          <span th:text="${data.developmentSuggestions[0].englishName}">Problem Solving</span>
         </div>
         <div class="sugs">
           <div class="sug-item">
             <div class="sug-item-title">自我认知建议</div>
-            <p>遇到困难积极面对，保持乐观态度。从多个角度分析问题产生的原因及可能存在的解决办法；敢于尝试多个解决方法，并找到最合适的解决方式。</p>
+            <p th:text="${data.developmentSuggestions[0].selfCognition}">遇到困难积极面对，保持乐观态度。从多个角度分析问题产生的原因及可能存在的解决办法；敢于尝试多个解决方法，并找到最合适的解决方式。</p>
           </div>
           <div class="sug-item">
             <div class="sug-item-title">工作实践建议</div>
-            <p>从多个角度分析探索问题的源头，厘清问题出现的相关因素及相互之间的联系。
+            <p th:text="${data.developmentSuggestions[0].workPractices}">从多个角度分析探索问题的源头，厘清问题出现的相关因素及相互之间的联系。
               通过对问题的分析，找到关键因素，对关键人事物提出妥善的解决方案。
               主动寻求资源和支持，以解决问题并消除问题产生的后续影响。</p>
           </div>
@@ -332,16 +767,17 @@
       </div>
       <div class="sug-one-dim">
         <div class="sug-lil-dim">
-          问题解决&nbsp;&nbsp;&nbsp;Problem Solving
+          <span th:text="${data.developmentSuggestions[1].name}">问题解决</span>&nbsp;&nbsp;
+          <span th:text="${data.developmentSuggestions[1].englishName}">Problem Solving</span>
         </div>
         <div class="sugs">
           <div class="sug-item">
             <div class="sug-item-title">自我认知建议</div>
-            <p>遇到困难积极面对，保持乐观态度。从多个角度分析问题产生的原因及可能存在的解决办法；敢于尝试多个解决方法，并找到最合适的解决方式。</p>
+            <p th:text="${data.developmentSuggestions[1].selfCognition}">遇到困难积极面对，保持乐观态度。从多个角度分析问题产生的原因及可能存在的解决办法；敢于尝试多个解决方法，并找到最合适的解决方式。</p>
           </div>
           <div class="sug-item">
             <div class="sug-item-title">工作实践建议</div>
-            <p>从多个角度分析探索问题的源头，厘清问题出现的相关因素及相互之间的联系。
+            <p th:text="${data.developmentSuggestions[1].workPractices}">从多个角度分析探索问题的源头，厘清问题出现的相关因素及相互之间的联系。
               通过对问题的分析，找到关键因素，对关键人事物提出妥善的解决方案。
               主动寻求资源和支持，以解决问题并消除问题产生的后续影响。</p>
           </div>
@@ -365,7 +801,63 @@
     <div class="analysis">
       <div class="sug-one-dim">
         <div class="sug-lil-dim">
-          问题解决&nbsp;&nbsp;&nbsp;Problem Solving
+          <span th:text="${data.developmentSuggestions[2].name}">问题解决</span>&nbsp;&nbsp;
+          <span th:text="${data.developmentSuggestions[2].englishName}">Problem Solving</span>
+        </div>
+        <div class="sugs">
+          <div class="sug-item">
+            <div class="sug-item-title">自我认知建议</div>
+            <p th:text="${data.developmentSuggestions[2].selfCognition}">遇到困难积极面对，保持乐观态度。从多个角度分析问题产生的原因及可能存在的解决办法；敢于尝试多个解决方法，并找到最合适的解决方式。</p>
+          </div>
+          <div class="sug-item">
+            <div class="sug-item-title">工作实践建议</div>
+            <p th:text="${data.developmentSuggestions[2].workPractices}">从多个角度分析探索问题的源头，厘清问题出现的相关因素及相互之间的联系。
+              通过对问题的分析，找到关键因素，对关键人事物提出妥善的解决方案。
+              主动寻求资源和支持，以解决问题并消除问题产生的后续影响。</p>
+          </div>
+        </div>
+      </div>
+      <div class="sug-one-dim">
+        <div class="sug-lil-dim">
+          <span th:text="${data.developmentSuggestions[3].name}">问题解决</span>&nbsp;&nbsp;
+          <span th:text="${data.developmentSuggestions[3].englishName}">Problem Solving</span>
+        </div>
+        <div class="sugs">
+          <div class="sug-item">
+            <div class="sug-item-title">自我认知建议</div>
+            <p th:text="${data.developmentSuggestions[3].selfCognition}">遇到困难积极面对，保持乐观态度。从多个角度分析问题产生的原因及可能存在的解决办法；敢于尝试多个解决方法，并找到最合适的解决方式。</p>
+          </div>
+          <div class="sug-item">
+            <div class="sug-item-title">工作实践建议</div>
+            <p th:text="${data.developmentSuggestions[3].workPractices}">从多个角度分析探索问题的源头，厘清问题出现的相关因素及相互之间的联系。
+              通过对问题的分析，找到关键因素，对关键人事物提出妥善的解决方案。
+              主动寻求资源和支持，以解决问题并消除问题产生的后续影响。</p>
+          </div>
+        </div>
+      </div>
+      <div class="sug-one-dim">
+        <div class="sug-lil-dim">
+          <span th:text="${data.developmentSuggestions[4].name}">问题解决</span>&nbsp;&nbsp;
+          <span th:text="${data.developmentSuggestions[4].englishName}">Problem Solving</span>
+        </div>
+        <div class="sugs">
+          <div class="sug-item">
+            <div class="sug-item-title">自我认知建议</div>
+            <p th:text="${data.developmentSuggestions[4].selfCognition}">遇到困难积极面对，保持乐观态度。从多个角度分析问题产生的原因及可能存在的解决办法；敢于尝试多个解决方法，并找到最合适的解决方式。</p>
+          </div>
+          <div class="sug-item">
+            <div class="sug-item-title">工作实践建议</div>
+            <p th:text="${data.developmentSuggestions[4].workPractices}">从多个角度分析探索问题的源头，厘清问题出现的相关因素及相互之间的联系。
+              通过对问题的分析，找到关键因素，对关键人事物提出妥善的解决方案。
+              主动寻求资源和支持，以解决问题并消除问题产生的后续影响。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="analysis">
+      <div class="sug-one-dim">
+        <div class="sug-lil-dim">
+          问题解决&nbsp;&nbsp;Problem Solving
         </div>
         <div class="sugs">
           <div class="sug-item">
@@ -382,7 +874,7 @@
       </div>
       <div class="sug-one-dim">
         <div class="sug-lil-dim">
-          问题解决&nbsp;&nbsp;&nbsp;Problem Solving
+          问题解决&nbsp;&nbsp;Problem Solving
         </div>
         <div class="sugs">
           <div class="sug-item">
@@ -398,7 +890,7 @@
       </div>
       <div class="sug-one-dim">
         <div class="sug-lil-dim">
-          问题解决&nbsp;&nbsp;&nbsp;Problem Solving
+          问题解决&nbsp;&nbsp;Problem Solving
         </div>
         <div class="sugs">
           <div class="sug-item">
@@ -434,11 +926,11 @@
       </div>
       <p class='module-description'>根据受测者在各个指标上的表现，HR管理者可采用以下建议对其进行管理：</p>
       <div class="sug-big-dim">
-        认知能力&nbsp;&nbsp;&nbsp;Cognitive Ability
+        认知能力&nbsp;&nbsp;Cognitive Ability
       </div>
       <div class="sug-one-dim">
         <div class="sug-lil-dim">
-          问题解决&nbsp;&nbsp;&nbsp;Problem Solving
+          问题解决&nbsp;&nbsp;Problem Solving
         </div>
         <div class="sugs">
           <div class="sug-item">
@@ -458,7 +950,7 @@
       </div>
       <div class="sug-one-dim">
         <div class="sug-lil-dim">
-          学习能力&nbsp;&nbsp;&nbsp;Learning Ability
+          学习能力&nbsp;&nbsp;Learning Ability
         </div>
         <div class="sugs">
           <div class="sug-item">
@@ -495,7 +987,7 @@
     <div class="analysis">
       <div class="sug-one-dim">
         <div class="sug-lil-dim">
-          调整适应力&nbsp;&nbsp;&nbsp;Adaptive Capacity
+          调整适应力&nbsp;&nbsp;Adaptive Capacity
         </div>
         <div class="sugs">
           <div class="sug-item">
@@ -514,7 +1006,7 @@
       </div>
       <div class="sug-one-dim">
         <div class="sug-lil-dim">
-          学习能力&nbsp;&nbsp;&nbsp;Learning Ability
+          学习能力&nbsp;&nbsp;Learning Ability
         </div>
         <div class="sugs">
           <div class="sug-item">
@@ -547,10 +1039,18 @@
         </div>
       </div>
     </div>
+    <div class="static">
+      <img src="./static/competencyMatching.png" alt="">
+    </div>
+    <div class="static">
+      <img src="./static/backcover.png" alt="">
+    </div>
   </div>
 </body>
 <script type="text/javascript" th:inline="javascript">
   /*<![CDATA[*/
+  var isHon = [[${data.honesty}]];
+  var isCon = [[${data.conscientiousness}]];
   var S_R1C1 = [[${data.abilityScores}]][0].scores[0].score;
   var S_R1C2 = [[${data.abilityScores}]][0].scores[1].score;
   var S_R1C3 = [[${data.abilityScores}]][0].scores[2].score;
@@ -576,6 +1076,20 @@
   var S_R5C3 = [[${data.styleScores}]][2].scores[2].score;
   var S_R5C4 = [[${data.styleScores}]][2].scores[3].score;
   /*]]>*/
+  var honest = document.getElementById("myHonest")
+  // var consci = document.getElementById("myConsci")
+  if (isHon === "诚实") {
+    honest.src = "./static/yes.png"
+  }
+  if (isHon === "不诚实") {
+    honest.src = "./static/no.png"
+  }
+  // if (isCon === "尽责") {
+  //   consci.src = "./static/yes.png"
+  // }
+  // if (isCon === "不尽责") {
+  //   consci.src = "./static/no.png"
+  // }
   var dArr = ["d1c1", "d1c2", "d1c3", "d1c4", "d1c5", "d1c6", "d2c1", "d2c2", "d2c3", "d2c4", "d2c5", "d2c6", "d3c1", "d3c2", "d3c3", "d3c4", "d4c1", "d4c2", "d4c3", "d4c4", "d5c1", "d5c2", "d5c3", "d5c4"]
   var abili_dArr = ["d1c1", "d1c2", "d1c3", "d1c4", "d1c5", "d1c6", "d2c1", "d2c2", "d2c3", "d2c4", "d2c5", "d2c6"]
   var style_dArr = ["d3c1", "d3c2", "d3c3", "d3c4", "d4c1", "d4c2", "d4c3", "d4c4", "d5c1", "d5c2", "d5c3", "d5c4"]
