@@ -62,7 +62,8 @@
         <span th:text="${data.conscientiousnessDesc}">该受测者可数据显示其在测验过程的认真程度上存在一定问题，对测验报告有一定影响，建议谨慎参考</span>
       </div>
       <div class="result-honest-pic">
-        <img src="./static/no.png" alt="" id="myHonest">
+        <img th:if="${data.honesty} == 诚实" src="./static/yes.png" alt="">
+        <img th:if="${data.honesty} == 不诚实" src="./static/no.png" alt="">
       </div>
       <div class="result-honest-text result-text">
         <span th:text="${data.honesty}">诚实</span>：
@@ -91,54 +92,21 @@
       </div>
       <div class="abili-container">
         <div class="abili-label">
-          <div class="abili-dim1-label">
+          <div th:class="abili-dim + (${childStat.index} + 1) + -label" th:each="child:${data.abilityScores}">
             <div 
               class="abili-dim1-label-item"
-              th:each="child:${data.abilityScores[0].scores}"
-              th:text="${child.name}"
+              th:each="item:${child.scores}"
+              th:text="${item.name}"
             >工作记忆</div>
-            <!-- <div class="abili-dim1-label-item">注意力水平</div>
-            <div class="abili-dim1-label-item">信息处理</div>
-            <div class="abili-dim1-label-item">语言理解</div>
-            <div class="abili-dim1-label-item">运动控制</div>
-            <div class="abili-dim1-label-item">空间能力</div> -->
-          </div>
-          <div class="abili-dim2-label">
-            <div 
-              class="abili-dim2-label-item"
-              th:each="child:${data.abilityScores[1].scores}"
-              th:text="${child.name}"
-            >工作记忆</div>
-            <!-- <div class="abili-dim2-label-item">注意力水平</div>
-            <div class="abili-dim2-label-item">信息处理</div>
-            <div class="abili-dim2-label-item">语言理解</div>
-            <div class="abili-dim2-label-item">运动控制</div>
-            <div class="abili-dim2-label-item">空间能力</div> -->
           </div>
         </div>
         <div class="abili-chart">
-          <div class="abili-dim1-value">
+          <div th:class="abili-dim + (${childStat.index} + 1) + -value" th:each="child:${data.abilityScores}">
             <div
-              th:each="child:${data.abilityScores[0].scores}"
-              th:id="d1c + (${childStat.index} + 1) + scoreSummary"
-              class="abili-dim1-value-item">
+              th:each="item:${child.scores}"
+              th:id="d + (${childStat.index} + 1) + c + (${itemStat.index} + 1) + scoreSummary"
+              th:class="abili-dim + (${childStat.index} + 1) + -value-item">
             </div>
-            <!-- <div class="abili-dim1-value-item"></div>
-            <div class="abili-dim1-value-item"></div>
-            <div class="abili-dim1-value-item"></div>
-            <div class="abili-dim1-value-item"></div>
-            <div class="abili-dim1-value-item"></div> -->
-          </div>
-          <div class="abili-dim2-value">
-            <div 
-              th:each="child:${data.abilityScores[1].scores}"
-              th:id="d2c + (${childStat.index} + 1) + scoreSummary"
-              class="abili-dim2-value-item"></div>
-              <!-- <div class="abili-dim2-value-item"></div>
-              <div class="abili-dim2-value-item"></div>
-              <div class="abili-dim2-value-item"></div>
-              <div class="abili-dim2-value-item"></div>
-              <div class="abili-dim2-value-item"></div> -->
           </div>
           <div class="abili-chart-divi-2-2"></div>
           <div class="abili-chart-divi-5"></div>
@@ -190,9 +158,11 @@
         <div class="divi7-8"></div>
         <div class="style-dim-one" th:each="child:${data.styleScores}">
           <div class="style-item" th:each="item:${child.scores}">
-            <div class="style-item-left" th:text="item.leftName">遵循常规</div>
-            <div class="style-item-score style-dim1 style1" th:id="d + (${childStat.index} + 3) + c + (${itemStat.index} + 1) + styleScore"></div>
-            <div class="style-item-right" th:text="item.rightName">认知灵活</div>
+            <div class="style-item-left" th:text="${item.leftName}">遵循常规</div>
+            <div class="style-item-score style-dim1 style1" th:id="d + (${childStat.index} + 3) + c + (${itemStat.index} + 1) + styleScore"
+            th:classappend="style-dim + (${childStat.index} + 1)"
+            ></div>
+            <div class="style-item-right" th:text="${item.rightName}">认知灵活</div>
           </div>
           <!-- <div class="style-item">
             <div class="style-item-left">自馁</div>
@@ -210,50 +180,6 @@
             <div class="style-item-right">认知灵活</div> 
           </div> -->
         </div>
-        <!-- <div class="style-dim-one">
-          <div class="style-item">
-            <div class="style-item-left">遵循常规</div>
-            <div class="style-item-score style-dim2 style1"></div>
-            <div class="style-item-right">认知灵活</div>
-          </div>
-          <div class="style-item">
-            <div class="style-item-left">自馁</div>
-            <div class="style-item-score style-dim2 style2"></div>
-            <div class="style-item-right">自信</div>
-          </div>
-          <div class="style-item">
-            <div class="style-item-left">情绪控制型</div>
-            <div class="style-item-score style-dim2 style1"></div>
-            <div class="style-item-right">情绪表达型</div>
-          </div>
-          <div class="style-item">
-            <div class="style-item-left">遵循常规</div>
-            <div class="style-item-score style-dim2 style2"></div>
-            <div class="style-item-right">认知灵活</div>
-          </div>
-        </div>
-        <div class="style-dim-one">
-          <div class="style-item">
-            <div class="style-item-left">遵循常规</div>
-            <div class="style-item-score style-dim3 style1"></div>
-            <div class="style-item-right">认知灵活</div>
-          </div>
-          <div class="style-item">
-            <div class="style-item-left">自馁</div>
-            <div class="style-item-score style-dim3 style2"></div>
-            <div class="style-item-right">自信</div>
-          </div>
-          <div class="style-item">
-            <div class="style-item-left">情绪控制型</div>
-            <div class="style-item-score style-dim3 style1"></div>
-            <div class="style-item-right">情绪表达型</div>
-          </div>
-          <div class="style-item">
-            <div class="style-item-left">遵循常规</div>
-            <div class="style-item-score style-dim3 style1"></div>
-            <div class="style-item-right">认知灵活</div>
-          </div>
-        </div> -->
       </div>
       <div class="style-desc-title">
         风格维度评分说明
@@ -737,6 +663,7 @@
         </div>
       </div>
     </div>
+    <!-- 个人发展建议 -->
     <!-- with-title 带有大标题 一、维度分数 这种页面 padding-top 相对较小 -->
     <div class="analysis with-title">
       <div class="big-title">
@@ -745,41 +672,25 @@
       <p class='module-description'>各指标上的测评结果显示， 受测者在以下指标上表现不足。</p>
       <p class='module-description'>根据受测者在各个指标上的表现，可采用以下发展建议对其进行发展：</p>
       <div class="sug-big-dim">
-        认知能力&nbsp;&nbsp;Cognitive Ability
+        发展能力&nbsp;&nbsp;Development Ability
       </div>
-      <div class="sug-one-dim">
+      <div class="sug-one-dim" th:each="child:${data.developmentSuggestions}" th:if="${childStat.index} < 2">
         <div class="sug-lil-dim">
-          <span th:text="${data.developmentSuggestions[0].name}">问题解决</span>&nbsp;&nbsp;
-          <span th:text="${data.developmentSuggestions[0].englishName}">Problem Solving</span>
+          <span th:text="${child.name}">
+          </span>&nbsp;&nbsp;
+          <span th:text="${child.englishName}">
+          </span>
         </div>
         <div class="sugs">
           <div class="sug-item">
             <div class="sug-item-title">自我认知建议</div>
-            <p th:text="${data.developmentSuggestions[0].selfCognition}">遇到困难积极面对，保持乐观态度。从多个角度分析问题产生的原因及可能存在的解决办法；敢于尝试多个解决方法，并找到最合适的解决方式。</p>
+            <p th:text="${child.selfCognition}">
+            </p>
           </div>
           <div class="sug-item">
             <div class="sug-item-title">工作实践建议</div>
-            <p th:text="${data.developmentSuggestions[0].workPractices}">从多个角度分析探索问题的源头，厘清问题出现的相关因素及相互之间的联系。
-              通过对问题的分析，找到关键因素，对关键人事物提出妥善的解决方案。
-              主动寻求资源和支持，以解决问题并消除问题产生的后续影响。</p>
-          </div>
-        </div>
-      </div>
-      <div class="sug-one-dim">
-        <div class="sug-lil-dim">
-          <span th:text="${data.developmentSuggestions[1].name}">问题解决</span>&nbsp;&nbsp;
-          <span th:text="${data.developmentSuggestions[1].englishName}">Problem Solving</span>
-        </div>
-        <div class="sugs">
-          <div class="sug-item">
-            <div class="sug-item-title">自我认知建议</div>
-            <p th:text="${data.developmentSuggestions[1].selfCognition}">遇到困难积极面对，保持乐观态度。从多个角度分析问题产生的原因及可能存在的解决办法；敢于尝试多个解决方法，并找到最合适的解决方式。</p>
-          </div>
-          <div class="sug-item">
-            <div class="sug-item-title">工作实践建议</div>
-            <p th:text="${data.developmentSuggestions[1].workPractices}">从多个角度分析探索问题的源头，厘清问题出现的相关因素及相互之间的联系。
-              通过对问题的分析，找到关键因素，对关键人事物提出妥善的解决方案。
-              主动寻求资源和支持，以解决问题并消除问题产生的后续影响。</p>
+            <p th:text="${child.workPractices}">
+            </p>
           </div>
         </div>
       </div>
@@ -799,108 +710,58 @@
       </div>
     </div>
     <div class="analysis">
-      <div class="sug-one-dim">
+      <div class="sug-one-dim" th:each="child:${data.developmentSuggestions}" th:if="${childStat.index} > 1 and ${childStat.index} < 5">
         <div class="sug-lil-dim">
-          <span th:text="${data.developmentSuggestions[2].name}">问题解决</span>&nbsp;&nbsp;
-          <span th:text="${data.developmentSuggestions[2].englishName}">Problem Solving</span>
+          <span th:text="${child.name}">
+          </span>&nbsp;&nbsp;
+          <span th:text="${child.englishName}">
+          </span>
         </div>
         <div class="sugs">
           <div class="sug-item">
             <div class="sug-item-title">自我认知建议</div>
-            <p th:text="${data.developmentSuggestions[2].selfCognition}">遇到困难积极面对，保持乐观态度。从多个角度分析问题产生的原因及可能存在的解决办法；敢于尝试多个解决方法，并找到最合适的解决方式。</p>
+            <p th:text="${child.selfCognition}">
+            </p>
           </div>
           <div class="sug-item">
             <div class="sug-item-title">工作实践建议</div>
-            <p th:text="${data.developmentSuggestions[2].workPractices}">从多个角度分析探索问题的源头，厘清问题出现的相关因素及相互之间的联系。
-              通过对问题的分析，找到关键因素，对关键人事物提出妥善的解决方案。
-              主动寻求资源和支持，以解决问题并消除问题产生的后续影响。</p>
+            <p th:text="${child.workPractices}">
+            </p>
           </div>
         </div>
       </div>
-      <div class="sug-one-dim">
-        <div class="sug-lil-dim">
-          <span th:text="${data.developmentSuggestions[3].name}">问题解决</span>&nbsp;&nbsp;
-          <span th:text="${data.developmentSuggestions[3].englishName}">Problem Solving</span>
-        </div>
-        <div class="sugs">
-          <div class="sug-item">
-            <div class="sug-item-title">自我认知建议</div>
-            <p th:text="${data.developmentSuggestions[3].selfCognition}">遇到困难积极面对，保持乐观态度。从多个角度分析问题产生的原因及可能存在的解决办法；敢于尝试多个解决方法，并找到最合适的解决方式。</p>
-          </div>
-          <div class="sug-item">
-            <div class="sug-item-title">工作实践建议</div>
-            <p th:text="${data.developmentSuggestions[3].workPractices}">从多个角度分析探索问题的源头，厘清问题出现的相关因素及相互之间的联系。
-              通过对问题的分析，找到关键因素，对关键人事物提出妥善的解决方案。
-              主动寻求资源和支持，以解决问题并消除问题产生的后续影响。</p>
-          </div>
+      <div class="page-header">
+        <div class="header-img">
+          <img src="./static/logo.png" alt="">
         </div>
       </div>
-      <div class="sug-one-dim">
-        <div class="sug-lil-dim">
-          <span th:text="${data.developmentSuggestions[4].name}">问题解决</span>&nbsp;&nbsp;
-          <span th:text="${data.developmentSuggestions[4].englishName}">Problem Solving</span>
+      <!-- 页脚 -->
+      <div class="page-footer">
+        <div class="page-footer-left">
+          版权所有：杭州扶摇职上教育科技有限公司
         </div>
-        <div class="sugs">
-          <div class="sug-item">
-            <div class="sug-item-title">自我认知建议</div>
-            <p th:text="${data.developmentSuggestions[4].selfCognition}">遇到困难积极面对，保持乐观态度。从多个角度分析问题产生的原因及可能存在的解决办法；敢于尝试多个解决方法，并找到最合适的解决方式。</p>
-          </div>
-          <div class="sug-item">
-            <div class="sug-item-title">工作实践建议</div>
-            <p th:text="${data.developmentSuggestions[4].workPractices}">从多个角度分析探索问题的源头，厘清问题出现的相关因素及相互之间的联系。
-              通过对问题的分析，找到关键因素，对关键人事物提出妥善的解决方案。
-              主动寻求资源和支持，以解决问题并消除问题产生的后续影响。</p>
-          </div>
+        <div class="page-footer-right">
+          07
         </div>
       </div>
     </div>
     <div class="analysis">
-      <div class="sug-one-dim">
+      <div class="sug-one-dim" th:each="child:${data.developmentSuggestions}" th:if="${childStat.index} > 4 and ${childStat.index} < 6">
         <div class="sug-lil-dim">
-          问题解决&nbsp;&nbsp;Problem Solving
+          <span th:text="${child.name}">
+          </span>&nbsp;&nbsp;
+          <span th:text="${child.englishName}">
+          </span>
         </div>
         <div class="sugs">
           <div class="sug-item">
             <div class="sug-item-title">自我认知建议</div>
-            <p>遇到困难积极面对，保持乐观态度。从多个角度分析问题产生的原因及可能存在的解决办法；敢于尝试多个解决方法，并找到最合适的解决方式。</p>
-          </div>
-          <div class="sug-item">
-            <div class="sug-item-title">工作实践建议</div>
-            <p>从多个角度分析探索问题的源头，厘清问题出现的相关因素及相互之间的联系。
-              通过对问题的分析，找到关键因素，对关键人事物提出妥善的解决方案。
+            <p th:text="${child.selfCognition}">
             </p>
           </div>
-        </div>
-      </div>
-      <div class="sug-one-dim">
-        <div class="sug-lil-dim">
-          问题解决&nbsp;&nbsp;Problem Solving
-        </div>
-        <div class="sugs">
-          <div class="sug-item">
-            <div class="sug-item-title">自我认知建议</div>
-            <p>遇到困难积极面对，保持乐观态度。从多个角度分析问题产生的原因及可能存在的解决办法；敢于尝试多个解决方法，并找到最合适的解决方式。</p>
-          </div>
           <div class="sug-item">
             <div class="sug-item-title">工作实践建议</div>
-            <p id='test'>
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="sug-one-dim">
-        <div class="sug-lil-dim">
-          问题解决&nbsp;&nbsp;Problem Solving
-        </div>
-        <div class="sugs">
-          <div class="sug-item">
-            <div class="sug-item-title">自我认知建议</div>
-            <p>遇到困难积极面对，保持乐观态度。从多个角度分析问题产生的原因及可能存在的解决办法；敢于尝试多个解决方法，并找到最合适的解决方式。</p>
-          </div>
-          <div class="sug-item">
-            <div class="sug-item-title">工作实践建议</div>
-            <p>从多个角度分析探索问题的源头，厘清问题出现的相关因素及相互之间的联系。
-              通过对问题的分析，找到关键因素，对关键人事物提出妥善的解决方案。
+            <p th:utext="${child.workPractices}">
             </p>
           </div>
         </div>
@@ -920,6 +781,232 @@
         </div>
       </div>
     </div>
+    <div class="analysis">
+      <div class="sug-big-dim">
+        决策风格&nbsp;&nbsp;Decision-making Style
+      </div>
+      <div class="sug-one-dim" th:each="child:${data.developmentSuggestions}" th:if="${childStat.index} > 5 and ${childStat.index} < 8">
+        <div class="sug-lil-dim">
+          <span th:text="${child.name}">
+          </span>&nbsp;&nbsp;
+          <span th:text="${child.englishName}">
+          </span>
+        </div>
+        <div class="sugs">
+          <div class="sug-item">
+            <div class="sug-item-title">自我认知建议</div>
+            <p th:text="${child.selfCognition}">
+            </p>
+          </div>
+          <div class="sug-item">
+            <div class="sug-item-title">工作实践建议</div>
+            <p th:utext="${child.workPractices}">
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- 页脚 -->
+      <div class="page-footer">
+        <div class="page-footer-left">
+          版权所有：杭州扶摇职上教育科技有限公司
+        </div>
+        <div class="page-footer-right">
+          07
+        </div>
+      </div>
+      <div class="page-header">
+        <div class="header-img">
+          <img src="./static/logo.png" alt="">
+        </div>
+      </div>
+    </div>
+    <div class="analysis">
+      <div class="sug-one-dim" th:each="child:${data.developmentSuggestions}" th:if="${childStat.index} > 7 and ${childStat.index} < 10">
+        <div class="sug-lil-dim">
+          <span th:text="${child.name}">
+          </span>&nbsp;&nbsp;
+          <span th:text="${child.englishName}">
+          </span>
+        </div>
+        <div class="sugs">
+          <div class="sug-item">
+            <div class="sug-item-title">自我认知建议</div>
+            <p th:text="${child.selfCognition}">
+            </p>
+          </div>
+          <div class="sug-item">
+            <div class="sug-item-title">工作实践建议</div>
+            <p th:utext="${child.workPractices}">
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- 页脚 -->
+      <div class="page-footer">
+        <div class="page-footer-left">
+          版权所有：杭州扶摇职上教育科技有限公司
+        </div>
+        <div class="page-footer-right">
+          07
+        </div>
+      </div>
+      <div class="page-header">
+        <div class="header-img">
+          <img src="./static/logo.png" alt="">
+        </div>
+      </div>
+    </div>
+    <div class="analysis">
+      <div class="sug-big-dim">
+        情绪气质&nbsp;&nbsp;Temperament
+      </div>
+      <div class="sug-one-dim" th:each="child:${data.developmentSuggestions}" th:if="${childStat.index} > 9 and ${childStat.index} < 12">
+        <div class="sug-lil-dim">
+          <span th:text="${child.name}">
+          </span>&nbsp;&nbsp;
+          <span th:text="${child.englishName}">
+          </span>
+        </div>
+        <div class="sugs">
+          <div class="sug-item">
+            <div class="sug-item-title">自我认知建议</div>
+            <p th:text="${child.selfCognition}">
+            </p>
+          </div>
+          <div class="sug-item">
+            <div class="sug-item-title">工作实践建议</div>
+            <p th:utext="${child.workPractices}">
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- 页脚 -->
+      <div class="page-footer">
+        <div class="page-footer-left">
+          版权所有：杭州扶摇职上教育科技有限公司
+        </div>
+        <div class="page-footer-right">
+          07
+        </div>
+      </div>
+      <div class="page-header">
+        <div class="header-img">
+          <img src="./static/logo.png" alt="">
+        </div>
+      </div>
+    </div>
+    <div class="analysis">
+      <div class="sug-one-dim" th:each="child:${data.developmentSuggestions}" th:if="${childStat.index} > 11 and ${childStat.index} < 14">
+        <div class="sug-lil-dim">
+          <span th:text="${child.name}">
+          </span>&nbsp;&nbsp;
+          <span th:text="${child.englishName}">
+          </span>
+        </div>
+        <div class="sugs">
+          <div class="sug-item">
+            <div class="sug-item-title">自我认知建议</div>
+            <p th:text="${child.selfCognition}">
+            </p>
+          </div>
+          <div class="sug-item">
+            <div class="sug-item-title">工作实践建议</div>
+            <p th:utext="${child.workPractices}">
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- 页脚 -->
+      <div class="page-footer">
+        <div class="page-footer-left">
+          版权所有：杭州扶摇职上教育科技有限公司
+        </div>
+        <div class="page-footer-right">
+          07
+        </div>
+      </div>
+      <div class="page-header">
+        <div class="header-img">
+          <img src="./static/logo.png" alt="">
+        </div>
+      </div>
+    </div>
+    <div class="analysis">
+      <div class="sug-big-dim">
+        人际交往&nbsp;&nbsp;Interpersonal Communication
+      </div>
+      <div class="sug-one-dim" th:each="child:${data.developmentSuggestions}" th:if="${childStat.index} > 13 and ${childStat.index} < 16">
+        <div class="sug-lil-dim">
+          <span th:text="${child.name}">
+          </span>&nbsp;&nbsp;
+          <span th:text="${child.englishName}">
+          </span>
+        </div>
+        <div class="sugs">
+          <div class="sug-item">
+            <div class="sug-item-title">自我认知建议</div>
+            <p th:text="${child.selfCognition}">
+            </p>
+          </div>
+          <div class="sug-item">
+            <div class="sug-item-title">工作实践建议</div>
+            <p th:utext="${child.workPractices}">
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- 页脚 -->
+      <div class="page-footer">
+        <div class="page-footer-left">
+          版权所有：杭州扶摇职上教育科技有限公司
+        </div>
+        <div class="page-footer-right">
+          07
+        </div>
+      </div>
+      <div class="page-header">
+        <div class="header-img">
+          <img src="./static/logo.png" alt="">
+        </div>
+      </div>
+    </div>
+    <div class="analysis">
+      <div class="sug-one-dim" th:each="child:${data.developmentSuggestions}" th:if="${childStat.index} > 15 and ${childStat.index} < 18">
+        <div class="sug-lil-dim">
+          <span th:text="${child.name}">
+          </span>&nbsp;&nbsp;
+          <span th:text="${child.englishName}">
+          </span>
+        </div>
+        <div class="sugs">
+          <div class="sug-item">
+            <div class="sug-item-title">自我认知建议</div>
+            <p th:text="${child.selfCognition}">
+            </p>
+          </div>
+          <div class="sug-item">
+            <div class="sug-item-title">工作实践建议</div>
+            <p th:utext="${child.workPractices}">
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- 页脚 -->
+      <div class="page-footer">
+        <div class="page-footer-left">
+          版权所有：杭州扶摇职上教育科技有限公司
+        </div>
+        <div class="page-footer-right">
+          07
+        </div>
+      </div>
+      <div class="page-header">
+        <div class="header-img">
+          <img src="./static/logo.png" alt="">
+        </div>
+      </div>
+    </div>
+    <!-- HR 管理建议 -->
     <div class="analysis with-title">
       <div class="big-title">
         六、HR管理建议
@@ -1049,47 +1136,31 @@
 </body>
 <script type="text/javascript" th:inline="javascript">
   /*<![CDATA[*/
-  var isHon = [[${data.honesty}]];
-  var isCon = [[${data.conscientiousness}]];
-  var S_R1C1 = [[${data.abilityScores}]][0].scores[0].score;
-  var S_R1C2 = [[${data.abilityScores}]][0].scores[1].score;
-  var S_R1C3 = [[${data.abilityScores}]][0].scores[2].score;
-  var S_R1C4 = [[${data.abilityScores}]][0].scores[3].score;
-  var S_R1C5 = [[${data.abilityScores}]][0].scores[4].score;
-  var S_R1C6 = [[${data.abilityScores}]][0].scores[5].score;
-  var S_R2C1 = [[${data.abilityScores}]][1].scores[0].score;
-  var S_R2C2 = [[${data.abilityScores}]][1].scores[1].score;
-  var S_R2C3 = [[${data.abilityScores}]][1].scores[2].score;
-  var S_R2C4 = [[${data.abilityScores}]][1].scores[3].score;
-  var S_R2C5 = [[${data.abilityScores}]][1].scores[4].score;
-  var S_R2C6 = [[${data.abilityScores}]][1].scores[5].score;
-  var S_R3C1 = [[${data.styleScores}]][0].scores[0].score;
-  var S_R3C2 = [[${data.styleScores}]][0].scores[1].score;
-  var S_R3C3 = [[${data.styleScores}]][0].scores[2].score;
-  var S_R3C4 = [[${data.styleScores}]][0].scores[3].score;
-  var S_R4C1 = [[${data.styleScores}]][1].scores[0].score;
-  var S_R4C2 = [[${data.styleScores}]][1].scores[1].score;
-  var S_R4C3 = [[${data.styleScores}]][1].scores[2].score;
-  var S_R4C4 = [[${data.styleScores}]][1].scores[3].score;
-  var S_R5C1 = [[${data.styleScores}]][2].scores[0].score;
-  var S_R5C2 = [[${data.styleScores}]][2].scores[1].score;
-  var S_R5C3 = [[${data.styleScores}]][2].scores[2].score;
-  var S_R5C4 = [[${data.styleScores}]][2].scores[3].score;
+  var S_R1C1 = [[${data.reportScore1.children}]][0].score;
+  var S_R1C2 = [[${data.reportScore1.children}]][1].score;
+  var S_R1C3 = [[${data.reportScore1.children}]][2].score;
+  var S_R1C4 = [[${data.reportScore1.children}]][3].score;
+  var S_R1C5 = [[${data.reportScore1.children2}]][0].score;
+  var S_R1C6 = [[${data.reportScore1.children2}]][1].score;
+  var S_R2C1 = [[${data.reportScore2.children}]][0].score;
+  var S_R2C2 = [[${data.reportScore2.children}]][1].score;
+  var S_R2C3 = [[${data.reportScore2.children}]][2].score;
+  var S_R2C4 = [[${data.reportScore2.children}]][3].score;
+  var S_R2C5 = [[${data.reportScore2.children2}]][0].score;
+  var S_R2C6 = [[${data.reportScore2.children2}]][1].score;
+  var S_R3C1 = [[${data.reportScore3.children}]][0].score;
+  var S_R3C2 = [[${data.reportScore3.children}]][1].score;
+  var S_R3C3 = [[${data.reportScore3.children}]][2].score;
+  var S_R3C4 = [[${data.reportScore3.children}]][3].score;
+  var S_R4C1 = [[${data.reportScore4.children}]][0].score;
+  var S_R4C2 = [[${data.reportScore4.children}]][1].score;
+  var S_R4C3 = [[${data.reportScore4.children}]][2].score;
+  var S_R4C4 = [[${data.reportScore4.children}]][3].score;
+  var S_R5C1 = [[${data.reportScore5.children}]][0].score;
+  var S_R5C2 = [[${data.reportScore5.children}]][1].score;
+  var S_R5C3 = [[${data.reportScore5.children}]][2].score;
+  var S_R5C4 = [[${data.reportScore5.children}]][3].score;
   /*]]>*/
-  var honest = document.getElementById("myHonest")
-  // var consci = document.getElementById("myConsci")
-  if (isHon === "诚实") {
-    honest.src = "./static/yes.png"
-  }
-  if (isHon === "不诚实") {
-    honest.src = "./static/no.png"
-  }
-  // if (isCon === "尽责") {
-  //   consci.src = "./static/yes.png"
-  // }
-  // if (isCon === "不尽责") {
-  //   consci.src = "./static/no.png"
-  // }
   var dArr = ["d1c1", "d1c2", "d1c3", "d1c4", "d1c5", "d1c6", "d2c1", "d2c2", "d2c3", "d2c4", "d2c5", "d2c6", "d3c1", "d3c2", "d3c3", "d3c4", "d4c1", "d4c2", "d4c3", "d4c4", "d5c1", "d5c2", "d5c3", "d5c4"]
   var abili_dArr = ["d1c1", "d1c2", "d1c3", "d1c4", "d1c5", "d1c6", "d2c1", "d2c2", "d2c3", "d2c4", "d2c5", "d2c6"]
   var style_dArr = ["d3c1", "d3c2", "d3c3", "d3c4", "d4c1", "d4c2", "d4c3", "d4c4", "d5c1", "d5c2", "d5c3", "d5c4"]
@@ -1119,7 +1190,6 @@
     d5c3: S_R5C3,
     d5c4: S_R5C4,
   }
-  var 
   var midLine = 355
   var maxWidth = 124 / 2.8 * 5 // 约等于 221.4 但是不能用，这乘来乘去的就有1px的偏差
   var midValue = 5
@@ -1127,11 +1197,15 @@
     document.getElementById(item + "scoreSummary").style.width = (map[item] * 10) + "%"
   })
   style_dArr.forEach(function(item) {
-    var styletest = document.getElementById(item + "styletest")
+    var styletest = document.getElementById(item + "styleScore")
     // 如果是3.2分
     var value = map[item]
     var gap = value - midValue
-    styletest.style.width = Math.abs(gap) / midValue * maxWidth + 'px'
+    if (Math.abs(gap) < 0.1) {
+      styletest.style.width = "4px"
+    } else {
+      styletest.style.width = Math.abs(gap) / midValue * maxWidth + 'px'
+    }
     var offsetWidth = (function (w) {
       var arr = w.split('')
       arr.pop()
@@ -1142,21 +1216,23 @@
     if (gap !== Math.abs(gap)) {
       styletest.style.left = midLine - offsetWidth - 0 + 'px'
     }
+    if (Math.abs(gap) < 0.1) {
+      styletest.style.left = midLine - offsetWidth + 4 / 2 + 'px'
+    }
   })
   dArr.forEach(function(item) {
-    // document.getElementById(item).style.width = map[item] * 10 + "%"
-    // document.getElementById(item + "score").style.left = map[item] * 10 + "%"
+    document.getElementById(item).style.width = map[item] * 10 + "%"
+    document.getElementById(item + "score").style.left = map[item] * 10 + "%"
   })
   
   var Dim2 = ['数据敏感性', '抗干扰能力', '创造力', '调整适应力', '学习能力', '问题解决']
   var Dim1 = ['空间能力', '运动控制', '语言理解', '信息处理', '注意力水平', '工作记忆']
-  var test = document.getElementById('test')
-  test.innerHTML = `从多个角度分析探索问题的源头，厘清问题出现的相关因素及相互之间的联系。<br/>
-  通过对问题的分析，找到关键因素，对关键人事物提出妥善的解决方案。<br/>
-  主动寻求资源和支持，以解决问题并消除问题产生的后续影响。`
+  // var test = document.getElementById('test')
+  // test.innerHTML = `从多个角度分析探索问题的源头，厘清问题出现的相关因素及相互之间的联系。<br/>
+  // 通过对问题的分析，找到关键因素，对关键人事物提出妥善的解决方案。<br/>
+  // 主动寻求资源和支持，以解决问题并消除问题产生的后续影响。`
   
   
-  // console.log('???', styletest.style.left, midLine - styletest.offsetWidth)
 
 </script>
 
