@@ -32,7 +32,7 @@
       </div>
     </div>
     <div class="static">
-      <img src="./static/catalog.png" alt="">
+      <img src="./static/catalog.jpg" alt="">
     </div>
     <div class="static">
       <img src="./static/ReportIntroduction.png" alt="">
@@ -138,7 +138,7 @@
           版权所有：杭州扶摇职上教育科技有限公司
         </div>
         <div class="page-footer-right">
-          07
+          06
         </div>
       </div>
     </div>
@@ -266,7 +266,7 @@
           版权所有：杭州扶摇职上教育科技有限公司
         </div>
         <div class="page-footer-right">
-          07
+          09
         </div>
       </div>
     </div>
@@ -330,7 +330,7 @@
           版权所有：杭州扶摇职上教育科技有限公司
         </div>
         <div class="page-footer-right">
-          08
+          10
         </div>
       </div>
     </div>
@@ -397,7 +397,7 @@
           版权所有：杭州扶摇职上教育科技有限公司
         </div>
         <div class="page-footer-right">
-          10
+          12
         </div>
       </div>
     </div>
@@ -461,7 +461,7 @@
           版权所有：杭州扶摇职上教育科技有限公司
         </div>
         <div class="page-footer-right">
-          11
+          13
         </div>
       </div>
     </div>
@@ -528,7 +528,7 @@
           版权所有：杭州扶摇职上教育科技有限公司
         </div>
         <div class="page-footer-right">
-          13
+          15
         </div>
       </div>
     </div>
@@ -595,7 +595,7 @@
           版权所有：杭州扶摇职上教育科技有限公司
         </div>
         <div class="page-footer-right">
-          15
+          17
         </div>
       </div>
     </div>
@@ -659,7 +659,7 @@
           版权所有：杭州扶摇职上教育科技有限公司
         </div>
         <div class="page-footer-right">
-          17
+          19
         </div>
       </div>
     </div>
@@ -671,62 +671,28 @@
       </div>
       <p class='module-description'>各指标上的测评结果显示， 受测者在以下指标上表现不足。</p>
       <p class='module-description'>根据受测者在各个指标上的表现，可采用以下发展建议对其进行发展：</p>
-      <div class="sug-big-dim">
-        发展能力&nbsp;&nbsp;Development Ability
-      </div>
-      <div class="sug-one-dim" th:each="child:${data.developmentSuggestions}" th:if="${childStat.index} < 2">
-        <div class="sug-lil-dim">
-          <span th:text="${child.name}">
-          </span>&nbsp;&nbsp;
-          <span th:text="${child.englishName}">
-          </span>
+      <div th:each="child:${data.developmentSuggestions}" th:if="${childStat.index} == 0">
+        <div class="sug-big-dim" th:text="${child.name} + '   ' + ${child.englishName}">
+          发展能力&nbsp;&nbsp;Development Ability
         </div>
-        <div class="sugs">
-          <div class="sug-item">
-            <div class="sug-item-title">自我认知建议</div>
-            <p th:text="${child.selfCognition}">
-            </p>
+        <div class="sug-one-dim" th:each="item:${child.suggestions}" th:if="${itemStat.index} < 2">
+          <div class="sug-lil-dim">
+            <span th:text="${item.name}">
+            </span>&nbsp;&nbsp;
+            <span th:text="${item.englishName}">
+            </span>
           </div>
-          <div class="sug-item">
-            <div class="sug-item-title">工作实践建议</div>
-            <p th:text="${child.workPractices}">
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="page-header">
-        <div class="header-img">
-          <img src="./static/logo.png" alt="">
-        </div>
-      </div>
-      <!-- 页脚 -->
-      <div class="page-footer">
-        <div class="page-footer-left">
-          版权所有：杭州扶摇职上教育科技有限公司
-        </div>
-        <div class="page-footer-right">
-          07
-        </div>
-      </div>
-    </div>
-    <div class="analysis">
-      <div class="sug-one-dim" th:each="child:${data.developmentSuggestions}" th:if="${childStat.index} > 1 and ${childStat.index} < 5">
-        <div class="sug-lil-dim">
-          <span th:text="${child.name}">
-          </span>&nbsp;&nbsp;
-          <span th:text="${child.englishName}">
-          </span>
-        </div>
-        <div class="sugs">
-          <div class="sug-item">
-            <div class="sug-item-title">自我认知建议</div>
-            <p th:text="${child.selfCognition}">
-            </p>
-          </div>
-          <div class="sug-item">
-            <div class="sug-item-title">工作实践建议</div>
-            <p th:text="${child.workPractices}">
-            </p>
+          <div class="sugs">
+            <div class="sug-item">
+              <div class="sug-item-title">自我认知建议</div>
+              <p th:utext="${item.selfCognition}">
+              </p>
+            </div>
+            <div class="sug-item">
+              <div class="sug-item-title">工作实践建议</div>
+              <p th:utext="${item.workPractices}">
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -741,28 +707,68 @@
           版权所有：杭州扶摇职上教育科技有限公司
         </div>
         <div class="page-footer-right">
-          07
+          20
         </div>
       </div>
     </div>
     <div class="analysis">
-      <div class="sug-one-dim" th:each="child:${data.developmentSuggestions}" th:if="${childStat.index} > 4 and ${childStat.index} < 6">
-        <div class="sug-lil-dim">
-          <span th:text="${child.name}">
-          </span>&nbsp;&nbsp;
-          <span th:text="${child.englishName}">
-          </span>
-        </div>
-        <div class="sugs">
-          <div class="sug-item">
-            <div class="sug-item-title">自我认知建议</div>
-            <p th:text="${child.selfCognition}">
-            </p>
+      <div th:each="child:${data.developmentSuggestions}" th:if="${childStat.index} == 0">
+        <div class="sug-one-dim" th:each="item:${child.suggestions}" th:if="${itemStat.index} > 1 and ${itemStat.index} < 5">
+          <div class="sug-lil-dim">
+            <span th:text="${item.name}">
+            </span>&nbsp;&nbsp;
+            <span th:text="${item.englishName}">
+            </span>
           </div>
-          <div class="sug-item">
-            <div class="sug-item-title">工作实践建议</div>
-            <p th:utext="${child.workPractices}">
-            </p>
+          <div class="sugs">
+            <div class="sug-item">
+              <div class="sug-item-title">自我认知建议</div>
+              <p th:utext="${item.selfCognition}">
+              </p>
+            </div>
+            <div class="sug-item">
+              <div class="sug-item-title">工作实践建议</div>
+              <p th:utext="${item.workPractices}">
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="page-header">
+        <div class="header-img">
+          <img src="./static/logo.png" alt="">
+        </div>
+      </div>
+      <!-- 页脚 -->
+      <div class="page-footer">
+        <div class="page-footer-left">
+          版权所有：杭州扶摇职上教育科技有限公司
+        </div>
+        <div class="page-footer-right">
+          21
+        </div>
+      </div>
+    </div>
+    <div class="analysis">
+      <div th:each="child:${data.developmentSuggestions}" th:if="${childStat.index} == 0">
+        <div class="sug-one-dim" th:each="item:${child.suggestions}" th:if="${itemStat.index} == 5">
+          <div class="sug-lil-dim">
+            <span th:text="${item.name}">
+            </span>&nbsp;&nbsp;
+            <span th:text="${item.englishName}">
+            </span>
+          </div>
+          <div class="sugs">
+            <div class="sug-item">
+              <div class="sug-item-title">自我认知建议</div>
+              <p th:utext="${item.selfCognition}">
+              </p>
+            </div>
+            <div class="sug-item">
+              <div class="sug-item-title">工作实践建议</div>
+              <p th:utext="${item.workPractices}">
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -772,7 +778,7 @@
           版权所有：杭州扶摇职上教育科技有限公司
         </div>
         <div class="page-footer-right">
-          07
+          22
         </div>
       </div>
       <div class="page-header">
@@ -781,27 +787,30 @@
         </div>
       </div>
     </div>
+    <!-- 个人发展：决策风格 -->
     <div class="analysis">
-      <div class="sug-big-dim">
-        决策风格&nbsp;&nbsp;Decision-making Style
-      </div>
-      <div class="sug-one-dim" th:each="child:${data.developmentSuggestions}" th:if="${childStat.index} > 5 and ${childStat.index} < 8">
-        <div class="sug-lil-dim">
-          <span th:text="${child.name}">
-          </span>&nbsp;&nbsp;
-          <span th:text="${child.englishName}">
-          </span>
+      <div th:each="child:${data.developmentSuggestions}" th:if="${childStat.index} == 1">
+        <div class="sug-big-dim" th:text="${child.name} + '   ' + ${child.englishName}">
+          决策风格&nbsp;&nbsp;Decision-making Style
         </div>
-        <div class="sugs">
-          <div class="sug-item">
-            <div class="sug-item-title">自我认知建议</div>
-            <p th:text="${child.selfCognition}">
-            </p>
+        <div class="sug-one-dim" th:each="item:${child.suggestions}" th:if="${itemStat.index} < 2">
+          <div class="sug-lil-dim">
+            <span th:text="${item.name}">
+            </span>&nbsp;&nbsp;
+            <span th:text="${item.englishName}">
+            </span>
           </div>
-          <div class="sug-item">
-            <div class="sug-item-title">工作实践建议</div>
-            <p th:utext="${child.workPractices}">
-            </p>
+          <div class="sugs">
+            <div class="sug-item">
+              <div class="sug-item-title">自我认知建议</div>
+              <p th:utext="${item.selfCognition}">
+              </p>
+            </div>
+            <div class="sug-item">
+              <div class="sug-item-title">工作实践建议</div>
+              <p th:utext="${item.workPractices}">
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -811,43 +820,7 @@
           版权所有：杭州扶摇职上教育科技有限公司
         </div>
         <div class="page-footer-right">
-          07
-        </div>
-      </div>
-      <div class="page-header">
-        <div class="header-img">
-          <img src="./static/logo.png" alt="">
-        </div>
-      </div>
-    </div>
-    <div class="analysis">
-      <div class="sug-one-dim" th:each="child:${data.developmentSuggestions}" th:if="${childStat.index} > 7 and ${childStat.index} < 10">
-        <div class="sug-lil-dim">
-          <span th:text="${child.name}">
-          </span>&nbsp;&nbsp;
-          <span th:text="${child.englishName}">
-          </span>
-        </div>
-        <div class="sugs">
-          <div class="sug-item">
-            <div class="sug-item-title">自我认知建议</div>
-            <p th:text="${child.selfCognition}">
-            </p>
-          </div>
-          <div class="sug-item">
-            <div class="sug-item-title">工作实践建议</div>
-            <p th:utext="${child.workPractices}">
-            </p>
-          </div>
-        </div>
-      </div>
-      <!-- 页脚 -->
-      <div class="page-footer">
-        <div class="page-footer-left">
-          版权所有：杭州扶摇职上教育科技有限公司
-        </div>
-        <div class="page-footer-right">
-          07
+          23
         </div>
       </div>
       <div class="page-header">
@@ -857,26 +830,25 @@
       </div>
     </div>
     <div class="analysis">
-      <div class="sug-big-dim">
-        情绪气质&nbsp;&nbsp;Temperament
-      </div>
-      <div class="sug-one-dim" th:each="child:${data.developmentSuggestions}" th:if="${childStat.index} > 9 and ${childStat.index} < 12">
-        <div class="sug-lil-dim">
-          <span th:text="${child.name}">
-          </span>&nbsp;&nbsp;
-          <span th:text="${child.englishName}">
-          </span>
-        </div>
-        <div class="sugs">
-          <div class="sug-item">
-            <div class="sug-item-title">自我认知建议</div>
-            <p th:text="${child.selfCognition}">
-            </p>
+      <div th:each="child:${data.developmentSuggestions}" th:if="${childStat.index} == 1">
+        <div class="sug-one-dim" th:each="item:${child.suggestions}" th:if="${itemStat.index} > 1 and ${itemStat.index} < 4">
+          <div class="sug-lil-dim">
+            <span th:text="${item.name}">
+            </span>&nbsp;&nbsp;
+            <span th:text="${item.englishName}">
+            </span>
           </div>
-          <div class="sug-item">
-            <div class="sug-item-title">工作实践建议</div>
-            <p th:utext="${child.workPractices}">
-            </p>
+          <div class="sugs">
+            <div class="sug-item">
+              <div class="sug-item-title">自我认知建议</div>
+              <p th:utext="${item.selfCognition}">
+              </p>
+            </div>
+            <div class="sug-item">
+              <div class="sug-item-title">工作实践建议</div>
+              <p th:utext="${item.workPractices}">
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -886,7 +858,49 @@
           版权所有：杭州扶摇职上教育科技有限公司
         </div>
         <div class="page-footer-right">
-          07
+          24
+        </div>
+      </div>
+      <div class="page-header">
+        <div class="header-img">
+          <img src="./static/logo.png" alt="">
+        </div>
+      </div>
+    </div>
+    <!-- 个人发展建议: 情绪气质 -->
+    <div class="analysis">
+      <div th:each="child:${data.developmentSuggestions}" th:if="${childStat.index} == 2">
+        <div class="sug-big-dim" th:text="${child.name} + '   ' + ${child.englishName}">
+          情绪气质&nbsp;&nbsp;Temperament
+        </div>
+        <div class="sug-one-dim" th:each="item:${child.suggestions}" th:if="${itemStat.index} < 2">
+          <div class="sug-lil-dim">
+            <span th:text="${item.name}">
+            </span>&nbsp;&nbsp;
+            <span th:text="${item.englishName}">
+            </span>
+          </div>
+          <div class="sugs">
+            <div class="sug-item">
+              <div class="sug-item-title">自我认知建议</div>
+              <p th:utext="${item.selfCognition}">
+              </p>
+            </div>
+            <div class="sug-item">
+              <div class="sug-item-title">工作实践建议</div>
+              <p th:utext="${item.workPractices}">
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 页脚 -->
+      <div class="page-footer">
+        <div class="page-footer-left">
+          版权所有：杭州扶摇职上教育科技有限公司
+        </div>
+        <div class="page-footer-right">
+          25
         </div>
       </div>
       <div class="page-header">
@@ -896,23 +910,25 @@
       </div>
     </div>
     <div class="analysis">
-      <div class="sug-one-dim" th:each="child:${data.developmentSuggestions}" th:if="${childStat.index} > 11 and ${childStat.index} < 14">
-        <div class="sug-lil-dim">
-          <span th:text="${child.name}">
-          </span>&nbsp;&nbsp;
-          <span th:text="${child.englishName}">
-          </span>
-        </div>
-        <div class="sugs">
-          <div class="sug-item">
-            <div class="sug-item-title">自我认知建议</div>
-            <p th:text="${child.selfCognition}">
-            </p>
+      <div th:each="child:${data.developmentSuggestions}" th:if="${childStat.index} == 2">
+        <div class="sug-one-dim" th:each="item:${child.suggestions}" th:if="${itemStat.index} > 1 and ${itemStat.index} < 4">
+          <div class="sug-lil-dim">
+            <span th:text="${item.name}">
+            </span>&nbsp;&nbsp;
+            <span th:text="${item.englishName}">
+            </span>
           </div>
-          <div class="sug-item">
-            <div class="sug-item-title">工作实践建议</div>
-            <p th:utext="${child.workPractices}">
-            </p>
+          <div class="sugs">
+            <div class="sug-item">
+              <div class="sug-item-title">自我认知建议</div>
+              <p th:utext="${item.selfCognition}">
+              </p>
+            </div>
+            <div class="sug-item">
+              <div class="sug-item-title">工作实践建议</div>
+              <p th:utext="${item.workPractices}">
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -922,7 +938,49 @@
           版权所有：杭州扶摇职上教育科技有限公司
         </div>
         <div class="page-footer-right">
-          07
+          26
+        </div>
+      </div>
+      <div class="page-header">
+        <div class="header-img">
+          <img src="./static/logo.png" alt="">
+        </div>
+      </div>
+    </div>
+    <!-- 个人发展建议：人际交往 -->
+    <div class="analysis">
+      <div th:each="child:${data.developmentSuggestions}" th:if="${childStat.index} == 3">
+        <div class="sug-big-dim" th:text="${child.name} + '   ' + ${child.englishName}">
+          人际交往&nbsp;&nbsp;Interpersonal Communication
+        </div>
+        <div class="sug-one-dim" th:each="item:${child.suggestions}" th:if="${itemStat.index} < 2">
+          <div class="sug-lil-dim">
+            <span th:text="${item.name}">
+            </span>&nbsp;&nbsp;
+            <span th:text="${item.englishName}">
+            </span>
+          </div>
+          <div class="sugs">
+            <div class="sug-item">
+              <div class="sug-item-title">自我认知建议</div>
+              <p th:utext="${item.selfCognition}">
+              </p>
+            </div>
+            <div class="sug-item">
+              <div class="sug-item-title">工作实践建议</div>
+              <p th:utext="${item.workPractices}">
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 页脚 -->
+      <div class="page-footer">
+        <div class="page-footer-left">
+          版权所有：杭州扶摇职上教育科技有限公司
+        </div>
+        <div class="page-footer-right">
+          27
         </div>
       </div>
       <div class="page-header">
@@ -932,62 +990,25 @@
       </div>
     </div>
     <div class="analysis">
-      <div class="sug-big-dim">
-        人际交往&nbsp;&nbsp;Interpersonal Communication
-      </div>
-      <div class="sug-one-dim" th:each="child:${data.developmentSuggestions}" th:if="${childStat.index} > 13 and ${childStat.index} < 16">
-        <div class="sug-lil-dim">
-          <span th:text="${child.name}">
-          </span>&nbsp;&nbsp;
-          <span th:text="${child.englishName}">
-          </span>
-        </div>
-        <div class="sugs">
-          <div class="sug-item">
-            <div class="sug-item-title">自我认知建议</div>
-            <p th:text="${child.selfCognition}">
-            </p>
+      <div th:each="child:${data.developmentSuggestions}" th:if="${childStat.index} == 2">
+        <div class="sug-one-dim" th:each="item:${child.suggestions}" th:if="${itemStat.index} > 1 and ${itemStat.index} < 4">
+          <div class="sug-lil-dim">
+            <span th:text="${item.name}">
+            </span>&nbsp;&nbsp;
+            <span th:text="${item.englishName}">
+            </span>
           </div>
-          <div class="sug-item">
-            <div class="sug-item-title">工作实践建议</div>
-            <p th:utext="${child.workPractices}">
-            </p>
-          </div>
-        </div>
-      </div>
-      <!-- 页脚 -->
-      <div class="page-footer">
-        <div class="page-footer-left">
-          版权所有：杭州扶摇职上教育科技有限公司
-        </div>
-        <div class="page-footer-right">
-          07
-        </div>
-      </div>
-      <div class="page-header">
-        <div class="header-img">
-          <img src="./static/logo.png" alt="">
-        </div>
-      </div>
-    </div>
-    <div class="analysis">
-      <div class="sug-one-dim" th:each="child:${data.developmentSuggestions}" th:if="${childStat.index} > 15 and ${childStat.index} < 18">
-        <div class="sug-lil-dim">
-          <span th:text="${child.name}">
-          </span>&nbsp;&nbsp;
-          <span th:text="${child.englishName}">
-          </span>
-        </div>
-        <div class="sugs">
-          <div class="sug-item">
-            <div class="sug-item-title">自我认知建议</div>
-            <p th:text="${child.selfCognition}">
-            </p>
-          </div>
-          <div class="sug-item">
-            <div class="sug-item-title">工作实践建议</div>
-            <p th:utext="${child.workPractices}">
-            </p>
+          <div class="sugs">
+            <div class="sug-item">
+              <div class="sug-item-title">自我认知建议</div>
+              <p th:utext="${item.selfCognition}">
+              </p>
+            </div>
+            <div class="sug-item">
+              <div class="sug-item-title">工作实践建议</div>
+              <p th:utext="${item.workPractices}">
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -997,7 +1018,7 @@
           版权所有：杭州扶摇职上教育科技有限公司
         </div>
         <div class="page-footer-right">
-          07
+          28
         </div>
       </div>
       <div class="page-header">
@@ -1006,53 +1027,34 @@
         </div>
       </div>
     </div>
-    <!-- HR 管理建议 -->
+    <!-- HR 管理建议: 认知能力 -->
     <div class="analysis with-title">
       <div class="big-title">
         六、HR管理建议
       </div>
       <p class='module-description'>根据受测者在各个指标上的表现，HR管理者可采用以下建议对其进行管理：</p>
-      <div class="sug-big-dim">
-        认知能力&nbsp;&nbsp;Cognitive Ability
-      </div>
-      <div class="sug-one-dim">
-        <div class="sug-lil-dim">
-          问题解决&nbsp;&nbsp;Problem Solving
+      <div th:each="child:${data.managementSuggestions}" th:if="${childStat.index} == 0">
+        <div class="sug-big-dim" th:text="${child.name} + '   ' + ${child.englishName}">
+          认知能力&nbsp;&nbsp;Cognitive Ability
         </div>
-        <div class="sugs">
-          <div class="sug-item">
-            <div class="sug-item-title">面试方式建议</div>
-            <p>无领导小组面试、角色扮演、案例分析、BEI面试</p>
+        <div class="sug-one-dim" th:each="item:${child.suggestions}" th:if="${itemStat.index} < 2">
+          <div class="sug-lil-dim" th:text="${item.name} + '   ' + ${item.englishName}">
+            问题解决&nbsp;&nbsp;Problem Solving
           </div>
-          <div class="sug-item">
-            <div class="sug-item-title">HR提问</div>
-            <p>1. 请列出一个你最近遇到的困难，你是如何解决的？<br />
-              2. 请分享一个工作和生活中面临的问题，你如何解决这个问题？</p>
-          </div>
-          <div class="sug-item">
-            <div class="sug-item-title">培训方向</div>
-            <p>结构思维训练</p>
-          </div>
-        </div>
-      </div>
-      <div class="sug-one-dim">
-        <div class="sug-lil-dim">
-          学习能力&nbsp;&nbsp;Learning Ability
-        </div>
-        <div class="sugs">
-          <div class="sug-item">
-            <div class="sug-item-title">面试方式建议</div>
-            <p>案例分析、知识水平考试</p>
-          </div>
-          <div class="sug-item">
-            <div class="sug-item-title">HR提问</div>
-            <p>1. 请分享一个你认为好的学习方式？<br />
-              2. 请分享一个例子，你如何将学习到的技能或知识应用到工作中？
-            </p>
-          </div>
-          <div class="sug-item">
-            <div class="sug-item-title">培训方向</div>
-            <p>学习方法与策略</p>
+          <div class="sugs">
+            <div class="sug-item">
+              <div class="sug-item-title">面试方式建议</div>
+              <p th:text="${item.interviewMethod}">无领导小组面试、角色扮演、案例分析、BEI面试</p>
+            </div>
+            <div class="sug-item" th:if="${child.code} &ne; '1008-1001'">
+              <div class="sug-item-title">HR提问</div>
+              <p th:utext="${item.hrQuestions}">1. 请列出一个你最近遇到的困难，你是如何解决的？<br />
+                2. 请分享一个工作和生活中面临的问题，你如何解决这个问题？</p>
+            </div>
+            <div class="sug-item">
+              <div class="sug-item-title">培训方向</div>
+              <p th:text="${item.trainingDirection}">结构思维训练</p>
+            </div>
           </div>
         </div>
       </div>
@@ -1062,7 +1064,7 @@
           版权所有：杭州扶摇职上教育科技有限公司
         </div>
         <div class="page-footer-right">
-          07
+          29
         </div>
       </div>
       <div class="page-header">
@@ -1072,42 +1074,25 @@
       </div>
     </div>
     <div class="analysis">
-      <div class="sug-one-dim">
-        <div class="sug-lil-dim">
-          调整适应力&nbsp;&nbsp;Adaptive Capacity
-        </div>
-        <div class="sugs">
-          <div class="sug-item">
-            <div class="sug-item-title">面试方式建议</div>
-            <p>无领导小组面试、角色扮演、案例分析、BEI面试</p>
+      <div th:each="child:${data.managementSuggestions}" th:if="${childStat.index} == 0">
+        <div class="sug-one-dim" th:each="item:${child.suggestions}" th:if="${itemStat.index} > 1 and ${itemStat.index} < 4">
+          <div class="sug-lil-dim" th:text="${item.name} + '   ' + ${item.englishName}">
+            调整适应力&nbsp;&nbsp;Adaptive Capacity
           </div>
-          <div class="sug-item">
-            <div class="sug-item-title">HR提问</div>
-            <p>1. 在过往的升学/转学/转岗等经历中，你是如何快速适应环境或角色发生变化的？</p>
-          </div>
-          <div class="sug-item">
-            <div class="sug-item-title">培训方向</div>
-            <p>敏捷性培训——提升超强适应力</p>
-          </div>
-        </div>
-      </div>
-      <div class="sug-one-dim">
-        <div class="sug-lil-dim">
-          学习能力&nbsp;&nbsp;Learning Ability
-        </div>
-        <div class="sugs">
-          <div class="sug-item">
-            <div class="sug-item-title">面试方式建议</div>
-            <p>认知能力测验</p>
-          </div>
-          <div class="sug-item">
-            <div class="sug-item-title">HR提问</div>
-            <p>1. 你会采取哪些方式提高自己工作时的专注度？
-            </p>
-          </div>
-          <div class="sug-item">
-            <div class="sug-item-title">培训方向</div>
-            <p>脑波生物反馈训练、沙盘训练</p>
+          <div class="sugs">
+            <div class="sug-item">
+              <div class="sug-item-title">面试方式建议</div>
+              <p th:text="${item.interviewMethod}">无领导小组面试、角色扮演、案例分析、BEI面试</p>
+            </div>
+            <div class="sug-item" th:if="${child.code} &ne; '1008-1001'">
+              <div class="sug-item-title">HR提问</div>
+              <p th:utext="${item.hrQuestions}">1. 请列出一个你最近遇到的困难，你是如何解决的？<br />
+                2. 请分享一个工作和生活中面临的问题，你如何解决这个问题？</p>
+            </div>
+            <div class="sug-item">
+              <div class="sug-item-title">培训方向</div>
+              <p th:text="${item.trainingDirection}">结构思维训练</p>
+            </div>
           </div>
         </div>
       </div>
@@ -1117,7 +1102,403 @@
           版权所有：杭州扶摇职上教育科技有限公司
         </div>
         <div class="page-footer-right">
-          07
+          30
+        </div>
+      </div>
+      <div class="page-header">
+        <div class="header-img">
+          <img src="./static/logo.png" alt="">
+        </div>
+      </div>
+    </div>
+    <div class="analysis">
+      <div th:each="child:${data.managementSuggestions}" th:if="${childStat.index} == 0">
+        <div class="sug-one-dim" th:each="item:${child.suggestions}" th:if="${itemStat.index} > 3 and ${itemStat.index} < 6">
+          <div class="sug-lil-dim" th:text="${item.name} + '   ' + ${item.englishName}">
+            调整适应力&nbsp;&nbsp;Adaptive Capacity
+          </div>
+          <div class="sugs">
+            <div class="sug-item">
+              <div class="sug-item-title">面试方式建议</div>
+              <p th:text="${item.interviewMethod}">无领导小组面试、角色扮演、案例分析、BEI面试</p>
+            </div>
+            <div class="sug-item" th:if="${child.code} &ne; '1008-1001'">
+              <div class="sug-item-title">HR提问</div>
+              <p th:utext="${item.hrQuestions}">1. 请列出一个你最近遇到的困难，你是如何解决的？<br />
+                2. 请分享一个工作和生活中面临的问题，你如何解决这个问题？</p>
+            </div>
+            <div class="sug-item">
+              <div class="sug-item-title">培训方向</div>
+              <p th:text="${item.trainingDirection}">结构思维训练</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 页脚 -->
+      <div class="page-footer">
+        <div class="page-footer-left">
+          版权所有：杭州扶摇职上教育科技有限公司
+        </div>
+        <div class="page-footer-right">
+          31
+        </div>
+      </div>
+      <div class="page-header">
+        <div class="header-img">
+          <img src="./static/logo.png" alt="">
+        </div>
+      </div>
+    </div>
+    <!-- HR 管理建议：发展能力 -->
+    <div class="analysis">
+      <div th:each="child:${data.managementSuggestions}" th:if="${childStat.index} == 1">
+        <div class="sug-big-dim" th:text="${child.name} + '   ' + ${child.englishName}">
+          认知能力&nbsp;&nbsp;Cognitive Ability
+        </div>
+        <div class="sug-one-dim" th:each="item:${child.suggestions}" th:if="${itemStat.index} < 2">
+          <div class="sug-lil-dim" th:text="${item.name} + '   ' + ${item.englishName}">
+            问题解决&nbsp;&nbsp;Problem Solving
+          </div>
+          <div class="sugs">
+            <div class="sug-item">
+              <div class="sug-item-title">面试方式建议</div>
+              <p th:text="${item.interviewMethod}">无领导小组面试、角色扮演、案例分析、BEI面试</p>
+            </div>
+            <div class="sug-item" th:if="${child.code} &ne; '1008-1001'">
+              <div class="sug-item-title">HR提问</div>
+              <p th:utext="${item.hrQuestions}">1. 请列出一个你最近遇到的困难，你是如何解决的？<br />
+                2. 请分享一个工作和生活中面临的问题，你如何解决这个问题？</p>
+            </div>
+            <div class="sug-item">
+              <div class="sug-item-title">培训方向</div>
+              <p th:text="${item.trainingDirection}">结构思维训练</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 页脚 -->
+      <div class="page-footer">
+        <div class="page-footer-left">
+          版权所有：杭州扶摇职上教育科技有限公司
+        </div>
+        <div class="page-footer-right">
+          32
+        </div>
+      </div>
+      <div class="page-header">
+        <div class="header-img">
+          <img src="./static/logo.png" alt="">
+        </div>
+      </div>
+    </div>
+    <div class="analysis">
+      <div th:each="child:${data.managementSuggestions}" th:if="${childStat.index} == 1">
+        <div class="sug-one-dim" th:each="item:${child.suggestions}" th:if="${itemStat.index} > 1 and ${itemStat.index} < 4">
+          <div class="sug-lil-dim" th:text="${item.name} + '   ' + ${item.englishName}">
+            调整适应力&nbsp;&nbsp;Adaptive Capacity
+          </div>
+          <div class="sugs">
+            <div class="sug-item">
+              <div class="sug-item-title">面试方式建议</div>
+              <p th:text="${item.interviewMethod}">无领导小组面试、角色扮演、案例分析、BEI面试</p>
+            </div>
+            <div class="sug-item" th:if="${child.code} &ne; '1008-1001'">
+              <div class="sug-item-title">HR提问</div>
+              <p th:utext="${item.hrQuestions}">1. 请列出一个你最近遇到的困难，你是如何解决的？<br />
+                2. 请分享一个工作和生活中面临的问题，你如何解决这个问题？</p>
+            </div>
+            <div class="sug-item">
+              <div class="sug-item-title">培训方向</div>
+              <p th:text="${item.trainingDirection}">结构思维训练</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 页脚 -->
+      <div class="page-footer">
+        <div class="page-footer-left">
+          版权所有：杭州扶摇职上教育科技有限公司
+        </div>
+        <div class="page-footer-right">
+          33
+        </div>
+      </div>
+      <div class="page-header">
+        <div class="header-img">
+          <img src="./static/logo.png" alt="">
+        </div>
+      </div>
+    </div>
+    <div class="analysis">
+      <div th:each="child:${data.managementSuggestions}" th:if="${childStat.index} == 1">
+        <div class="sug-one-dim" th:each="item:${child.suggestions}" th:if="${itemStat.index} > 3 and ${itemStat.index} < 6">
+          <div class="sug-lil-dim" th:text="${item.name} + '   ' + ${item.englishName}">
+            调整适应力&nbsp;&nbsp;Adaptive Capacity
+          </div>
+          <div class="sugs">
+            <div class="sug-item">
+              <div class="sug-item-title">面试方式建议</div>
+              <p th:text="${item.interviewMethod}">无领导小组面试、角色扮演、案例分析、BEI面试</p>
+            </div>
+            <div class="sug-item" th:if="${child.code} &ne; '1008-1001'">
+              <div class="sug-item-title">HR提问</div>
+              <p th:utext="${item.hrQuestions}">1. 请列出一个你最近遇到的困难，你是如何解决的？<br />
+                2. 请分享一个工作和生活中面临的问题，你如何解决这个问题？</p>
+            </div>
+            <div class="sug-item">
+              <div class="sug-item-title">培训方向</div>
+              <p th:text="${item.trainingDirection}">结构思维训练</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 页脚 -->
+      <div class="page-footer">
+        <div class="page-footer-left">
+          版权所有：杭州扶摇职上教育科技有限公司
+        </div>
+        <div class="page-footer-right">
+          34
+        </div>
+      </div>
+      <div class="page-header">
+        <div class="header-img">
+          <img src="./static/logo.png" alt="">
+        </div>
+      </div>
+    </div>
+    <!-- HR 管理建议：决策风格 -->
+    <div class="analysis">
+      <div th:each="child:${data.managementSuggestions}" th:if="${childStat.index} == 2">
+        <div class="sug-big-dim" th:text="${child.name} + '   ' + ${child.englishName}">
+          认知能力&nbsp;&nbsp;Cognitive Ability
+        </div>
+        <div class="sug-one-dim" th:each="item:${child.suggestions}" th:if="${itemStat.index} < 2">
+          <div class="sug-lil-dim" th:text="${item.name} + '   ' + ${item.englishName}">
+            问题解决&nbsp;&nbsp;Problem Solving
+          </div>
+          <div class="sugs">
+            <div class="sug-item">
+              <div class="sug-item-title">面试方式建议</div>
+              <p th:text="${item.interviewMethod}">无领导小组面试、角色扮演、案例分析、BEI面试</p>
+            </div>
+            <div class="sug-item" th:if="${child.code} &ne; '1008-1001'">
+              <div class="sug-item-title">HR提问</div>
+              <p th:utext="${item.hrQuestions}">1. 请列出一个你最近遇到的困难，你是如何解决的？<br />
+                2. 请分享一个工作和生活中面临的问题，你如何解决这个问题？</p>
+            </div>
+            <div class="sug-item">
+              <div class="sug-item-title">培训方向</div>
+              <p th:text="${item.trainingDirection}">结构思维训练</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 页脚 -->
+      <div class="page-footer">
+        <div class="page-footer-left">
+          版权所有：杭州扶摇职上教育科技有限公司
+        </div>
+        <div class="page-footer-right">
+          35
+        </div>
+      </div>
+      <div class="page-header">
+        <div class="header-img">
+          <img src="./static/logo.png" alt="">
+        </div>
+      </div>
+    </div>
+    <div class="analysis">
+      <div th:each="child:${data.managementSuggestions}" th:if="${childStat.index} == 2">
+        <div class="sug-one-dim" th:each="item:${child.suggestions}" th:if="${itemStat.index} > 1 and ${itemStat.index} < 4">
+          <div class="sug-lil-dim" th:text="${item.name} + '   ' + ${item.englishName}">
+            调整适应力&nbsp;&nbsp;Adaptive Capacity
+          </div>
+          <div class="sugs">
+            <div class="sug-item">
+              <div class="sug-item-title">面试方式建议</div>
+              <p th:text="${item.interviewMethod}">无领导小组面试、角色扮演、案例分析、BEI面试</p>
+            </div>
+            <div class="sug-item" th:if="${child.code} &ne; '1008-1001'">
+              <div class="sug-item-title">HR提问</div>
+              <p th:utext="${item.hrQuestions}">1. 请列出一个你最近遇到的困难，你是如何解决的？<br />
+                2. 请分享一个工作和生活中面临的问题，你如何解决这个问题？</p>
+            </div>
+            <div class="sug-item">
+              <div class="sug-item-title">培训方向</div>
+              <p th:text="${item.trainingDirection}">结构思维训练</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 页脚 -->
+      <div class="page-footer">
+        <div class="page-footer-left">
+          版权所有：杭州扶摇职上教育科技有限公司
+        </div>
+        <div class="page-footer-right">
+          36
+        </div>
+      </div>
+      <div class="page-header">
+        <div class="header-img">
+          <img src="./static/logo.png" alt="">
+        </div>
+      </div>
+    </div>
+    <!-- HR 管理建议：情绪气质 -->
+    <div class="analysis">
+      <div th:each="child:${data.managementSuggestions}" th:if="${childStat.index} == 3">
+        <div class="sug-big-dim" th:text="${child.name} + '   ' + ${child.englishName}">
+          认知能力&nbsp;&nbsp;Cognitive Ability
+        </div>
+        <div class="sug-one-dim" th:each="item:${child.suggestions}" th:if="${itemStat.index} < 2">
+          <div class="sug-lil-dim" th:text="${item.name} + '   ' + ${item.englishName}">
+            问题解决&nbsp;&nbsp;Problem Solving
+          </div>
+          <div class="sugs">
+            <div class="sug-item">
+              <div class="sug-item-title">面试方式建议</div>
+              <p th:text="${item.interviewMethod}">无领导小组面试、角色扮演、案例分析、BEI面试</p>
+            </div>
+            <div class="sug-item" th:if="${child.code} &ne; '1008-1001'">
+              <div class="sug-item-title">HR提问</div>
+              <p th:utext="${item.hrQuestions}">1. 请列出一个你最近遇到的困难，你是如何解决的？<br />
+                2. 请分享一个工作和生活中面临的问题，你如何解决这个问题？</p>
+            </div>
+            <div class="sug-item">
+              <div class="sug-item-title">培训方向</div>
+              <p th:text="${item.trainingDirection}">结构思维训练</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 页脚 -->
+      <div class="page-footer">
+        <div class="page-footer-left">
+          版权所有：杭州扶摇职上教育科技有限公司
+        </div>
+        <div class="page-footer-right">
+          37
+        </div>
+      </div>
+      <div class="page-header">
+        <div class="header-img">
+          <img src="./static/logo.png" alt="">
+        </div>
+      </div>
+    </div>
+    <div class="analysis">
+      <div th:each="child:${data.managementSuggestions}" th:if="${childStat.index} == 3">
+        <div class="sug-one-dim" th:each="item:${child.suggestions}" th:if="${itemStat.index} > 1 and ${itemStat.index} < 4">
+          <div class="sug-lil-dim" th:text="${item.name} + '   ' + ${item.englishName}">
+            调整适应力&nbsp;&nbsp;Adaptive Capacity
+          </div>
+          <div class="sugs">
+            <div class="sug-item">
+              <div class="sug-item-title">面试方式建议</div>
+              <p th:text="${item.interviewMethod}">无领导小组面试、角色扮演、案例分析、BEI面试</p>
+            </div>
+            <div class="sug-item" th:if="${child.code} &ne; '1008-1001'">
+              <div class="sug-item-title">HR提问</div>
+              <p th:utext="${item.hrQuestions}">1. 请列出一个你最近遇到的困难，你是如何解决的？<br />
+                2. 请分享一个工作和生活中面临的问题，你如何解决这个问题？</p>
+            </div>
+            <div class="sug-item">
+              <div class="sug-item-title">培训方向</div>
+              <p th:text="${item.trainingDirection}">结构思维训练</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 页脚 -->
+      <div class="page-footer">
+        <div class="page-footer-left">
+          版权所有：杭州扶摇职上教育科技有限公司
+        </div>
+        <div class="page-footer-right">
+          38
+        </div>
+      </div>
+      <div class="page-header">
+        <div class="header-img">
+          <img src="./static/logo.png" alt="">
+        </div>
+      </div>
+    </div>
+    <!-- HR 管理建议：人际交往 -->
+    <div class="analysis">
+      <div th:each="child:${data.managementSuggestions}" th:if="${childStat.index} == 4">
+        <div class="sug-big-dim" th:text="${child.name} + '   ' + ${child.englishName}">
+          认知能力&nbsp;&nbsp;Cognitive Ability
+        </div>
+        <div class="sug-one-dim" th:each="item:${child.suggestions}" th:if="${itemStat.index} < 2">
+          <div class="sug-lil-dim" th:text="${item.name} + '   ' + ${item.englishName}">
+            问题解决&nbsp;&nbsp;Problem Solving
+          </div>
+          <div class="sugs">
+            <div class="sug-item">
+              <div class="sug-item-title">面试方式建议</div>
+              <p th:text="${item.interviewMethod}">无领导小组面试、角色扮演、案例分析、BEI面试</p>
+            </div>
+            <div class="sug-item" th:if="${child.code} &ne; '1008-1001'">
+              <div class="sug-item-title">HR提问</div>
+              <p th:utext="${item.hrQuestions}">1. 请列出一个你最近遇到的困难，你是如何解决的？<br />
+                2. 请分享一个工作和生活中面临的问题，你如何解决这个问题？</p>
+            </div>
+            <div class="sug-item">
+              <div class="sug-item-title">培训方向</div>
+              <p th:text="${item.trainingDirection}">结构思维训练</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 页脚 -->
+      <div class="page-footer">
+        <div class="page-footer-left">
+          版权所有：杭州扶摇职上教育科技有限公司
+        </div>
+        <div class="page-footer-right">
+          39
+        </div>
+      </div>
+      <div class="page-header">
+        <div class="header-img">
+          <img src="./static/logo.png" alt="">
+        </div>
+      </div>
+    </div>
+    <div class="analysis">
+      <div th:each="child:${data.managementSuggestions}" th:if="${childStat.index} == 4">
+        <div class="sug-one-dim" th:each="item:${child.suggestions}" th:if="${itemStat.index} > 1 and ${itemStat.index} < 4">
+          <div class="sug-lil-dim" th:text="${item.name} + '   ' + ${item.englishName}">
+            调整适应力&nbsp;&nbsp;Adaptive Capacity
+          </div>
+          <div class="sugs">
+            <div class="sug-item">
+              <div class="sug-item-title">面试方式建议</div>
+              <p th:text="${item.interviewMethod}">无领导小组面试、角色扮演、案例分析、BEI面试</p>
+            </div>
+            <div class="sug-item" th:if="${child.code} &ne; '1008-1001'">
+              <div class="sug-item-title">HR提问</div>
+              <p th:utext="${item.hrQuestions}">1. 请列出一个你最近遇到的困难，你是如何解决的？<br />
+                2. 请分享一个工作和生活中面临的问题，你如何解决这个问题？</p>
+            </div>
+            <div class="sug-item">
+              <div class="sug-item-title">培训方向</div>
+              <p th:text="${item.trainingDirection}">结构思维训练</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 页脚 -->
+      <div class="page-footer">
+        <div class="page-footer-left">
+          版权所有：杭州扶摇职上教育科技有限公司
+        </div>
+        <div class="page-footer-right">
+          40
         </div>
       </div>
       <div class="page-header">
@@ -1127,7 +1508,7 @@
       </div>
     </div>
     <div class="static">
-      <img src="./static/competencyMatching.png" alt="">
+      <img src="./static/competencyMatching.jpg" alt="">
     </div>
     <div class="static">
       <img src="./static/backcover.png" alt="">
