@@ -1063,7 +1063,21 @@
   var S_R5C2 = [[${data.reportScore5.children}]][1].score;
   var S_R5C3 = [[${data.reportScore5.children}]][2].score;
   var S_R5C4 = [[${data.reportScore5.children}]][3].score;
+  var abilityDims = [[${data.abilityScores}]]
+  var styleDims = [[${data.styleScores}]]
   /*]]>*/
+  var abilityDimScores = []
+  var styleDimScores = []
+  abilityDims.forEach(function(v){
+    v.scores.forEach(function(item) {
+      abilityDimScores.push(item.score)
+    })
+  })
+  styleDims.forEach(function(v){
+    v.scores.forEach(function(item) {
+      styleDimScores.push(item.score)
+    })
+  })
   var dArr = ["d1c1", "d1c2", "d1c3", "d1c4", "d1c5", "d1c6", "d2c1", "d2c2", "d2c3", "d2c4", "d2c5", "d2c6", "d3c1", "d3c2", "d3c3", "d3c4", "d4c1", "d4c2", "d4c3", "d4c4", "d5c1", "d5c2", "d5c3", "d5c4"]
   var abili_dArr = ["d1c1", "d1c2", "d1c3", "d1c4", "d1c5", "d1c6", "d2c1", "d2c2", "d2c3", "d2c4", "d2c5", "d2c6"]
   var style_dArr = ["d3c1", "d3c2", "d3c3", "d3c4", "d4c1", "d4c2", "d4c3", "d4c4", "d5c1", "d5c2", "d5c3", "d5c4"]
@@ -1096,13 +1110,13 @@
   var midLine = 355
   var maxWidth = 124 / 2.8 * 5 // 约等于 221.4 但是不能用，这乘来乘去的就有1px的偏差
   var midValue = 5
-  abili_dArr.forEach(function(item) {
-    document.getElementById(item + "scoreSummary").style.width = (map[item] * 10) + "%"
+  abili_dArr.forEach(function(item, idx) {
+    document.getElementById(item + "scoreSummary").style.width = (abilityDimScores[idx] * 10) + "%"
   })
-  style_dArr.forEach(function(item) {
+  style_dArr.forEach(function(item, idx) {
     var styletest = document.getElementById(item + "styleScore")
     // 如果是3.2分
-    var value = map[item]
+    var value = styleDimScores[idx]
     var gap = value - midValue
     if (Math.abs(gap) < 0.1) {
       styletest.style.width = "4px"
