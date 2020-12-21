@@ -486,11 +486,11 @@
               </div>
               <div class="graduation-mark mark-start">
                 <div class="mark-top transparent"></div>
-                <div class="mark-bottom" th:id="d3c + (${childStat.index} + 1) + left">回避风险型</div>
+                <div class="mark-bottom" th:text="${child.leftName}">回避风险型</div>
               </div>
               <div class="graduation-mark mark-end">
                 <div class="mark-top transparent"></div>
-                <div class="mark-bottom" th:id="d3c + (${childStat.index} + 1) + right">偏好风险型</div>
+                <div class="mark-bottom" th:text="${child.rightName}">偏好风险型</div>
               </div>
               <div class="score-box" th:text="${child.score}" th:id="d3c + (${childStat.index} + 1) + score">
                 7.6
@@ -553,11 +553,11 @@
               </div>
               <div class="graduation-mark mark-start">
                 <div class="mark-top transparent"></div>
-                <div class="mark-bottom" th:id="d4c + (${childStat.index} + 1) + left">0</div>
+                <div class="mark-bottom" th:text="${child.leftName}">0</div>
               </div>
               <div class="graduation-mark mark-end">
                 <div class="mark-top transparent"></div>
-                <div class="mark-bottom" th:id="d4c + (${childStat.index} + 1) + right">10</div>
+                <div class="mark-bottom" th:text="${child.rightName}">10</div>
               </div>
               <div class="score-box" th:text="${child.score}" th:id="d4c + (${childStat.index} + 1) + score">
                 7.6
@@ -617,11 +617,11 @@
               </div>
               <div class="graduation-mark mark-start">
                 <div class="mark-top transparent"></div>
-                <div class="mark-bottom" th:id="d5c + (${childStat.index} + 1) + left">0</div>
+                <div class="mark-bottom" th:text="${child.leftName}">0</div>
               </div>
               <div class="graduation-mark mark-end">
                 <div class="mark-top transparent"></div>
-                <div class="mark-bottom" th:id="d5c + (${childStat.index} + 1) + right">10</div>
+                <div class="mark-bottom" th:text="${child.rightName}">10</div>
               </div>
               <div class="score-box" th:text="${child.score}" th:id="d5c + (${childStat.index} + 1) + score">
                 7.6
