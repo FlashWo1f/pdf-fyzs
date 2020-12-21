@@ -21,7 +21,7 @@
           <li>
             姓名：<span th:text="${data.userName}"></span>
           </li>
-          <li>
+          <li th:if="${data.workerCodeFlag} == true">
             工号：<span th:text="${data.workerCode}"></span>
           </li>
           <li>

@@ -1,0 +1,660 @@
+* {
+  line-height: 1.45;
+  font-family: Source Han Sans CN;
+  color: #333333;
+}
+
+h1,
+h2,
+h3 {
+  font-weight: bolder;
+}
+
+ul {
+  list-style: none;
+}
+
+ul li {
+  margin: 7px 0;
+}
+
+.container {
+  width: 800px;
+  background-color: #fff;
+}
+
+.static {
+  width: 100%;
+  height: 1122px;
+  position: relative;
+}
+
+.static img {
+  width: 100%;
+  height: 100%;
+}
+
+.userInfo {
+  position: absolute;
+  bottom: 62px;
+  left: 228px;
+  font-weight:500;
+  color:rgba(51,51,51,1);
+  font-size:16px;
+}
+
+.analysis {
+  width: 100%;
+  height: 1122px;
+  position: relative;
+  padding: 103px 45px;
+}
+
+.ana-main {
+  width: 100%;
+  height: 100%;
+}
+
+.ana-main .dim-ana-box, .ana-main .dim-ana-box .dim-name {
+  width: 100%;
+}
+
+.dim-ana-box {
+  margin-bottom: 20px;
+}
+
+.dim-name {
+  display: table;
+  margin-bottom: 2px;
+  /* border-spacing: 2px;
+  border-collapse:separate; */
+}
+
+.dim-name div {
+  vertical-align: middle
+}
+
+.dim-name-left {
+  display: table-cell;
+  padding: 12px 18px;
+  width: 227px;
+  margin-right: 2px;
+}
+
+.dim-name-left, .dim-name-right {
+  background-color: rgba(205,211,224,.17);
+}
+
+.dim-name-left div {
+  font-size: 20px;
+  font-weight: bolder;
+  color: #360095;
+}
+
+.dim-name-left-en {
+  font-size: 16px !important;
+}
+
+.dim-name-right {
+  display: table-cell;
+  padding: 12px 18px;
+  font-size: 16px;
+  width: 458px;
+  border-left: 2px solid #fff;
+}
+
+.dim-score {
+  width: 100%;
+  height: 82px;
+  padding: 0 18px;
+  background-color: rgba(205,211,224,.17);
+  margin-bottom: 2px;
+  line-height: 68px;
+  padding-top: 30px;
+}
+
+.process {
+  width: 100%;
+  height: 14px;
+  /* overflow: hidden; */
+  background-color: #dddddd;
+  position: relative;
+}
+
+.score-process {
+  height: 100%;
+  width: 76%;
+  display: block;
+  line-height: 30px;
+  background-color: #360095;
+  /* text-indent: 250px; */
+}
+
+.graduation-mark {
+  position: absolute;
+  /* left: calc(50% - 15 / 2 px); */
+  left: 333px;
+  top: -8.5px;
+}
+
+.mark-min {
+  /* left: calc(22% - 15 / 2 px); */
+  left: 140.5px;
+  min-width: 16.9px;
+}
+
+.mark-mid {
+  min-width: 7.05px;
+}
+
+.mark-max {
+  /* left: calc(78% - 15 /2 px); */
+  left: 518px;
+  min-width: 16.9px;
+}
+
+.mark-start {
+  left: 0;
+}
+
+.mark-end {
+  width: 100px;
+  /* left: calc(100% - 100px) */
+  /* left: 98%; */
+  left: 575px;
+}
+
+.transparent {
+  opacity: 0 !important;
+}
+
+.graduation-mark .mark-top {
+  width: 0px;
+  height: 30px;
+  margin: auto;
+  border-left: 1px dashed #43BFEC;
+}
+
+.red-border {
+  border-left: 1px dashed #E44657 !important;
+}
+
+.bulesky-border {
+  border-left: 1px dashed #67C2CA !important;
+}
+
+.graduation-mark .mark-bottom {
+  font-size: 11px;
+  color: #666666;
+  text-align: right;
+  margin-top: 4px;
+}
+
+.score-box {
+  width: 31px;
+  text-align: center;
+  background-color: #333;
+  color: #ffffff;
+  position: absolute;
+  font-size: 12px;
+  border-radius: 4px;
+  top: -24px;
+  left: 76%;
+  margin-left: -15.5px;
+}
+
+.score-box::after {
+  content: "";
+  display: block;
+  position: absolute;
+  width:0;
+  height: 0;
+  border: 3px solid transparent;
+  border-top-color: #333;
+  left: 12px;
+  bottom: -6px;
+}
+
+.dim-report {
+  width: 100%;
+  padding: 12px 18px;
+  background-color: rgba(205,211,224,.17);
+  color: #666666;
+  font-size: 15px;
+}
+
+.page-header {
+  padding: 0 45px;
+  width: 100%;
+  position: absolute;
+  top: 26px;
+  left: 0;
+}
+
+.page-header .header-text {
+  font-weight: bolder;
+  line-height: 32.6px;
+  font-size: 16px;
+  display: inline-table;
+}
+
+.page-header .header-img {
+  width: 143px;
+  height: 15px;
+  /* display: inline-table; */
+  float: right;
+}
+
+.page-header .header-img img {
+  width: 100%;
+  height: 100%;
+}
+
+.page-footer {
+  width: 100%;
+  padding: 0 45px;
+  position: absolute;
+  bottom: 30px;
+  left: 0;
+}
+
+.page-footer .page-footer-left {
+  display: inline-table;
+  line-height: 16px;
+  letter-spacing: 0.5px;
+  font-size: 15px;
+  color: #666666;
+}
+
+.page-footer .page-footer-right {
+  font-size: 15px;
+  display: inline-table;
+  float: right;
+  color: #666666;
+}
+
+.with-title {
+  padding-top: 76px !important;
+}
+
+.big-title {
+  font-size: 25.8px;
+  line-height: 38.7px;
+  font-weight: bold;
+  color: #360095;
+  margin-bottom: 24.5px;
+}
+
+p {
+  font-size: 15.5px;
+  font-weight: 400;
+  color: #666666;
+  line-height: 25.8px;
+  margin: 0; 
+  word-break: break-all;
+}
+
+.sug-big-dim {
+  width: 100%;
+  background-color: #360095;
+  line-height: 51.6px;
+  font-size: 20.6px;
+  padding-left: 20.6px;
+  font-weight: bold;
+  color: #ffffff;
+  margin-top: 41.3px;
+}
+
+.sug-one-dim {
+  padding: 10.3px 0;
+}
+
+.sug-lil-dim {
+  width: 100%;
+  font-size: 18px;
+  line-height: 59.3px;
+  background-color: #F6F7F9;
+  color: #360095;
+  font-weight: bold;
+  padding-left: 15.5px;
+}
+
+.sug-lil-dim span {
+  color: #360095;
+}
+
+.sug-item {
+  margin-top: 2px;
+  background-color: #F6F7F9;
+  padding: 13px 15.5px;
+}
+
+.sug-item .sug-item-title {
+  line-height: 27.1px;
+  font-size: 18px;
+  margin-bottom: 7.7px;
+  font-weight: 500;
+}
+
+.score-sitution {
+  font-size: 20.6px;
+  color: #360095;
+  line-height: 1.2;
+  margin-top: 40px;
+  margin-bottom: 26px;
+}
+
+.abili-score, .style-score {
+  font-size: 18px;
+  font-weight: 500;
+  color: #333333;
+}
+
+#abili-echarts {
+  width: 100%;
+  height: 590px;
+}
+
+/* 能力维度 图表 */
+.abili-container {
+  margin-top: 70px;
+  width: 100%;
+}
+
+.abili-label {
+  width: 90px;
+  float: left;
+  margin-top: 2px;
+  height: 100%;
+  padding: 15px 0;
+}
+
+.abili-dim1-label, .abili-dim2-label {
+  text-align: right;
+  width: 100%;
+}
+/* .abili-dim1-label {
+  margin-bottom: 40px;
+} */
+
+.abili-dim1-label-item, .abili-dim2-label-item {
+  margin: 18px 0;
+  font-size: 16px;
+  line-height: 1.25;
+}
+
+.abili-chart {
+  display: inline-block;
+  height: 100%;
+  box-sizing: border-box;
+  /* padding-top: 1px; */
+  padding: 15px 0 15px;
+  /* 710 - 90 - 10 - 12 */
+  width: 598px;
+  position: relative;
+  margin-left: 10px;
+  margin-right: 12px;
+  border-left: 2px #D8D8D8 solid;
+  border-bottom: 2px #D8D8D8 solid;
+  border-top: 2px #D8D8D8 solid;
+}
+
+/* .abili-dim1-value {
+  margin-bottom: 40px;
+} */
+
+.abili-dim1-value-item, .abili-dim2-value-item {
+  height: 20px;
+  margin: 18px 0;
+  /* margin-left: 0px; */
+  width: 78%;
+}
+.abili-dim1-value-item {
+  background-color: #6C3BC3;
+}
+.abili-dim2-value-item {
+  background-color: #E59B40;
+}
+
+.abili-chart-divi-2-2 {
+  width: 0;
+  border-left: 1px dashed #43BFEC;
+  position: absolute;
+  height: 100%;
+  /* 22% */
+  left: 22%;
+  top: 0px;
+}
+
+.abili-chart-divi-5 {
+  width: 0;
+  border-left: 1px dashed #E44657;
+  position: absolute;
+  height: 100%;
+  left: 50%;
+  top: 0px;
+}
+
+.abili-chart-divi-7-8 {
+  width: 0;
+  border-left: 1px dashed #67CA98;
+  position: absolute;
+  height: 100%;
+  /* 78% 474px */
+  left: 78%;
+  top: 0px;
+}
+
+.total-abili-score {
+  margin-top: 75px;
+  font-size: 20.6px;
+  line-height: 1.5;
+  margin-bottom: 15px;
+}
+
+.abili-top-score {
+  width: 120%;
+  position: absolute;
+  top: -28px;
+  left: -5px;
+}
+
+.abili-top-score span, .abili-bottom-score span {
+  font-size: 15.5px;
+  font-weight: bold;
+}
+
+.abili-bottom-score {
+  width: 120%;
+  position: absolute;
+  bottom: -28px;
+  left: -5px;
+}
+
+.abili-score-2-2 {
+  margin-left: 112px;
+}
+
+.abili-score-5 {
+  margin-left: 148.5px;
+}
+
+.abili-score-7-8 {
+  margin-left: 145.5px;
+}
+
+.abili-score-10 {
+  margin-left: 105px;
+}
+
+/* 风格维度 图表 */
+#style-echarts {
+  width: 100%;
+  height: 460px;
+  position: relative;
+  box-sizing: border-box;
+  border-bottom: 2px #d8d8d8 solid;
+  border-top: 2px #d8d8d8 solid;
+  margin-top: 52px;
+  margin-bottom: 45px;
+  padding: 14px 0px;
+}
+
+.divi5 {
+  width: 0;
+  border-left: 1px dashed #E44657;
+  position: absolute;
+  height: 456px;
+  /* 710 / 2 - 0.5 */
+  left: 354.5px;
+  top: 0px;
+  z-index: 3;
+}
+
+.divi2-2 {
+  width: 0;
+  border-left: 1px dashed #43BFEC;
+  position: absolute;
+  height: 456px;
+  /* 710 / 2 - 0.5 */
+  left: 230.5px;
+  top: 0px;
+  z-index: 3;
+}
+
+.divi7-8 {
+  width: 0;
+  border-left: 1px dashed #43BFEC;
+  position: absolute;
+  height: 456px;
+  /* 710 / 2 - 0.5 */
+  left: 478.5px;
+  top: 0px;
+  z-index: 3;
+}
+
+.style-dim-one {
+  padding: 1px 0;
+}
+
+.style-dim-one:last-child {
+  margin-bottom: 0 !important;
+}
+
+.style-item {
+  width: 100%;
+  min-height: 20.6px;
+  display: block;
+  margin: 19px 0;
+  position: relative;
+}
+/* 100% => 221.4px */
+.style-item-score {
+  position: absolute;
+  height: 20.6px;
+  width: 221.4px;
+  left: 50%;
+  background-color: #508DCA;
+}
+
+.style-dim2 {
+  width: 30px;
+  background-color: #D05094;
+}
+
+.style-dim3 {
+  background-color: #8CB941;
+}
+
+.style1 {
+  /* 710 / 2 父盒子的一半 */
+  left: 355px;
+}
+
+.style2 {
+  left: 355px;
+}
+
+.style-item-left {
+  float: left;
+  font-size: 15.5px;
+  font-weight: 400;
+  text-align: right;
+  width: 93px;
+}
+
+.style-item-right {
+  float: right;
+  font-size: 15.5px;
+  font-weight: 400;
+  text-align: left;
+  width: 93px;
+}
+
+.style-desc-title {
+  font-size: 20.6px;
+  font-weight: 500;
+  line-height: 31px;
+  margin-bottom: 20px;
+}
+
+.result-text, .result-text span {
+  font-size: 15.5px;
+  color: #ffffff;
+  line-height: 25.8px;
+  letter-spacing: .9px;
+}
+
+.result-time {
+  position: absolute;
+  top: 586px;
+  width: 140px;
+  left: 584px;
+  text-align: right;
+  font-size: 20.6px;
+  color: #ffffff;
+}
+
+.result-time-text {
+  position: absolute;
+  width: 422px;
+  top: 636px;
+  left: 303px;
+}
+
+.result-broken-times {
+  position: absolute;
+  width: 60px;
+  color: #ffffff;
+  font-size: 25.8px;
+  font-weight: 500;
+  text-align: right;
+  top: 826px;
+  left: 298px;
+}
+
+.result-broken-text {
+  position: absolute;
+  top: 906px;
+  left: 78px;
+  width: 280px;
+}
+
+.result-coins-text {
+  position: absolute;
+  left: 444px;
+  top: 906px;
+  width: 280px;
+}
+
+.result-coins {
+  position: absolute;
+  top: 826px;
+  width: 120px;
+  text-align: right;
+  font-size: 25.8px;
+  color: #ffffff;
+  font-weight: 500;
+  left: 606px;
+}
+
