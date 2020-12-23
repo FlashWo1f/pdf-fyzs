@@ -229,7 +229,7 @@
       <!-- 页眉 -->
       <div class="page-header">
         <div class="header-text">
-          Part 4 结果详解
+          
         </div>
         <div class="header-img">
           <img src="./static/logo.png" alt="">
@@ -293,7 +293,7 @@
       <!-- 页眉 -->
       <div class="page-header">
         <div class="header-text">
-          Part 4 结果详解
+          
         </div>
         <div class="header-img">
           <img src="./static/logo.png" alt="">
@@ -360,7 +360,7 @@
       <!-- 页眉 -->
       <div class="page-header">
         <div class="header-text">
-          Part 4 结果详解
+          
         </div>
         <div class="header-img">
           <img src="./static/logo.png" alt="">
@@ -427,7 +427,7 @@
       <!-- 页眉 -->
       <div class="page-header">
         <div class="header-text">
-          Part 4 结果详解
+          
         </div>
         <div class="header-img">
           <img src="./static/logo.png" alt="">
@@ -494,7 +494,7 @@
       <!-- 页眉 -->
       <div class="page-header">
         <div class="header-text">
-          Part 4 结果详解
+          
         </div>
         <div class="header-img">
           <img src="./static/logo.png" alt="">
@@ -522,7 +522,7 @@
         <div class="sug-big-dim" th:text="${child.name} + '   ' + ${child.englishName}">
           认知能力&nbsp;&nbsp;Cognitive Ability
         </div>
-        <div class="sug-one-dim" th:each="item:${child.suggestions}" th:if="${itemStat.index} < 4">
+        <div class="sug-one-dim" th:each="item:${child.suggestions}" th:if="${itemStat.index} < 3">
           <div class="sug-lil-dim" th:text="${item.name} + '   ' + ${item.englishName}">
             问题解决&nbsp;&nbsp;Problem Solving
           </div>
@@ -545,7 +545,7 @@
           版权所有：杭州扶摇职上教育科技有限公司
         </div>
         <div class="page-footer-right">
-          24
+          17
         </div>
       </div>
       <div class="page-header">
@@ -556,7 +556,7 @@
     </div>
     <div class="analysis">
       <div th:each="child:${data.managementSuggestions}" th:if="${childStat.index} == 0">
-        <div class="sug-one-dim" th:each="item:${child.suggestions}" th:if="${itemStat.index} > 3">
+        <div class="sug-one-dim" th:each="item:${child.suggestions}" th:if="${itemStat.index} > 2 and ${itemStat.index} < 6">
           <div class="sug-lil-dim" th:text="${item.name} + '   ' + ${item.englishName}">
             调整适应力&nbsp;&nbsp;Adaptive Capacity
           </div>
@@ -579,7 +579,7 @@
           版权所有：杭州扶摇职上教育科技有限公司
         </div>
         <div class="page-footer-right">
-          25
+          18
         </div>
       </div>
       <div class="page-header">
@@ -588,10 +588,9 @@
         </div>
       </div>
     </div>
-    <!-- 应该要隐藏 -->
     <div class="analysis">
       <div th:each="child:${data.managementSuggestions}" th:if="${childStat.index} == 0">
-        <div class="sug-one-dim" th:each="item:${child.suggestions}" th:if="${itemStat.index} > 3 and ${itemStat.index} < 6">
+        <div class="sug-one-dim" th:each="item:${child.suggestions}" th:if="${itemStat.index} > 5 and ${itemStat.index} < 9">
           <div class="sug-lil-dim" th:text="${item.name} + '   ' + ${item.englishName}">
             调整适应力&nbsp;&nbsp;Adaptive Capacity
           </div>
@@ -614,7 +613,7 @@
           版权所有：杭州扶摇职上教育科技有限公司
         </div>
         <div class="page-footer-right">
-          26
+          19
         </div>
       </div>
       <div class="page-header">
@@ -652,7 +651,7 @@
           版权所有：杭州扶摇职上教育科技有限公司
         </div>
         <div class="page-footer-right">
-          28
+          20
         </div>
       </div>
       <div class="page-header">
@@ -690,7 +689,7 @@
           版权所有：杭州扶摇职上教育科技有限公司
         </div>
         <div class="page-footer-right">
-          29
+          21
         </div>
       </div>
       <div class="page-header">
@@ -724,7 +723,7 @@
           版权所有：杭州扶摇职上教育科技有限公司
         </div>
         <div class="page-footer-right">
-          30
+          22
         </div>
       </div>
       <div class="page-header">
@@ -762,7 +761,7 @@
           版权所有：杭州扶摇职上教育科技有限公司
         </div>
         <div class="page-footer-right">
-          31
+          23
         </div>
       </div>
       <div class="page-header">
