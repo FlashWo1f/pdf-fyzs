@@ -261,6 +261,8 @@ ul li {
 .page-footer .page-footer-left {
   display: inline-table;
   line-height: 16px;
+  /* todo */
+  font-weight: 300;
   letter-spacing: 0.5px;
   font-size: 15px;
   color: #666666;

@@ -81,7 +81,7 @@
     
     <div class="analysis with-title">
       <div class="big-title">
-        三、整体得分情况
+        三、整体作答情况
       </div>
       <div class="score-sitution">
         整体得分情况
@@ -149,7 +149,7 @@
     </div>
     <div class="analysis with-title">
       <div class="big-title">
-        三、整体得分情况
+        三、整体作答情况
       </div>
       <div class="score-sitution">
         整体得分情况
@@ -995,7 +995,7 @@
       </div>
     </div>
     <div class="analysis">
-      <div th:each="child:${data.developmentSuggestions}" th:if="${childStat.index} == 2">
+      <div th:each="child:${data.developmentSuggestions}" th:if="${childStat.index} == 3">
         <div class="sug-one-dim" th:each="item:${child.suggestions}" th:if="${itemStat.index} > 1 and ${itemStat.index} < 4">
           <div class="sug-lil-dim">
             <span th:text="${item.name}">

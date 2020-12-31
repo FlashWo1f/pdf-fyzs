@@ -260,6 +260,7 @@ ul li {
 
 .page-footer .page-footer-left {
   display: inline-table;
+  font-weight: 300;
   line-height: 16px;
   letter-spacing: 0.5px;
   font-size: 15px;
