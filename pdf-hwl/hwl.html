@@ -871,15 +871,15 @@
   var data4 = [[${data.reportScore4.score}]]
   var playTime = [[${data.testCostTime}]]
   /*]]>*/
-  // var hour = playTime.split("小时")[0]
-  // var replaceTime = playTime.split("分")[0] + "分"
+  var hour = playTime.split("小时")[0]
+  var replaceTime = playTime.split("分")[0] + "分"
   var dom = document.getElementById("playTimeDom")
-  if (playTime.indexOf("天") !== -1) {
+  if (hour * 1 > 9) {
+    dom.innerText = replaceTime
+  } else if (playTime.indexOf("天") !== -1) {
     dom.innerText = playTime.split("小时")[0] + "小时"
-  } else if (playTime.indexOf("小时") !== -1){
-    dom.innerText = playTime.split("分")[0] + "分"
   } else {
-    dom.innerText = playTime
+    dom.innerText = playTime;
   }
   // 基于准备好的dom，初始化echarts实例
   var myData = [data1,data2,data3,data4]
