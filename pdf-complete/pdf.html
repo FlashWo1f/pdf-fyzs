@@ -995,7 +995,7 @@
       </div>
     </div>
     <div class="analysis">
-      <div th:each="child:${data.developmentSuggestions}" th:if="${childStat.index} == 2">
+      <div th:each="child:${data.developmentSuggestions}" th:if="${childStat.index} == 3">
         <div class="sug-one-dim" th:each="item:${child.suggestions}" th:if="${itemStat.index} > 1 and ${itemStat.index} < 4">
           <div class="sug-lil-dim">
             <span th:text="${item.name}">
