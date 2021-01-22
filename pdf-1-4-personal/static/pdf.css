@@ -492,15 +492,35 @@ p {
   margin-left: 105px;
 }
 
+.style-box {
+  width: 100%;
+}
+
+.style-chart-label {
+  width: 90px;
+  float: left;
+  margin-top: 2px;
+  height: 100%;
+  padding: 15px 0;
+}
+
+.style-chart-label-item {
+  text-align: right;
+  font-size: 15.5px;
+  line-height: 58.6px;
+}
+
 /* 风格维度 图表 */
 #style-echarts {
-  width: 100%;
+  width: 598px;
   height: 460px;
   position: relative;
   box-sizing: border-box;
   border-bottom: 2px #d8d8d8 solid;
   border-top: 2px #d8d8d8 solid;
+  border-left: 2px #d8d8d8 solid;
   margin-top: 52px;
+  margin-left: 110px;
   margin-bottom: 45px;
   padding: 14px 0px;
 }
@@ -511,7 +531,7 @@ p {
   position: absolute;
   height: 456px;
   /* 710 / 2 - 0.5 */
-  left: 354.5px;
+  left: 298.5px;
   top: 0px;
   z-index: 3;
 }
@@ -521,8 +541,7 @@ p {
   border-left: 1px dashed #43BFEC;
   position: absolute;
   height: 456px;
-  /* 710 / 2 - 0.5 */
-  left: 230.5px;
+  left: 188.5px;
   top: 0px;
   z-index: 3;
 }
@@ -532,10 +551,40 @@ p {
   border-left: 1px dashed #43BFEC;
   position: absolute;
   height: 456px;
-  /* 710 / 2 - 0.5 */
-  left: 478.5px;
+  left: 408.5px;
   top: 0px;
   z-index: 3;
+}
+
+.style-top-score {
+  width: 100%;
+  position: absolute;
+  top: -28px;
+  left: -5px;
+}
+
+.style-bottom-score {
+  width: 100%;
+  position: absolute;
+  bottom: -28px;
+  left: -5px;
+}
+
+.style-top-score span, .style-bottom-score span {
+  font-size: 15.5px;
+  font-weight: bold;
+}
+
+.style-score-2-2 {
+  margin-left: 181px;
+}
+
+.style-score-5 {
+  margin-left: 90px;
+}
+
+.style-score-7-8 {
+  margin-left: 88px;
 }
 
 .style-dim-one {
@@ -553,11 +602,11 @@ p {
   margin: 19px 0;
   position: relative;
 }
-/* 100% => 221.4px */
+/* 100% => ...px */
 .style-item-score {
   position: absolute;
   height: 20.6px;
-  width: 221.4px;
+  width: 118px;
   left: 50%;
   background-color: #508DCA;
 }
@@ -572,28 +621,28 @@ p {
 }
 
 .style1 {
-  /* 710 / 2 父盒子的一半 */
-  left: 355px;
-}
-
-.style2 {
-  left: 355px;
+  /* 598 / 2 父盒子的一半 */
+  left: 299px;
 }
 
 .style-item-left {
   float: left;
-  font-size: 15.5px;
+  font-size: 13px;
   font-weight: 400;
   text-align: right;
-  width: 93px;
+  color: #999999;
+  line-height: 20.59px;
+  width: 84px;
 }
 
 .style-item-right {
   float: right;
-  font-size: 15.5px;
+  font-size: 13px;
   font-weight: 400;
+  color: #999999;
+  line-height: 20.59px;
   text-align: left;
-  width: 93px;
+  width: 84px;
 }
 
 .style-desc-title {
