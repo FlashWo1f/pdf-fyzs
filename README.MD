@@ -25,3 +25,15 @@ pdf-1-4-recruitment 招聘版本(有个css问题修改了暂时没有测试)
 
 ## todo 
 ~~ 将 .page-footer .page-footer-left 统一加 font-weight: 300; ~~
+
+
+## 更新
+
+新版报告迭代后 Mia 反馈回来的一些问题的修改
+
+逗号、句号等标号应紧接上行不可单独换行。（此问题因为wkhtmltopdf打印机的问题）
+
+.analysis padding-top 103 => 90
+.with-title padding-top 76 => 70
+.sug-one-dim padding: 10.3 => 8
++ .with-lil-title padding-top 80

@@ -143,9 +143,9 @@
       </div>
       <div class='style-box'>
         <div class="style-chart-label">
-          <div th:class="abili-dim + (${childStat.index} + 1) + -label" th:each="child:${data.styleScores}">
+          <div class="style-dim-label" th:each="child:${data.styleScores}">
             <div 
-              class="abili-dim1-label-item"
+              class="style-dim-label-item"
               th:each="item:${child.scores}"
               th:text="${item.name}"
             >风险偏好</div>
@@ -183,9 +183,7 @@
         风格维度评分说明
       </div>
       <p>
-        对于9项风格维度，维度得分高低并无好坏之分。
-        得分越偏向两极，说明受测者该项风格偏向性越强，即某风格特质类型越典型；得分趋近中间，
-        说明受测者该项风格偏向越弱，即其风格类型不典型。需要综合岗位特征以判断其岗位适配性。
+        对于9项风格维度，维度得分高低并无好坏之分。得分越偏向两极，说明受测者该项风格偏向性越强<nobr style='color: #666;'>，</nobr>即某风格特质类型越典型；得分趋近中间，说明受测者该项风格偏向越弱，即其风格类型不典型<nobr style='color: #666;'>。</nobr>需要综合岗位特征以判断其岗位适配性。
       </p>
       <div class="page-header">
         <div class="header-img">
@@ -623,7 +621,7 @@
       </div>
     </div>
     <!-- 个人发展：决策风格 -->
-    <div class="analysis">
+    <div class="analysis with-lil-title">
       <div th:each="child:${data.developmentSuggestions}" th:if="${childStat.index} == 1">
         <div class="sug-big-dim" th:text="${child.name} + '   ' + ${child.englishName}">
           决策风格&nbsp;&nbsp;Decision-making Style
@@ -665,12 +663,12 @@
       </div>
     </div>
     <!-- 个人发展建议: 情绪气质 -->
-    <div class="analysis">
+    <div class="analysis with-lil-title">
       <div th:each="child:${data.developmentSuggestions}" th:if="${childStat.index} == 2">
         <div class="sug-big-dim" th:text="${child.name} + '   ' + ${child.englishName}">
           情绪气质&nbsp;&nbsp;Temperament
         </div>
-        <div class="sug-one-dim" th:each="item:${child.suggestions}" th:if="${itemStat.index} < 2">
+        <div class="sug-one-dim" th:each="item:${child.suggestions}" th:if="${itemStat.index} < 3">
           <div class="sug-lil-dim">
             <span th:text="${item.name}">
             </span>&nbsp;&nbsp;
@@ -708,7 +706,7 @@
     </div>
     <div class="analysis">
       <div th:each="child:${data.developmentSuggestions}" th:if="${childStat.index} == 2">
-        <div class="sug-one-dim" th:each="item:${child.suggestions}" th:if="${itemStat.index} > 1 and ${itemStat.index} < 4">
+        <div class="sug-one-dim" th:each="item:${child.suggestions}" th:if="${itemStat.index} > 2 and ${itemStat.index} < 4">
           <div class="sug-lil-dim">
             <span th:text="${item.name}">
             </span>&nbsp;&nbsp;
@@ -745,7 +743,7 @@
       </div>
     </div>
     <!-- 个人发展建议：人际交往 -->
-    <div class="analysis">
+    <div class="analysis with-lil-title">
       <div th:each="child:${data.developmentSuggestions}" th:if="${childStat.index} == 3">
         <div class="sug-big-dim" th:text="${child.name} + '   ' + ${child.englishName}">
           人际交往&nbsp;&nbsp;Interpersonal Communication
