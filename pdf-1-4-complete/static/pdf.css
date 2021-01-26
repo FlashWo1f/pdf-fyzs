@@ -296,7 +296,7 @@ p {
   color: #666666 !important;
   line-height: 25.8px;
   margin: 0; 
-  word-break: break-all;
+  word-break: normal;
 }
 
 .module-description {
@@ -315,7 +315,7 @@ p {
 }
 
 .sug-one-dim {
-  padding: 10.3px 0;
+  padding: 8px 0;
 }
 
 .sug-lil-dim {

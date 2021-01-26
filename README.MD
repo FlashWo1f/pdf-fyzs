@@ -31,9 +31,31 @@ pdf-1-4-recruitment 招聘版本(有个css问题修改了暂时没有测试)
 
 新版报告迭代后 Mia 反馈回来的一些问题的修改
 
-逗号、句号等标号应紧接上行不可单独换行。（此问题因为wkhtmltopdf打印机的问题）
+风格维度分数总览 左边再加 维度名  顶底部增加分数刻度线
+逗号、句号等标号应紧接上行不可单独换行。word-break: normal
 
 .analysis padding-top 103 => 90
 .with-title padding-top 76 => 70
 .sug-one-dim padding: 10.3 => 8
 + .with-lil-title padding-top 80
+
+
+## 此次修改要注意的
+
+1. 间距缩小后，管理建议有些可以一页多一条，注意页码更新
+2. 以上小东西 每个模板都需要检查一下
+
+
+## 检查页码
+
+5-train: done
+5-recruitment: done
+5-personal: done
+5-complete: 需要补 胜任力 pageNo 40
+
+4-train: done
+4-recruitment: done
+4-personal: done
+4-complete: 需要补 胜任力 pageNo 32
+
+## 替换图片

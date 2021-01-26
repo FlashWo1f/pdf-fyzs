@@ -37,13 +37,13 @@
       <img src="./static/ReportIntroduction.png" alt="">
     </div>
     <div class="static">
-      <img src="./static/suggestion.png" alt="">
+      <img src="./static/suggestion.jpg" alt="">
     </div>
     <div class="static">
       <img src="./static/dims.jpg" alt="">
     </div>
     <div class="static">
-      <img src="./static/scoreSuggestion.png" alt="">
+      <img src="./static/scoreSuggestion.jpg" alt="">
     </div>
     <div class="static">
       <img src="./static/result.jpg" alt="">
@@ -141,17 +141,38 @@
       <div class="style-score">
         风格维度得分情况
       </div>
-      <div id="style-echarts">
-        <div class="divi5"></div>
-        <div class="divi2-2"></div>
-        <div class="divi7-8"></div>
-        <div class="style-dim-one" th:each="child:${data.styleScores}">
-          <div class="style-item" th:each="item:${child.scores}">
-            <div class="style-item-left" th:text="${item.leftName}">遵循常规</div>
-            <div class="style-item-score style1" th:id="d + (${childStat.index} + 2) + c + (${itemStat.index} + 1) + styleScore"
-            th:classappend="style-dim + (${childStat.index} + 1)"
-            ></div>
-            <div class="style-item-right" th:text="${item.rightName}">认知灵活</div>
+      <div class="style-box">
+        <div class="style-chart-label">
+          <div class="style-dim-label" th:each="child:${data.styleScores}">
+            <div 
+              class="style-dim-label-item"
+              th:each="item:${child.scores}"
+              th:text="${item.name}"
+            >风险偏好</div>
+          </div>
+        </div>
+        <div id="style-echarts">
+          <div class="divi5"></div>
+          <div class="divi2-2"></div>
+          <div class="divi7-8"></div>
+          <div class="style-dim-one" th:each="child:${data.styleScores}">
+            <div class="style-item" th:each="item:${child.scores}">
+              <div class="style-item-left" th:text="${item.leftName}">遵循常规</div>
+              <div class="style-item-score style1" th:id="d + (${childStat.index} + 2) + c + (${itemStat.index} + 1) + styleScore"
+              th:classappend="style-dim + (${childStat.index} + 1)"
+              ></div>
+              <div class="style-item-right" th:text="${item.rightName}">认知灵活</div>
+            </div>
+          </div>
+          <div class="style-top-score">
+            <span class='style-score-2-2'>2.2</span>
+            <span class='style-score-5'>5</span>
+            <span class='style-score-7-8'>7.8</span>
+          </div>
+          <div class="style-bottom-score">
+            <span class='style-score-2-2'>2.2</span>
+            <span class='style-score-5'>5</span>
+            <span class='style-score-7-8'>7.8</span>
           </div>
         </div>
       </div>
@@ -623,7 +644,7 @@
       </div>
     </div>
     <!-- HR 管理建议：决策风格 -->
-    <div class="analysis">
+    <div class="analysis with-lil-title">
       <div th:each="child:${data.managementSuggestions}" th:if="${childStat.index} == 1">
         <div class="sug-big-dim" th:text="${child.name} + '   ' + ${child.englishName}">
           认知能力&nbsp;&nbsp;Cognitive Ability
@@ -661,7 +682,7 @@
       </div>
     </div>
     <!-- HR 管理建议：情绪气质 -->
-    <div class="analysis">
+    <div class="analysis with-lil-title">
       <div th:each="child:${data.managementSuggestions}" th:if="${childStat.index} == 2">
         <div class="sug-big-dim" th:text="${child.name} + '   ' + ${child.englishName}">
           认知能力&nbsp;&nbsp;Cognitive Ability
@@ -733,7 +754,7 @@
       </div>
     </div>
     <!-- HR 管理建议：人际交往 -->
-    <div class="analysis">
+    <div class="analysis with-lil-title">
       <div th:each="child:${data.managementSuggestions}" th:if="${childStat.index} == 3">
         <div class="sug-big-dim" th:text="${child.name} + '   ' + ${child.englishName}">
           认知能力&nbsp;&nbsp;Cognitive Ability
@@ -832,8 +853,8 @@
     d4c2: S_R4C2,
     d4c3: S_R4C3,
   }
-  var midLine = 355
-  var maxWidth = 124 / 2.8 * 5 // 约等于 221.4 但是不能用，这乘来乘去的就有1px的偏差
+  var midLine = 299
+  var maxWidth = 110 / 2.8 * 5
   var midValue = 5
   abili_dArr.forEach(function(item, idx) {
     document.getElementById(item + "scoreSummary").style.width = (abilityDimScores[idx] * 10) + "%"

@@ -37,13 +37,13 @@
       <img src="./static/ReportIntroduction.png" alt="">
     </div>
     <div class="static">
-      <img src="./static/suggestion.png" alt="">
+      <img src="./static/suggestion.jpg" alt="">
     </div>
     <div class="static">
       <img src="./static/dims.jpg" alt="">
     </div>
     <div class="static">
-      <img src="./static/scoreSuggestion.png" alt="">
+      <img src="./static/scoreSuggestion.jpg" alt="">
     </div>
     <div class="static">
       <img src="./static/result.jpg" alt="">
@@ -180,7 +180,7 @@
         风格维度评分说明
       </div>
       <p>
-        对于9项风格维度，维度得分高低并无好坏之分。得分越偏向两极，说明受测者该项风格偏向性越强<nobr style='color: #666;'>，</nobr>即某风格特质类型越典型；得分趋近中间，说明受测者该项风格偏向越弱，即其风格类型不典型<nobr style='color: #666;'>。</nobr>需要综合岗位特征以判断其岗位适配性。
+        对于9项风格维度，维度得分高低并无好坏之分。得分越偏向两极，说明受测者该项风格偏向性越强，即某风格特质类型越典型；得分趋近中间，说明受测者该项风格偏向越弱，即其风格类型不典型。需要综合岗位特征以判断其岗位适配性。
       </p>
       <div class="page-header">
         <div class="header-img">
@@ -665,7 +665,7 @@
         <div class="sug-big-dim" th:text="${child.name} + '   ' + ${child.englishName}">
           情绪气质&nbsp;&nbsp;Temperament
         </div>
-        <div class="sug-one-dim" th:each="item:${child.suggestions}" th:if="${itemStat.index} < 2">
+        <div class="sug-one-dim" th:each="item:${child.suggestions}" th:if="${itemStat.index} < 3">
           <div class="sug-lil-dim">
             <span th:text="${item.name}">
             </span>&nbsp;&nbsp;
@@ -703,7 +703,7 @@
     </div>
     <div class="analysis">
       <div th:each="child:${data.developmentSuggestions}" th:if="${childStat.index} == 2">
-        <div class="sug-one-dim" th:each="item:${child.suggestions}" th:if="${itemStat.index} > 1 and ${itemStat.index} < 4">
+        <div class="sug-one-dim" th:each="item:${child.suggestions}" th:if="${itemStat.index} > 2 and ${itemStat.index} < 4">
           <div class="sug-lil-dim">
             <span th:text="${item.name}">
             </span>&nbsp;&nbsp;
@@ -745,7 +745,7 @@
         <div class="sug-big-dim" th:text="${child.name} + '   ' + ${child.englishName}">
           人际交往&nbsp;&nbsp;Interpersonal Communication
         </div>
-        <div class="sug-one-dim" th:each="item:${child.suggestions}" th:if="${itemStat.index} < 2">
+        <div class="sug-one-dim" th:each="item:${child.suggestions}" th:if="${itemStat.index} < 3">
           <div class="sug-lil-dim">
             <span th:text="${item.name}">
             </span>&nbsp;&nbsp;
@@ -773,44 +773,6 @@
         </div>
         <div class="page-footer-right">
           22
-        </div>
-      </div>
-      <div class="page-header">
-        <div class="header-img">
-          <img src="./static/logo.png" alt="">
-        </div>
-      </div>
-    </div>
-    <div class="analysis">
-      <div th:each="child:${data.developmentSuggestions}" th:if="${childStat.index} == 3">
-        <div class="sug-one-dim" th:each="item:${child.suggestions}" th:if="${itemStat.index} > 1 and ${itemStat.index} < 4">
-          <div class="sug-lil-dim">
-            <span th:text="${item.name}">
-            </span>&nbsp;&nbsp;
-            <span th:text="${item.englishName}">
-            </span>
-          </div>
-          <div class="sugs">
-            <div class="sug-item">
-              <div class="sug-item-title">自我认知建议</div>
-              <p th:utext="${item.selfCognition}">
-              </p>
-            </div>
-            <div class="sug-item">
-              <div class="sug-item-title">工作实践建议</div>
-              <p th:utext="${item.workPractices}">
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- 页脚 -->
-      <div class="page-footer">
-        <div class="page-footer-left">
-          版权所有：杭州扶摇职上教育科技有限公司
-        </div>
-        <div class="page-footer-right">
-          23
         </div>
       </div>
       <div class="page-header">
@@ -858,7 +820,7 @@
           版权所有：杭州扶摇职上教育科技有限公司
         </div>
         <div class="page-footer-right">
-          24
+          23
         </div>
       </div>
       <div class="page-header">
@@ -896,7 +858,7 @@
           版权所有：杭州扶摇职上教育科技有限公司
         </div>
         <div class="page-footer-right">
-          25
+          24
         </div>
       </div>
       <div class="page-header">
@@ -934,7 +896,7 @@
           版权所有：杭州扶摇职上教育科技有限公司
         </div>
         <div class="page-footer-right">
-          26
+          25
         </div>
       </div>
       <div class="page-header">
@@ -972,7 +934,7 @@
           版权所有：杭州扶摇职上教育科技有限公司
         </div>
         <div class="page-footer-right">
-          27
+          26
         </div>
       </div>
       <div class="page-header">
@@ -1014,7 +976,7 @@
           版权所有：杭州扶摇职上教育科技有限公司
         </div>
         <div class="page-footer-right">
-          28
+          27
         </div>
       </div>
       <div class="page-header">
@@ -1056,7 +1018,7 @@
           版权所有：杭州扶摇职上教育科技有限公司
         </div>
         <div class="page-footer-right">
-          29
+          28
         </div>
       </div>
       <div class="page-header">
@@ -1094,7 +1056,7 @@
           版权所有：杭州扶摇职上教育科技有限公司
         </div>
         <div class="page-footer-right">
-          30
+          29
         </div>
       </div>
       <div class="page-header">
@@ -1136,7 +1098,7 @@
           版权所有：杭州扶摇职上教育科技有限公司
         </div>
         <div class="page-footer-right">
-          31
+          30
         </div>
       </div>
       <div class="page-header">
@@ -1174,7 +1136,7 @@
           版权所有：杭州扶摇职上教育科技有限公司
         </div>
         <div class="page-footer-right">
-          32
+          31
         </div>
       </div>
       <div class="page-header">

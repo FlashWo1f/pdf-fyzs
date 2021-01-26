@@ -37,13 +37,13 @@
       <img src="./static/ReportIntroduction.png" alt="">
     </div>
     <div class="static">
-      <img src="./static/suggestion.png" alt="">
+      <img src="./static/suggestion.jpg" alt="">
     </div>
     <div class="static">
       <img src="./static/dims.png" alt="">
     </div>
     <div class="static">
-      <img src="./static/scoreSuggestion.png" alt="">
+      <img src="./static/scoreSuggestion.jpg" alt="">
     </div>
     <div class="static">
       <img src="./static/result.png" alt="">
@@ -157,42 +157,46 @@
       <div class="style-score">
         风格维度得分情况
       </div>
-      <div id="style-echarts">
-        <div class="divi5"></div>
-        <div class="divi2-2"></div>
-        <div class="divi7-8"></div>
-        <div class="style-dim-one" th:each="child:${data.styleScores}">
-          <div class="style-item" th:each="item:${child.scores}">
-            <div class="style-item-left" th:text="${item.leftName}">遵循常规</div>
-            <div class="style-item-score style-dim1 style1" th:id="d + (${childStat.index} + 3) + c + (${itemStat.index} + 1) + styleScore"
-            th:classappend="style-dim + (${childStat.index} + 1)"
-            ></div>
-            <div class="style-item-right" th:text="${item.rightName}">认知灵活</div>
+      <div class="style-box">
+        <div class="style-chart-label">
+          <div class="style-dim-label" th:each="child:${data.styleScores}">
+            <div 
+              class="style-dim-label-item"
+              th:each="item:${child.scores}"
+              th:text="${item.name}"
+            >风险偏好</div>
           </div>
-          <!-- <div class="style-item">
-            <div class="style-item-left">自馁</div>
-            <div class="style-item-score style-dim1 style2" id='styletest'></div>
-            <div class="style-item-right">自信</div>
+        </div>
+        <div id="style-echarts">
+          <div class="divi5"></div>
+          <div class="divi2-2"></div>
+          <div class="divi7-8"></div>
+          <div class="style-dim-one" th:each="child:${data.styleScores}">
+            <div class="style-item" th:each="item:${child.scores}">
+              <div class="style-item-left" th:text="${item.leftName}">遵循常规</div>
+              <div class="style-item-score style-dim1 style1" th:id="d + (${childStat.index} + 3) + c + (${itemStat.index} + 1) + styleScore"
+              th:classappend="style-dim + (${childStat.index} + 1)"
+              ></div>
+              <div class="style-item-right" th:text="${item.rightName}">认知灵活</div>
+            </div>
           </div>
-          <div class="style-item">
-            <div class="style-item-left">情绪控制型</div>
-            <div class="style-item-score style-dim1 style2"></div>
-            <div class="style-item-right">情绪表达型</div>
+          <div class="style-top-score">
+            <span class='style-score-2-2'>2.2</span>
+            <span class='style-score-5'>5</span>
+            <span class='style-score-7-8'>7.8</span>
           </div>
-          <div class="style-item">
-            <div class="style-item-left">遵循常规</div>
-            <div class="style-item-score style-dim1 style1"></div>
-            <div class="style-item-right">认知灵活</div> 
-          </div> -->
+          <div class="style-bottom-score">
+            <span class='style-score-2-2'>2.2</span>
+            <span class='style-score-5'>5</span>
+            <span class='style-score-7-8'>7.8</span>
+          </div>
         </div>
       </div>
       <div class="style-desc-title">
         风格维度评分说明
       </div>
       <p>
-        对于12项风格维度，维度得分高低并无好坏之分。
-        得分越偏向两极，说明受测者该项风格偏向性越强，即某风格特质类型越典型；得分趋近中间，
-        说明受测者该项风格偏向越弱，即其风格类型不典型。需要综合岗位特征以判断其岗位适配性。
+        对于12项风格维度，维度得分高低并无好坏之分。得分越偏向两极，说明受测者该项风格偏向性越强，即某风格特质类型越典型；得分趋近中间，说明受测者该项风格偏向越弱，即其风格类型不典型。需要综合岗位特征以判断其岗位适配性。
       </p>
       <div class="page-header">
         <div class="header-img">
@@ -674,8 +678,10 @@
       <div class="big-title">
         五、个人发展建议
       </div>
-      <p class='module-description'>各指标上的测评结果显示， 受测者在以下指标上表现不足。</p>
-      <p class='module-description'>根据受测者在各个指标上的表现，可采用以下发展建议对其进行发展：</p>
+      <div class="module-description">
+        <p>各指标上的测评结果显示， 受测者在以下指标上表现不足。</p>
+        <p>根据受测者在各个指标上的表现，可采用以下发展建议对其进行发展：</p>
+      </div>
       <div th:each="child:${data.developmentSuggestions}" th:if="${childStat.index} == 0">
         <div class="sug-big-dim" th:text="${child.name} + '   ' + ${child.englishName}">
           发展能力&nbsp;&nbsp;Development Ability
@@ -793,12 +799,12 @@
       </div>
     </div>
     <!-- 个人发展：决策风格 -->
-    <div class="analysis">
+    <div class="analysis with-lil-title">
       <div th:each="child:${data.developmentSuggestions}" th:if="${childStat.index} == 1">
         <div class="sug-big-dim" th:text="${child.name} + '   ' + ${child.englishName}">
           决策风格&nbsp;&nbsp;Decision-making Style
         </div>
-        <div class="sug-one-dim" th:each="item:${child.suggestions}" th:if="${itemStat.index} < 2">
+        <div class="sug-one-dim" th:each="item:${child.suggestions}" th:if="${itemStat.index} < 3">
           <div class="sug-lil-dim">
             <span th:text="${item.name}">
             </span>&nbsp;&nbsp;
@@ -836,7 +842,7 @@
     </div>
     <div class="analysis">
       <div th:each="child:${data.developmentSuggestions}" th:if="${childStat.index} == 1">
-        <div class="sug-one-dim" th:each="item:${child.suggestions}" th:if="${itemStat.index} > 1 and ${itemStat.index} < 4">
+        <div class="sug-one-dim" th:each="item:${child.suggestions}" th:if="${itemStat.index} > 2 and ${itemStat.index} < 4">
           <div class="sug-lil-dim">
             <span th:text="${item.name}">
             </span>&nbsp;&nbsp;
@@ -873,12 +879,12 @@
       </div>
     </div>
     <!-- 个人发展建议: 情绪气质 -->
-    <div class="analysis">
+    <div class="analysis with-lil-title">
       <div th:each="child:${data.developmentSuggestions}" th:if="${childStat.index} == 2">
         <div class="sug-big-dim" th:text="${child.name} + '   ' + ${child.englishName}">
           情绪气质&nbsp;&nbsp;Temperament
         </div>
-        <div class="sug-one-dim" th:each="item:${child.suggestions}" th:if="${itemStat.index} < 2">
+        <div class="sug-one-dim" th:each="item:${child.suggestions}" th:if="${itemStat.index} < 3">
           <div class="sug-lil-dim">
             <span th:text="${item.name}">
             </span>&nbsp;&nbsp;
@@ -916,7 +922,7 @@
     </div>
     <div class="analysis">
       <div th:each="child:${data.developmentSuggestions}" th:if="${childStat.index} == 2">
-        <div class="sug-one-dim" th:each="item:${child.suggestions}" th:if="${itemStat.index} > 1 and ${itemStat.index} < 4">
+        <div class="sug-one-dim" th:each="item:${child.suggestions}" th:if="${itemStat.index} > 2 and ${itemStat.index} < 4">
           <div class="sug-lil-dim">
             <span th:text="${item.name}">
             </span>&nbsp;&nbsp;
@@ -953,12 +959,12 @@
       </div>
     </div>
     <!-- 个人发展建议：人际交往 -->
-    <div class="analysis">
+    <div class="analysis with-lil-title">
       <div th:each="child:${data.developmentSuggestions}" th:if="${childStat.index} == 3">
         <div class="sug-big-dim" th:text="${child.name} + '   ' + ${child.englishName}">
           人际交往&nbsp;&nbsp;Interpersonal Communication
         </div>
-        <div class="sug-one-dim" th:each="item:${child.suggestions}" th:if="${itemStat.index} < 2">
+        <div class="sug-one-dim" th:each="item:${child.suggestions}" th:if="${itemStat.index} < 3">
           <div class="sug-lil-dim">
             <span th:text="${item.name}">
             </span>&nbsp;&nbsp;
@@ -996,7 +1002,7 @@
     </div>
     <div class="analysis">
       <div th:each="child:${data.developmentSuggestions}" th:if="${childStat.index} == 3">
-        <div class="sug-one-dim" th:each="item:${child.suggestions}" th:if="${itemStat.index} > 1 and ${itemStat.index} < 4">
+        <div class="sug-one-dim" th:each="item:${child.suggestions}" th:if="${itemStat.index} > 2 and ${itemStat.index} < 4">
           <div class="sug-lil-dim">
             <span th:text="${item.name}">
             </span>&nbsp;&nbsp;
@@ -1037,12 +1043,14 @@
       <div class="big-title">
         六、HR管理建议
       </div>
-      <p class='module-description'>根据受测者在各个指标上的表现，HR管理者可采用以下建议对其进行管理：</p>
+      <div class="module-description">
+        <p>根据受测者在各个指标上的表现，HR管理者可采用以下建议对其进行管理：</p>
+      </div>
       <div th:each="child:${data.managementSuggestions}" th:if="${childStat.index} == 0">
         <div class="sug-big-dim" th:text="${child.name} + '   ' + ${child.englishName}">
           认知能力&nbsp;&nbsp;Cognitive Ability
         </div>
-        <div class="sug-one-dim" th:each="item:${child.suggestions}" th:if="${itemStat.index} < 2">
+        <div class="sug-one-dim" th:each="item:${child.suggestions}" th:if="${itemStat.index} < 3">
           <div class="sug-lil-dim" th:text="${item.name} + '   ' + ${item.englishName}">
             问题解决&nbsp;&nbsp;Problem Solving
           </div>
@@ -1080,7 +1088,7 @@
     </div>
     <div class="analysis">
       <div th:each="child:${data.managementSuggestions}" th:if="${childStat.index} == 0">
-        <div class="sug-one-dim" th:each="item:${child.suggestions}" th:if="${itemStat.index} > 1 and ${itemStat.index} < 4">
+        <div class="sug-one-dim" th:each="item:${child.suggestions}" th:if="${itemStat.index} > 2 and ${itemStat.index} < 6">
           <div class="sug-lil-dim" th:text="${item.name} + '   ' + ${item.englishName}">
             调整适应力&nbsp;&nbsp;Adaptive Capacity
           </div>
@@ -1116,11 +1124,15 @@
         </div>
       </div>
     </div>
-    <div class="analysis">
-      <div th:each="child:${data.managementSuggestions}" th:if="${childStat.index} == 0">
-        <div class="sug-one-dim" th:each="item:${child.suggestions}" th:if="${itemStat.index} > 3 and ${itemStat.index} < 6">
+    <!-- HR 管理建议：发展能力 -->
+    <div class="analysis with-lil-title">
+      <div th:each="child:${data.managementSuggestions}" th:if="${childStat.index} == 1">
+        <div class="sug-big-dim" th:text="${child.name} + '   ' + ${child.englishName}">
+          认知能力&nbsp;&nbsp;Cognitive Ability
+        </div>
+        <div class="sug-one-dim" th:each="item:${child.suggestions}" th:if="${itemStat.index} < 2">
           <div class="sug-lil-dim" th:text="${item.name} + '   ' + ${item.englishName}">
-            调整适应力&nbsp;&nbsp;Adaptive Capacity
+            问题解决&nbsp;&nbsp;Problem Solving
           </div>
           <div class="sugs">
             <div class="sug-item">
@@ -1154,15 +1166,11 @@
         </div>
       </div>
     </div>
-    <!-- HR 管理建议：发展能力 -->
     <div class="analysis">
       <div th:each="child:${data.managementSuggestions}" th:if="${childStat.index} == 1">
-        <div class="sug-big-dim" th:text="${child.name} + '   ' + ${child.englishName}">
-          认知能力&nbsp;&nbsp;Cognitive Ability
-        </div>
-        <div class="sug-one-dim" th:each="item:${child.suggestions}" th:if="${itemStat.index} < 2">
+        <div class="sug-one-dim" th:each="item:${child.suggestions}" th:if="${itemStat.index} > 1 and ${itemStat.index} < 4">
           <div class="sug-lil-dim" th:text="${item.name} + '   ' + ${item.englishName}">
-            问题解决&nbsp;&nbsp;Problem Solving
+            调整适应力&nbsp;&nbsp;Adaptive Capacity
           </div>
           <div class="sugs">
             <div class="sug-item">
@@ -1198,7 +1206,7 @@
     </div>
     <div class="analysis">
       <div th:each="child:${data.managementSuggestions}" th:if="${childStat.index} == 1">
-        <div class="sug-one-dim" th:each="item:${child.suggestions}" th:if="${itemStat.index} > 1 and ${itemStat.index} < 4">
+        <div class="sug-one-dim" th:each="item:${child.suggestions}" th:if="${itemStat.index} > 3 and ${itemStat.index} < 6">
           <div class="sug-lil-dim" th:text="${item.name} + '   ' + ${item.englishName}">
             调整适应力&nbsp;&nbsp;Adaptive Capacity
           </div>
@@ -1234,11 +1242,15 @@
         </div>
       </div>
     </div>
-    <div class="analysis">
-      <div th:each="child:${data.managementSuggestions}" th:if="${childStat.index} == 1">
-        <div class="sug-one-dim" th:each="item:${child.suggestions}" th:if="${itemStat.index} > 3 and ${itemStat.index} < 6">
+    <!-- HR 管理建议：决策风格 -->
+    <div class="analysis with-lil-title">
+      <div th:each="child:${data.managementSuggestions}" th:if="${childStat.index} == 2">
+        <div class="sug-big-dim" th:text="${child.name} + '   ' + ${child.englishName}">
+          认知能力&nbsp;&nbsp;Cognitive Ability
+        </div>
+        <div class="sug-one-dim" th:each="item:${child.suggestions}" th:if="${itemStat.index} < 2">
           <div class="sug-lil-dim" th:text="${item.name} + '   ' + ${item.englishName}">
-            调整适应力&nbsp;&nbsp;Adaptive Capacity
+            问题解决&nbsp;&nbsp;Problem Solving
           </div>
           <div class="sugs">
             <div class="sug-item">
@@ -1272,15 +1284,11 @@
         </div>
       </div>
     </div>
-    <!-- HR 管理建议：决策风格 -->
     <div class="analysis">
       <div th:each="child:${data.managementSuggestions}" th:if="${childStat.index} == 2">
-        <div class="sug-big-dim" th:text="${child.name} + '   ' + ${child.englishName}">
-          认知能力&nbsp;&nbsp;Cognitive Ability
-        </div>
-        <div class="sug-one-dim" th:each="item:${child.suggestions}" th:if="${itemStat.index} < 2">
+        <div class="sug-one-dim" th:each="item:${child.suggestions}" th:if="${itemStat.index} > 1 and ${itemStat.index} < 4">
           <div class="sug-lil-dim" th:text="${item.name} + '   ' + ${item.englishName}">
-            问题解决&nbsp;&nbsp;Problem Solving
+            调整适应力&nbsp;&nbsp;Adaptive Capacity
           </div>
           <div class="sugs">
             <div class="sug-item">
@@ -1314,11 +1322,15 @@
         </div>
       </div>
     </div>
-    <div class="analysis">
-      <div th:each="child:${data.managementSuggestions}" th:if="${childStat.index} == 2">
-        <div class="sug-one-dim" th:each="item:${child.suggestions}" th:if="${itemStat.index} > 1 and ${itemStat.index} < 4">
+    <!-- HR 管理建议：情绪气质 -->
+    <div class="analysis with-lil-title">
+      <div th:each="child:${data.managementSuggestions}" th:if="${childStat.index} == 3">
+        <div class="sug-big-dim" th:text="${child.name} + '   ' + ${child.englishName}">
+          认知能力&nbsp;&nbsp;Cognitive Ability
+        </div>
+        <div class="sug-one-dim" th:each="item:${child.suggestions}" th:if="${itemStat.index} < 2">
           <div class="sug-lil-dim" th:text="${item.name} + '   ' + ${item.englishName}">
-            调整适应力&nbsp;&nbsp;Adaptive Capacity
+            问题解决&nbsp;&nbsp;Problem Solving
           </div>
           <div class="sugs">
             <div class="sug-item">
@@ -1352,15 +1364,11 @@
         </div>
       </div>
     </div>
-    <!-- HR 管理建议：情绪气质 -->
     <div class="analysis">
       <div th:each="child:${data.managementSuggestions}" th:if="${childStat.index} == 3">
-        <div class="sug-big-dim" th:text="${child.name} + '   ' + ${child.englishName}">
-          认知能力&nbsp;&nbsp;Cognitive Ability
-        </div>
-        <div class="sug-one-dim" th:each="item:${child.suggestions}" th:if="${itemStat.index} < 2">
+        <div class="sug-one-dim" th:each="item:${child.suggestions}" th:if="${itemStat.index} > 1 and ${itemStat.index} < 4">
           <div class="sug-lil-dim" th:text="${item.name} + '   ' + ${item.englishName}">
-            问题解决&nbsp;&nbsp;Problem Solving
+            调整适应力&nbsp;&nbsp;Adaptive Capacity
           </div>
           <div class="sugs">
             <div class="sug-item">
@@ -1394,11 +1402,15 @@
         </div>
       </div>
     </div>
-    <div class="analysis">
-      <div th:each="child:${data.managementSuggestions}" th:if="${childStat.index} == 3">
-        <div class="sug-one-dim" th:each="item:${child.suggestions}" th:if="${itemStat.index} > 1 and ${itemStat.index} < 4">
+    <!-- HR 管理建议：人际交往 -->
+    <div class="analysis with-lil-title">
+      <div th:each="child:${data.managementSuggestions}" th:if="${childStat.index} == 4">
+        <div class="sug-big-dim" th:text="${child.name} + '   ' + ${child.englishName}">
+          认知能力&nbsp;&nbsp;Cognitive Ability
+        </div>
+        <div class="sug-one-dim" th:each="item:${child.suggestions}" th:if="${itemStat.index} < 2">
           <div class="sug-lil-dim" th:text="${item.name} + '   ' + ${item.englishName}">
-            调整适应力&nbsp;&nbsp;Adaptive Capacity
+            问题解决&nbsp;&nbsp;Problem Solving
           </div>
           <div class="sugs">
             <div class="sug-item">
@@ -1432,48 +1444,6 @@
         </div>
       </div>
     </div>
-    <!-- HR 管理建议：人际交往 -->
-    <div class="analysis">
-      <div th:each="child:${data.managementSuggestions}" th:if="${childStat.index} == 4">
-        <div class="sug-big-dim" th:text="${child.name} + '   ' + ${child.englishName}">
-          认知能力&nbsp;&nbsp;Cognitive Ability
-        </div>
-        <div class="sug-one-dim" th:each="item:${child.suggestions}" th:if="${itemStat.index} < 2">
-          <div class="sug-lil-dim" th:text="${item.name} + '   ' + ${item.englishName}">
-            问题解决&nbsp;&nbsp;Problem Solving
-          </div>
-          <div class="sugs">
-            <div class="sug-item">
-              <div class="sug-item-title">面试方式建议</div>
-              <p th:text="${item.interviewMethod}">无领导小组面试、角色扮演、案例分析、BEI面试</p>
-            </div>
-            <div class="sug-item" th:if="${child.code} != '1008-1001'">
-              <div class="sug-item-title">HR提问</div>
-              <p th:utext="${item.hrQuestions}">1. 请列出一个你最近遇到的困难，你是如何解决的？<br />
-                2. 请分享一个工作和生活中面临的问题，你如何解决这个问题？</p>
-            </div>
-            <div class="sug-item">
-              <div class="sug-item-title">培训方向</div>
-              <p th:text="${item.trainingDirection}">结构思维训练</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- 页脚 -->
-      <div class="page-footer">
-        <div class="page-footer-left">
-          版权所有：杭州扶摇职上教育科技有限公司
-        </div>
-        <div class="page-footer-right">
-          39
-        </div>
-      </div>
-      <div class="page-header">
-        <div class="header-img">
-          <img src="./static/logo.png" alt="">
-        </div>
-      </div>
-    </div>
     <div class="analysis">
       <div th:each="child:${data.managementSuggestions}" th:if="${childStat.index} == 4">
         <div class="sug-one-dim" th:each="item:${child.suggestions}" th:if="${itemStat.index} > 1 and ${itemStat.index} < 4">
@@ -1503,7 +1473,7 @@
           版权所有：杭州扶摇职上教育科技有限公司
         </div>
         <div class="page-footer-right">
-          40
+          39
         </div>
       </div>
       <div class="page-header">
@@ -1590,8 +1560,8 @@
     d5c3: S_R5C3,
     d5c4: S_R5C4,
   }
-  var midLine = 355
-  var maxWidth = 124 / 2.8 * 5 // 约等于 221.4 但是不能用，这乘来乘去的就有1px的偏差
+  var midLine = 299
+  var maxWidth = 110 / 2.8 * 5 // 约等于 221.4 但是不能用，这乘来乘去的就有1px的偏差
   var midValue = 5
   abili_dArr.forEach(function(item, idx) {
     document.getElementById(item + "scoreSummary").style.width = (abilityDimScores[idx] * 10) + "%"
