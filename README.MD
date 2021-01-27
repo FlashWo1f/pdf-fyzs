@@ -51,11 +51,28 @@ pdf-1-4-recruitment 招聘版本(有个css问题修改了暂时没有测试)
 5-train: done
 5-recruitment: done
 5-personal: done
-5-complete: 需要补 胜任力 pageNo 40
+5-complete: 需要补 胜任力 pageNo 40 + 目录修改
 
 4-train: done
 4-recruitment: done
 4-personal: done
-4-complete: 需要补 胜任力 pageNo 32
+4-complete: 需要补 胜任力 pageNo 32 + 目录修改
 
 ## 替换图片
+
+
+## ~~核验~~
+
+5-personal √
+5-train √
+5-recruitment: √
+5-complete:  - 目录也要改
+
+4-personal √
+4-train √
+4-complete:  - 目录也要改
+4-recruitment: √
+
+
+
+1. ~~上面的 complete 胜任力改了页码  目录也要改~~
