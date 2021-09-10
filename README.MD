@@ -76,3 +76,7 @@ pdf-1-4-recruitment 招聘版本(有个css问题修改了暂时没有测试)
 
 
 1. ~~上面的 complete 胜任力改了页码  目录也要改~~
+
+## 断更
+
+断更，追更请移步 git@code.aliyun.com:fy-front/fy-pdf-template.git
