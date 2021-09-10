@@ -2,6 +2,12 @@
   line-height: 1.45;
   font-family: Source Han Sans CN;
   color: #333333;
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
 }
 
 h1,
@@ -20,6 +26,7 @@ ul li {
 
 .container {
   width: 800px;
+  margin: 0 auto;
   background-color: #fff;
 }
 
